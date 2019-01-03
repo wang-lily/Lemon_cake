@@ -1,0 +1,19 @@
+<!--pages/message/message.wxml-->
+<!-- <text>pages/message/message.wxml</text> -->
+<view wx:for="{{list}}" wx:key="index">
+    <view class="card">
+        <text class='card-title'>{{item.title}}</text>
+        <text class='card-date'>{{item.ctime}}</text>
+        <image class='card-img' src='{{item.img_url}}' lazy-load='true' mode="aspectFill"></image>
+        <view class='card-desc'>
+            <text class='pname'>{{item.desc1}}</text>
+            <view>
+                <text class='old-price'>原价</text>
+                <text class="new-price">{{item.discount}}</text>
+            </view>
+        </view>
+        <text class='card-rad arrow'>查看详情</text>
+    </view>
+</view>
+
+

@@ -1,0 +1,21 @@
+<view class='app-container'>
+  <view class='slider'>
+    <swiper autoplay vertical>
+      <swiper-item wx:for="{{list}}" wx:key="index">
+        <image src="{{item.img_url}}" lazy-load mode="aspectFill"></image>
+        </swiper-item>
+    </swiper>
+  </view>
+
+<!-- <view class='divider'></view> -->
+
+  <view class='index-nav'>
+    <view class="nav-item" wx:for="{{navlist}}" wx:key="index">
+      <image src="{{item.img_url}}" lazy-load mode="aspectFill" bindtap="handleJump" data-id="{{item.id}}"></image>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+
+  <view class='divider'></view>
+
+</view>

@@ -1,0 +1,49 @@
+/* pages/message/message.wxss */
+page{
+    background: #f1f1f1;
+}
+.card{
+    background: #fff;
+    border:1rpx solid #ddd;
+    border-radius: 20rpx;
+    margin:60rpx 20rpx;
+    padding: 30rpx;
+    display: flex;
+    flex-direction: column;
+}
+.card .card-title{
+    font-size:20px;
+    margin-bottom:20rpx;
+    color: #f00;
+    font-weight: bold;
+}
+.card .card-date{
+    font-size:14px;
+    color:#ccc;
+    padding-bottom: 20rpx;
+    margin-bottom:20rpx;
+    border-bottom:1rpx solid #ddd;
+}
+.card .card-img{
+    width: 100%;
+    height:300rpx;
+}
+.card .card-desc{
+    font-size:16px;
+    color:#333;
+    padding-bottom:20rpx;
+    border-bottom: 1rpx solid #ddd;
+    margin:20rpx 0;
+    display: flex;
+    justify-content: space-between;
+}
+.card .card-desc .old-price{
+    text-decoration: line-through;
+}
+.card .card-desc .new-price{
+    color:#f00;
+}
+.card .card-rad{
+    font-size:14px;
+    color:#666;
+}

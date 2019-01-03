@@ -1,0 +1,24 @@
+/* pages/product/product.wxss */
+  .ptn{
+    font-size: 32rpx;
+} 
+.btn{
+    background: #30a049;
+    color:#fff;
+    opacity: 1;
+} 
+
+
+.card{
+    background: #fff;
+    border:1rpx solid #ddd;
+    border-radius:20rpx;
+    margin:60rpx 20rpx;
+    padding:20rpx;
+    display: flex;
+    flex-direction: column;
+}
+.cell-item{
+    border-bottom:1rpx solid #ddd;
+    padding:20rpx 30rpx;
+}

@@ -1,0 +1,70 @@
+/* pages/shoplist/shoplist.wxss */
+page{
+    background: #fff;
+    /* border:1px solid #f00; */
+}
+.shop{
+    padding: 20rpx;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    position: relative;
+}
+.shop-img{
+    width: 200rpx;
+    height:200rpx;
+    margin-right: 20rpx;
+}
+.shop-info{
+    width: 520rpx;
+    font-size: 12px;
+    color:#666;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+}
+.shop-name{
+    margin-top:20rpx;
+    font-size:16px;
+    color:#333;
+    width:380rpx;
+}
+.shop-saleTotal{
+    position: absolute;
+    bottom: 20rpx;
+    color:#666;
+    font-size: 12px;
+}
+.shop-discount{
+    color:#f00;
+    border:1px solid #f9867e;
+    text-align: center;
+    font-size:10px;
+    background:#f6c6c3;
+    border-radius:5rpx;
+    width:60rpx;
+    padding:5rpx;
+}
+ .shop-price .icon{
+    color:#f00;
+} 
+.shop-price .price{
+    color:#f00;
+    font-size:18px;
+} 
+.shop-star{
+    height:200rpx;
+    position: absolute;
+    right: 20rpx;
+    top:20rpx;
+}
+.start-after{
+    color:#e2e2e2;
+}
+.start-before{
+    color:#f19138;
+    position: absolute;
+    top:0;
+    left: 0;
+    /* width: 75%; */
+    overflow: hidden;
+}
