@@ -5,10 +5,11 @@ Page({
     // 获取二个数值pno pageSize
     var pno = this.data.pageIndex + 1;
     var ps = this.data.pageSize;
+    var cakeClass = this.cakeClass;
     // 发送ajax请求
     wx.request({
         url: 'http://127.0.0.1:3002/find_cake_lists',
-      data:{pno:pno,pageSize:ps,cakeClass:5},
+        data: { pno: pno, pageSize: ps, cakeClass: cakeClass},
       success:res=>{
         // console.log(res.data.data);
         var rows = this.data.list.concat(res.data.data);
@@ -36,13 +37,15 @@ Page({
   data: {
     list:[],
     pageIndex:0,
-    pageSize:7
+    pageSize:7,
+    cakeClass:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.cakeClass = options.cakeClass;
     this.loadMore();
   },
 

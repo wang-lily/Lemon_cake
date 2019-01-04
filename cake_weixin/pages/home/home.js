@@ -1,11 +1,9 @@
 // pages/home/home.js
 Page({
     handleJump:function(e){
-        if(e.target.dataset.id==5){
-            wx.navigateTo({
-                url: '/pages/shoplist/shoplist',
-            })
-        }
+        wx.navigateTo({
+            url: '/pages/shoplist/shoplist?cakeClass=' + e.target.dataset.id,
+        })
     },
 
   /**
