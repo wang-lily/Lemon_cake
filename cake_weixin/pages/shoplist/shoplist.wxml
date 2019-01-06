@@ -1,19 +1,27 @@
 <!-- pages/shoplist/shoplist.wxml -->
 <!-- 美食列表 -->
-<view class="shop" wx:for="{{list}}" wx:key="{{index}}">
-  <image src="{{item.img_url}}" class="shop-img"></image>
-  <view class='shop-info'>
-    <text class="shop-name ell">{{item.name}}</text>
-    <text class="shop-discount ell">{{item.discount}} 折</text>
-    <!-- <text class="shop-saleTotal ell">已售出：{{item.saleTotal}}</text> -->
-    <text class="shop-price ell" decode='true'>
-      售 价：<text class='icon'>￥</text>
-      <text class='price'>{{item.price}}</text>
-    </text>
-  </view>
-  <view class="shop-star">
-    <view class="start-after">★★★★★</view>
-    <view class="start-before" style="width:{{item.star}}%">★★★★★</view>
-    <text class="shop-saleTotal ell">已售出：{{item.saleTotal}}</text>
+<view wx:for="{{list}}" wx:key="{{index}}">
+  <view  class="shop" catchtap="jumpToDetails" data-caid="{{item.caid}}">
+    <view>
+      <image src="{{item.img_url}}" class="shop-left" lazy-load='true'></image>
+    </view>
+    <view class='shop-center'>
+      <view class="shop-name ell">{{item.name}}</view>
+      <view >
+        <view class="shop-discount ell">{{item.discount}} 折</view>
+        <view class="shop-comment">评论: {{item.comments}} 条</view>
+      </view>
+      <view class="shop-price ell" decode='true'>
+        售 价：<text class='icon'>￥</text>
+        <text class='price'>{{item.price}}</text>
+      </view>
+    </view>
+    <view class="shop-right">
+      <view class="start-after">★★★★★
+        <view class="start-before" style="width:{{item.star}}%">★★★★★</view>
+      </view>
+      <view class="shop-saleTotal">已售出：{{item.saleTotal}}</view>
+      <view class="circle">+</view>
+    </view>
   </view>
 </view>

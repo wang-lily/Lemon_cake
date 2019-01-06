@@ -7,7 +7,7 @@
         <image class='card-img' src='{{item.img_url}}' lazy-load='true' mode="aspectFill"></image>
         <view class='card-desc'>
             <text class='pname'>{{item.desc1}}</text>
-            <view>
+            <view wx-if="{{item.discount}}">
                 <text class='old-price'>原价</text>
                 <text class="new-price">{{item.discount}}</text>
             </view>

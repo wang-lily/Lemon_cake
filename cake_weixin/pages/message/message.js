@@ -10,7 +10,7 @@ loadMore:function(){
     var ps = this.data.pageSize;
     // 3.创建ajax请求
     wx.request({
-        url: 'http://127.0.0.1:3002/getMessage',
+        url: getApp().globalData.baseUrl+'/getMessage',
         data:{pno:pno,pageSize:ps},
         success:res=>{
              // 4.接收返回数据
@@ -88,14 +88,14 @@ loadMore:function(){
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    wx.startPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.loadMore();
   },
 
   /**

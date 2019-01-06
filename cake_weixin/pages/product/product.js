@@ -18,7 +18,7 @@ Page({
             return;
         }
         wx.request({
-            url: 'http://127.0.0.1:3002/addProduct',
+            url: getApp().globalData.baseUrl+'/addProduct',
             data: {
                 pno,
                 pname

@@ -8,10 +8,10 @@ Page({
     var cakeClass = this.cakeClass;
     // 发送ajax请求
     wx.request({
-        url: 'http://127.0.0.1:3002/find_cake_lists',
+        url: getApp().globalData.baseUrl+'/find_cake_lists',
         data: { pno: pno, pageSize: ps, cakeClass: cakeClass},
       success:res=>{
-        // console.log(res.data.data);
+        console.log(res.data.data);
         var rows = this.data.list.concat(res.data.data);
         this.setData({
             list:rows,
@@ -30,6 +30,11 @@ Page({
     // 显示加载动画
     // 在shoplist.wxml显示列表数据
     // 上拉触顶加载下一页
+  },
+  jumpToDetails:function(e){
+    wx.navigateTo({
+      url: '/pages/shopdetails/shopdetails?caid='+e.currentTarget.dataset.caid
+    })
   },
   /**
    * 页面的初始数据
@@ -60,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.loadMore();
+      
   },
 
   /**
@@ -81,14 +86,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    wx.showNavigationBarLoading() //在标题栏中显示加载
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.loadMore();
   },
 
   /**

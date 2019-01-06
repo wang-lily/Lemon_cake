@@ -1,1 +1,5 @@
-{}
+{
+  "enablePullDwonRefresh": true,
+  "navigationBarTitleText": "Lemon-商品列表",
+  "backgroundColor": "#f0145a"
+}

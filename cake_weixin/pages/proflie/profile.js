@@ -8,7 +8,7 @@ Page({
             success: (res)=>{
                 console.log(res.tempFilePaths[0]);
                 wx.uploadFile({
-                    url: 'http://127.0.0.1:3002/upload',
+                    url: getApp().globalData.baseUrl+'/upload',
                     filePath: res.tempFilePaths[0],
                     name: 'mypic',
                     header:{
@@ -25,7 +25,7 @@ Page({
                             wx.hideToast();
                         },500)
                         this.setData({
-                            headerImgUrl: 'http://127.0.0.1:3002'+JSON.parse(res.data).url.slice(8),
+                            headerImgUrl: getApp().globalData.baseUrl+''+JSON.parse(res.data).url.slice(8),
                         })
                         
                         
@@ -48,7 +48,7 @@ Page({
             this.setData({isPlayingMusic:false});
         }else{
             wx.playBackgroundAudio({
-                dataUrl: 'http://127.0.0.1:3002/MP3/bg.mp3',
+                dataUrl: getApp().globalData.baseUrl+'/MP3/bg.mp3',
             });
             this.setData({isPlayingMusic:true});
         }
@@ -57,7 +57,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      headerImgUrl:"http://127.0.0.1:3002/img/child.png",
+      headerImgUrl:getApp().globalData.baseUrl+"/img/child.png",
       isPlayingMusic:false
   },
 

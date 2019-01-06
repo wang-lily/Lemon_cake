@@ -9,7 +9,7 @@ selectImg:function(){
         success: function(res) {
             var files = res.tempFilePaths;
             wx.uploadFile({
-                url: 'http://127.0.0.1:3002/upload_message',
+                url: getApp().globalData.baseUrl+'/upload_message',
                 filePath: files[0],
                 name: 'mypic',
                 header:{

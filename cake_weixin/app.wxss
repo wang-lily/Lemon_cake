@@ -38,3 +38,71 @@
     border-right:3rpx solid #ccc;
     transform:rotate(45deg);
 }
+.circle{
+    font-size: 40rpx;
+    text-align: center;
+    line-height: 37rpx;
+    color:#fff;
+    font-weight: bold;
+    width:40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    background: rgba(255, 166, 0, 1);
+}
+.list-item{
+    padding:5rpx 0rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+.point{
+    width:20rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+    display: block;
+    padding:5rpx 10rpx;
+}
+.point::before{
+    font-size:70rpx;
+    height: 40rpx;
+    line-height: 0rpx;
+    display:block;
+    content:"";
+    width:10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    background: #000;
+    margin-top: 8rpx;
+    margin-right:10rpx;
+    margin-left: 10rpx;
+}
+.base-font{
+    font-size: 24rpx;
+}
+.h1{
+    height: 50rpx;
+    font-size: 40rpx;
+    font-weight: bold;
+}
+.h2{
+    height: 50rpx;
+    font-size:30rpx;
+    line-height:50rpx;
+    font-weight: bold;
+}
+.h3{
+    height: 40rpx;
+    font-size:26rpx;
+    line-height:40rpx;
+    font-weight: bold;
+}
+.sm-muted{
+    color:#666;
+}
+
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}  

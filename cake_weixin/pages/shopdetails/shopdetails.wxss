@@ -1,0 +1,109 @@
+
+.shop-details{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding:20rpx;
+}
+.between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10rpx;
+}
+.shop-details .splide{
+    position: relative;
+}
+.shop-details .imglist{
+    padding:5rpx 5rpx;
+    overflow: scroll;
+    height: 360rpx;
+    white-space:nowrap;
+}
+.shop-details .imglist .item{
+    width:49%;
+    border-radius: 20rpx;
+    box-shadow: 0rpx 5rpx 10rpx 0rpx #666;
+}
+.shop-details .imglist .item:not(:last-child){
+    margin-right: 10rpx;
+}
+.shop-details .imglist .item:not(:first-child){
+    margin-left: 10rpx;
+}
+.shop-details .splide-arrow{
+    width: 90%;
+    padding-left:30rpx;
+    padding-right:30rpx;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: space-between;
+}
+.arrow-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrow-right::after{
+    content: "";
+    width: 15rpx;
+    height:15rpx;
+    border-top:4rpx solid #fff;
+    border-right:4rpx solid #fff;
+    transform:rotate(45deg);
+}
+.arrow-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrow-left::after{
+    content: "";
+    width: 15rpx;
+    height:15rpx;
+    border-bottom:4rpx solid #fff;
+    border-left:4rpx solid #fff;
+    transform:rotate(45deg);
+}
+.tab-bottom{
+    width: 94%;
+    border-top:0.5rpx solid #eee;
+    padding:0rpx 20rpx;
+    position: fixed;
+    left: 0rpx;
+    bottom: 0rpx;
+}
+.detail-button{
+    margin: 0;
+    color:#fff;
+    background: #f9867e;
+    height: 60rpx;
+    border-radius: 30rpx;
+    line-height: 60rpx;
+}
+.detail-price{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.discounted-price{
+    color:#f00;
+}
+.old-price{
+    text-decoration: line-through;
+    padding-bottom:10rpx;
+}
+.detail-discount{
+    color:#f9867e;
+    border-radius: 5rpx;
+    border:0.5rpx solid #f9867e;
+    padding:0rpx 4rpx;
+    line-height: 24rpx;
+}
+.detail-comments{
+    padding-top:20rpx;
+}

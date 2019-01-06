@@ -19,22 +19,16 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-right:1rpx solid #ccc;
-  border-top:1rpx solid #ccc;
+  border-right:0.5rpx solid #ccc;
+  border-top:0.5rpx solid #ccc;
   font-size: 32rpx;
   transition: all 0.2s linear;
-}
-.nav-item:hover{
-  background: #ccc;
 }
 .nav-item:nth-child(3n){
   border-right:none;
 }
 .nav-item:nth-child(1),.nav-item:nth-child(2),.nav-item:nth-child(3){
   border-top:none;
-}
-.nav-item image:hover{
-  transform: scale(1.1); 
 }
 .nav-item image{
   width:102rpx;
