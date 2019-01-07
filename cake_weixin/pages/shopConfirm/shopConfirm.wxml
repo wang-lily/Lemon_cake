@@ -1,0 +1,8 @@
+<view>
+    <view class="confirm-list">
+        <image class='shop-left' src='{{ imgUrl}}'  lazy-load=true></image>
+    </view>
+    <view>
+        
+    </view>
+</view>

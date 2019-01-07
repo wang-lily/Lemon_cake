@@ -7,13 +7,11 @@
         <view class="splide">
             <view class="imglist">
                 <image class="item" src="{{item.img_url}}" lazy-load mode="widthFix" wx:for="{{imgList}}" wx:key="index"/>
+            </view> 
+            <view class="circle arrow-left">
             </view>
-            <view class="splide-arrow">
-                <view class="circle arrow-left">
-                </view>
-                <view class="circle arrow-right">
-                </view>
-            </view>
+            <view class="circle arrow-right">
+            </view>    
         </view>
         <text class="h2">商品详情</text>
         <view>
@@ -49,6 +47,6 @@
             </view>
             <text class="base-font sm-muted old-price">原价: ￥ 168.00</text>
         </view>
-        <button class="detail-button h2">加入购物车</button>
+        <button class="detail-button h2" bindtap='addToCart'>加入购物车</button>
     </view>
 </view>

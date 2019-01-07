@@ -31,18 +31,11 @@
 .shop-details .imglist .item:not(:first-child){
     margin-left: 10rpx;
 }
-.shop-details .splide-arrow{
-    width: 90%;
-    padding-left:30rpx;
-    padding-right:30rpx;
+.arrow-right{
     position: absolute;
     top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    display: flex;
-    justify-content: space-between;
-}
-.arrow-right{
+    right:5%;
+    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +49,10 @@
     transform:rotate(45deg);
 }
 .arrow-left{
+    position: absolute;
+    top:50%;
+    left:5%;
+    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +74,7 @@
     bottom: 0rpx;
 }
 .detail-button{
+    text-align: center;
     margin: 0;
     color:#fff;
     background: #f9867e;
