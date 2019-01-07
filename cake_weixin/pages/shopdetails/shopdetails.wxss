@@ -105,3 +105,6 @@
 .detail-comments{
     padding-top:20rpx;
 }
+button::after{
+  border:none;
+}

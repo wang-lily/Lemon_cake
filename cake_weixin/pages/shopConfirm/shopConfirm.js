@@ -1,11 +1,19 @@
 // pages/shopConfirm/shopConfirm.js
 Page({
-
+  handleToCart:function(){
+    wx.switchTab({
+      url: '/pages/cart/cart',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   /**
    * 页面的初始数据
    */
   data: {
-      imgUrl: getApp().globalData.baseUrl +'/img/candle03.png'
+    spec: [{ value: 1, name: "6英寸" }, { value: 2, name: "8英寸" }, { value: 3, name: "12英寸"}],
+    imgUrl: getApp().globalData.baseUrl +'/img/child15.png'
   
   },
 

@@ -1,14 +1,14 @@
 {
     "pages": [
         "pages/home/home",
+        "pages/shopConfirm/shopConfirm",
         "pages/shopdetails/shopdetails",
         "pages/shoplist/shoplist",
         "pages/product/product",
         "pages/proflie/profile",
         "pages/message/message",
         "pages/addMessage/addMessage",
-        "pages/cart/cart",
-        "pages/shopConfirm/shopConfirm"
+        "pages/cart/cart"
     ],
     "window": {
         "backgroundTextStyle": "light",

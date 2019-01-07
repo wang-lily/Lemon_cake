@@ -1,1 +1,82 @@
-/* pages/shopConfirm/shopConfirm.wxss */
+
+.title{
+  font-size: 28rpx;
+  color:#000;
+  padding-bottom:20rpx;
+}
+.spec{
+  display: flex;
+}
+.radio-group{
+  display: flex;
+  flex-direction: column;
+}
+.radio .wx-radio-input{
+  width:24rpx;
+  height: 24rpx;
+  margin-bottom: 8rpx;
+}
+.price{
+  font-size: 30rpx;
+}
+.confirm-list{
+  font-size:28rpx;
+  padding:20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-group{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn{
+  position: relative;
+  width:50rpx;
+  height:50rpx;
+  margin:0rpx;
+  padding:0rpx;
+  border-radius:50%;
+  /* border:1px solid rgba(255, 166, 0, 1); */
+  background: rgba(255, 166, 0, 1);
+}
+.btn::after{
+  border: none;
+}
+.btn-asc::after{
+  position:absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  content: "";
+  width: 5rpx;
+  height: 20rpx;
+  background:#666;
+}
+.btn-desc::before,.btn-asc::before{
+  position:absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  content: "";
+  width: 20rpx;
+  height: 5rpx;
+  background:#666;
+}
+.num{
+  padding:0rpx 20rpx;
+}
+.btn-bottom{
+  color: #fff;
+  background: #f9867e;
+  border-radius:0;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.btn-bottom::after{
+  border:none;
+}
+

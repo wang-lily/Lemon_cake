@@ -1,6 +1,6 @@
 // pages/shopdetails/shopdetails.js
 Page({
-    addToCart:function(){
+    jumpToComfirm:function(){
         wx.navigateTo({
             url: '/pages/shopConfirm/shopConfirm'
         })

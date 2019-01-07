@@ -2,13 +2,6 @@
 page{
     background: #fff;
 }
-.shop{
-    padding: 20rpx;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-}
-
 .shop-name{
     font-size:16px;
     color:#333;
