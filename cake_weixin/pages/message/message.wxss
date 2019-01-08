@@ -47,3 +47,16 @@ page{
     font-size:14px;
     color:#666;
 }
+.red_package{
+  width: 200rpx;
+  position: fixed;
+  top:0%;
+  left:50%;
+  transform: translate(-50%,-100%);
+}
+.in{
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  transition: all 3s linear;
+}

@@ -1,7 +1,12 @@
+page{
+  /* background: #eee; */
+}
 .cart-list{
+  background: #fff;
     width:auto;
 }
 .cart-item{
+  background: #fff;
     width:auto;
     padding:10rpx 40rpx;
     display: flex;
@@ -53,6 +58,7 @@
     line-height: 0rpx;
 }
 .cart-bottom{
+  background: #fff;
     border-top:1rpx solid #eee;
     width: 90%;
     margin:0;
@@ -87,10 +93,14 @@
     margin: 0;
     color:#fff;
     background: #f9867e;
-    height: 60rpx;
-    border-radius: 30rpx;
-    line-height: 60rpx;    
+    width: 180rpx;
+    height: 80rpx;
+    border-radius: 40rpx;
+    line-height: 80rpx;    
 }
 .cart-account button::after{
     border: none;
+}
+.discountImg{
+  width: 200rpx;
 }

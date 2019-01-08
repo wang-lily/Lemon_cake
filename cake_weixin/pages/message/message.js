@@ -1,5 +1,13 @@
 // pages/message/message.js
 Page({
+  jumpToDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/messageDetails/messagedDetails?cdid=' + e.currentTarget.dataset.cdid,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
 loadMore:function(){
     // 1.如果已经没有下一页停止函数执行
     if(!this.data.hasMore){
@@ -43,6 +51,8 @@ loadMore:function(){
    * 页面的初始数据
    */
   data: {
+    isRedIn:false,
+    red_url:getApp().globalData.baseUrl+'/img/red2.png',
     list:[],
     pageIndex:0,
     hasMore:true,
@@ -60,28 +70,30 @@ loadMore:function(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    setTimeout(() => {
+      this.setData({ isRedIn: true });
+    }, 2000)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.setData({ isRedIn: false });
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+   
   },
 
   /**

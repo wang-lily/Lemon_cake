@@ -1,7 +1,7 @@
 <!--pages/message/message.wxml-->
 <!-- <text>pages/message/message.wxml</text> -->
-<view wx:for="{{list}}" wx:key="index">
-    <view class="card">
+<view class='message' wx:for="{{list}}" wx:key="index" >
+    <view class="card" bindtap='jumpToDetail' data-cdid="{{item.cdid}}">
         <text class='card-title'>{{item.title}}</text>
         <text class='card-date'>{{item.ctime}}</text>
         <image class='card-img' src='{{item.img_url}}' lazy-load='true' mode="aspectFill"></image>
@@ -14,6 +14,7 @@
         </view>
         <text class='card-rad arrow'>查看详情</text>
     </view>
+   <image class='red_package {{isRedIn?"in":""}}' src="{{red_url}}" lazy-load='true' mode="widthFix"></image>
 </view>
 
 
