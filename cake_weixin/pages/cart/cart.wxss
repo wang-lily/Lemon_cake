@@ -1,1 +1,96 @@
-/* pages/cart/cart.wxss */
+.cart-list{
+    width:auto;
+}
+.cart-item{
+    width:auto;
+    padding:10rpx 40rpx;
+    display: flex;
+    align-items: center;
+}
+.cart-item-checkbox{
+    width: 15%;
+    text-align: left;
+}
+.circle-checkbox .wx-checkbox-input{
+    border-radius: 50%;
+}
+.cart-item-img{
+    width:25%;
+    border-radius: 10rpx;
+}
+.cart-item-desc{
+    width:60%;
+    padding-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start
+}
+.cart-item-title{
+    font-size:30rpx;
+    height:50rpx;
+    line-height: 10rpx;
+}
+.cart-item-spec{
+    border:1rpx solid #ddd;
+    border-radius: 10rpx;
+    background: #eee;
+    width: 100rpx;
+    padding:5rpx 15rpx;
+    font-size:24rpx;
+}
+.cart-item-pn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size:30rpx;
+}
+.price{
+    color:#f00;
+}
+.btn-group .num{
+    line-height: 0rpx;
+}
+.cart-bottom{
+    border-top:1rpx solid #eee;
+    width: 90%;
+    margin:0;
+    position: fixed;
+    bottom: 0rpx;
+    left: 0rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding:10rpx 40rpx 10rpx 40rpx;
+}
+.cart-bottom-checkbox{
+    font-size: 30rpx;
+    line-height: 0rpx;
+    text-align: left;
+}
+.cart-total{
+    width: 50%;
+    font-size: 30rpx;
+    line-height: 0rpx;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    text-align: center;
+}
+.cart-account {
+    text-align: right;
+}
+.cart-account button{
+    text-align: center;
+    margin: 0;
+    color:#fff;
+    background: #f9867e;
+    height: 60rpx;
+    border-radius: 30rpx;
+    line-height: 60rpx;    
+}
+.cart-account button::after{
+    border: none;
+}

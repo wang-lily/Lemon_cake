@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/cart/cart",
         "pages/home/home",
         "pages/shopConfirm/shopConfirm",
         "pages/shopdetails/shopdetails",
@@ -7,8 +8,7 @@
         "pages/product/product",
         "pages/proflie/profile",
         "pages/message/message",
-        "pages/addMessage/addMessage",
-        "pages/cart/cart"
+        "pages/addMessage/addMessage"
     ],
     "window": {
         "backgroundTextStyle": "light",

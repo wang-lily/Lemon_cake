@@ -14,17 +14,23 @@
         </view>
         <view class='price'>￥39.00/份</view>
     </view>
+     <view class='confirm-list sm-muted'>
+        <text>剩余</text>
+        <text>30 份</text>
+    </view>
+    <view class="divider"></view>
     <view class='confirm-list border-bottom'>
         <view>数量</view>
         <view class='btn-group'>
-          <button class='btn btn-desc' disabled='true'></button>
-          <text class="num"> 1 </text>
-          <button class='btn btn-asc'></button>
+            <button class='btn btn-desc' disabled='true'></button>
+            <text class="num"> 1 </text>
+            <button class='btn btn-asc'></button>
         </view>
     </view>
-     <view class='confirm-list sm-muted'>
-     <text>剩余</text>
-     <text>30 份</text>
-     </view>
+    <view >
+        <view class='confirm-list'>备注：</view>
+         <textarea class='remarks' placeholder='特殊需求请备注(少于200字)...'></textarea>
+    </view>
+    <view class="divider"></view>
     <button class='btn-bottom' bindtap='handleToCart'>添加到购物车</button>
 </view>

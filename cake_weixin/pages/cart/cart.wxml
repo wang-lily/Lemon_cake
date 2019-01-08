@@ -1,0 +1,45 @@
+<view style="padding:0">
+    <view calss="cart-list">
+        <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{list}}" wx:key="index">
+            <view class="cart-item-checkbox">
+                <checkbox class="circle-checkbox"  value="{{item.caid}}" checked="{{item.checked}}"/>
+            </view>   
+            <image class="cart-item-img" src="{{item.img_url}}" mode="widthFix" lazy-load="true"/>
+            <view class="cart-item-desc">
+                <text class="cart-item-title" selectable="false" space="false" decode="false">
+                    {{item.title}}
+                </text>
+                <view class="cart-item-spec sm-muted arrow">
+                    {{item.spec}}
+                </view>
+                <view class="cart-item-pn">
+                    <view class="price">
+                        ￥{{item.price}}
+                    </view>
+                    <view class="btn-group">
+                        <button class="btn btn-desc"></button>
+                         <text class="num">
+                            {{item.num}}
+                         </text>  
+                        <button class="btn btn-asc"></button>
+                    </view>     
+                </view>     
+            </view>           
+        </view>      
+    </view>
+    <view class="cart-bottom">
+        <label class="cart-bottom-checkbox sm-muted">
+            <checkbox class="circle-checkbox"  value="{{item.caid}}" checked="{{item.checked}}"/>全选
+        </label>
+        <view  class="cart-total sm-muted">
+            合计: 
+            <text class="price">
+                ￥100.00
+            </text>      
+        </view>
+        <view  class="cart-account">
+            <button>结算</button> 
+        </view>
+          
+    </view>
+</view>

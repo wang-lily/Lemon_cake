@@ -5,7 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    list:[
+       { price:39, num:1,title:"儿童蛋糕001",img_url:getApp().globalData.baseUrl + '/img/child15.png',  spec:"6英寸",caid:12},
+       { price:39, num:2,title: "儿童蛋糕001",img_url: getApp().globalData.baseUrl + '/img/child12.png', spec: "8英寸" ,caid:12},
+       {price:39, num:4, title: "儿童蛋糕001",img_url: getApp().globalData.baseUrl + '/img/child13.png', spec: "12英寸" ,caid:12},
+       { price:39, num:1,title: "儿童蛋糕001", img_url: getApp().globalData.baseUrl + '/img/child16.png', spec: "6英寸" ,caid:12}
+    ]
   },
 
   /**

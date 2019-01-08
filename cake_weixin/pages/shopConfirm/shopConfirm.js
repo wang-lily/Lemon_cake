@@ -1,12 +1,28 @@
 // pages/shopConfirm/shopConfirm.js
 Page({
   handleToCart:function(){
-    wx.switchTab({
-      url: '/pages/cart/cart',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+      //发送请求到服务器，成功后提示
+      wx.showModal({
+          title: '添加成功',
+          content: '查看购物车列表？',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '',
+          confirmText: '确定',
+          confirmColor: '',
+          success: function(res) {
+              if(res.confirm){
+                  wx.switchTab({
+                      url: '/pages/cart/cart',
+                      success: function (res) { },
+                      fail: function (res) { },
+                      complete: function (res) { },
+                  })
+              }      
+          },
+          fail: function(res) {},
+          complete: function(res) {},
+      })
   },
   /**
    * 页面的初始数据
