@@ -1,0 +1,10 @@
+/* pages/getUserInfo/getUserInfo.wxss */
+.user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uname{
+    padding-bottom: 50rpx;
+}

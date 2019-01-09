@@ -51,7 +51,12 @@ Page({
    */
   onLoad: function (options) {
     this.cakeClass = options.cakeClass;
-    this.loadMore();
+    if (this.cakeClass==9){
+
+    }
+    else{
+        this.loadMore();
+    }
   },
 
   /**

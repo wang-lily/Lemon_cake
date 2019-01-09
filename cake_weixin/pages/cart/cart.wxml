@@ -27,7 +27,9 @@
             </view>           
         </view>      
     </view>
+   <view class="discount-msg">
     <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
+   </view> 
     <view class="cart-bottom">
         <label class="cart-bottom-checkbox sm-muted">
             <checkbox class="circle-checkbox"  value="{{item.caid}}" checked="{{item.checked}}"/>全选

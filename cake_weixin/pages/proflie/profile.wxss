@@ -1,15 +1,16 @@
 /* pages/proflie/profile.wxss */
-.avatar{
+.profile-avatar{
     background: #000;
     height:400rpx;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
-.avatar image{
-    background: #fff;
-    width:190rpx;
-    height: 190rpx;
-    border-radius: 50%;
-    border:3px solid rgba(0, 0, 0, 0.3);
+.avatar-box::after{
+    border-color:#000;
+}
+.uname{
+    margin-top:-10rpx;
+    color:#fff;
 }

@@ -1,3 +1,4 @@
+
 //1:加载模块 express pool
 const express = require("express");
 const pool = require("./pool");
@@ -35,6 +36,7 @@ console.log("cake_weixin服务器创建成功，端口号3002");
 //app.js vue_app_server
 app.use(express.static(__dirname+"/public"))
 
+var baseUrl = "http://127.0.0.1:3002";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录
@@ -65,14 +67,14 @@ app.post("/upload",upload.single("mypic"),
  var i3 = src.lastIndexOf(".");
  var suff = src.substring(i3,src.length);
  var des = "./public/upload/"+fTime+fRand+suff;
- console.log(des);
+ var url = baseUrl + "/upload/" + fTime+fRand+suff;
  //8:将临时文件移动upload目录下
  fs.renameSync(req.file.path,des);
  //9:返回上传成功信息
  res.send({
    code:1,
    msg:"图片上传成功",
-   url:des
+   url:url
   });
 });
 
@@ -521,7 +523,8 @@ app.post("/upload_message",upload.single("mypic"),(req,res)=>{
   fs.renameSync(req.file.path,newFile);
   res.send({
     code:1,
-    msg:"上传成功"
+    msg:"上传成功",
+    img_url:""
   })
 })
 

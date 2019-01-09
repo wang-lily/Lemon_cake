@@ -58,5 +58,5 @@ page{
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-  transition: all 3s linear;
+  transition: all 1s linear;
 }

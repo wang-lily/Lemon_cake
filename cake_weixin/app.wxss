@@ -178,3 +178,30 @@
   .num{
     padding:0rpx 20rpx;
   }
+
+  .avatar-box{
+    margin: 50rpx;
+   position: relative;
+    width: 200rpx;
+    height: 200rpx;
+}
+.avatar{
+    width: 200rpx;
+    height: 200rpx;
+    /* border-radius: 100rpx; */
+}
+ .avatar-box::after{
+     content: "";
+     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    width: 300rpx;
+    height: 300rpx;
+    border:50rpx solid #fff;
+    border-radius: 150rpx;
+    position: absolute;
+    top:-50rpx;
+    left: -50rpx;
+} 

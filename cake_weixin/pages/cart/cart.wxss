@@ -104,3 +104,8 @@ page{
 .discountImg{
   width: 200rpx;
 }
+.discount-msg{
+   padding-top:20rpx;
+    padding-right: 30rpx;
+    text-align: right;
+}

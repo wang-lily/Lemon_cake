@@ -1,9 +1,11 @@
 <!--pages/proflie/profile.wxml-->
 <!-- <text>pages/proflie/profile.wxml</text> -->
 <view>
-    <view class="avatar">
-        <!-- <image bindtap='onMusicTap' src="{{ !isPlayingMusic? 'http://127.0.0.1:3000/img/child.png' :  'http://127.0.0.1:3000/img/gift.png'}}" lazy-load='true' mode='aspectFill'></image> -->
-        <image bindtap='loadHeaderImg' src="{{headerImgUrl}}" lazy-load='true' mode='aspectFill'></image>
+    <view class="profile-avatar">
+         <view class="avatar-box">
+        <open-data type="userAvatarUrl" class="avatar"></open-data>
+        </view>
+        <open-data type="userNickName" class="uname"></open-data>
     </view>
     <view class='divider'></view>
     <view class="cell">
@@ -13,7 +15,7 @@
      <view class='divider'></view>
      <view class="cell">
         <view class="cell-item arrow">我的优惠券</view>
-        <view class="cell-item arrow">我的积分</view>
+        <view class="cell-item arrow">我的红包</view>
         <view class="cell-item arrow">使用条款</view>
         <view class="cell-item arrow">常见问题</view>
     </view>

@@ -1,7 +1,8 @@
 <!--pages/addMessage/addMessage.wxml-->
 <!-- <text>pages/addMessage/addMessage.wxml</text> -->
-<view class='card'>
-    <view class='card-view'>
+<view class='add-message'>
+    <view class='add-message-view'>
         <button bindtap='selectImg'>上传图片</button>
+        <drawImg bindtap='selectImg' imgUrl="{{imgUrl}}"></drawImg>
     </view>
 </view>
