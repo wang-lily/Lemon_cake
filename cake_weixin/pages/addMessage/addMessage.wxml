@@ -9,12 +9,21 @@
             <view class="title">图片列表:</view>
             <view class="add-img-list">
                 <view class=" add-img-list-item" wx:for="{{imgList}}" wx:key="index" >
-                    <image class="added-img"src="{{item}}" mode="widthFix"/>
+                    <image class="added-img" src="{{item}}" mode="widthFix"/>
                 </view>
                 <view class=" add-img-list-item">
                     <UploadImg id="upload-img" bindtap="handleTap"></UploadImg>
                 </view>
             </view>
+        </view>
+        <view >
+            <view class="title">商品类别:</view>
+            <radio-group class='radio-group' bindchange="radioChange">
+              <label class='radio'  wx:for="{{spec}}"wx:key="index">
+                <radio  value="{{item.value}}" checked="{{item.checked}}" />
+                {{item.name}}
+              </label>
+            </radio-group>
         </view>
         <view >
             <view class="title">商品详情:</view>
@@ -37,14 +46,19 @@
                 <view class="title">可选项目:</view>
                 <button class="btn btn-asc"></button>
             </view>
-            <input class="my-input" type="text" placeholder="项目1"/>
+            <view class="point">
+                <input class="my-input" type="text" placeholder="项目1"/>
+            </view>
         </view>
         <view >
-            <view class="align-between">
+             <view class="align-between">
                 <view class="title">温馨提示:</view>
                 <button class="btn btn-asc"></button>
             </view>
-            <input class="my-input" type="text" placeholder="提示1"/>
+            <view class="point">
+                <input class="my-input" type="text" placeholder="项目1"/>
+            </view>
         </view>
     </view>
+    <button class='btn-bottom' >添加商品</button>
 </view>

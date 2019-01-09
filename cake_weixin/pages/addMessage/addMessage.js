@@ -13,7 +13,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-      imgList: []
+      imgList: [],
+      spec: [
+        { value: 1, name: "贺寿" }, 
+        { value: 2, name: "情侣" },
+        { value: 3, name: "结婚"},
+        { value: 4, name: "儿童"},
+        { value: 5, name: "早餐"},
+        { value: 6, name: "鲜花"},
+        { value: 7, name: "礼物"},
+        { value: 8, name: "蜡烛"},
+        { value: 9, name: "DIY"}
+    ],
   },
 
   /**

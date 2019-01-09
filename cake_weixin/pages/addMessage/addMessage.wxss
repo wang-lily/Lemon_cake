@@ -4,6 +4,9 @@ page{
     padding:30rpx;
     width: 100%;
 }
+.add-message-view{
+    margin-bottom: 200rpx;
+}
 .add-img-list{
     padding-top:20rpx;
     display: flex;
@@ -43,4 +46,36 @@ page{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.radio-group{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.radio-group .radio{
+    text-align: center;
+    width: 33.33%;
+    font-size: 30rpx;
+}
+.radio-group .radio .wx-radio-input{
+    width:30rpx;
+    height: 30rpx;
+    margin-bottom: 8rpx;
+}
+.point{
+    padding:20rpx 0rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.point .my-input{
+    width: 90%;
+}
+.point::before{
+    content: "";
+    width:10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    background: #000;
 }

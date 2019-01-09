@@ -53,6 +53,11 @@ Page({
             this.setData({isPlayingMusic:true});
         }
     },
+    handleTap:function(){
+        wx.navigateTo({
+            url: '/pages/addMessage/addMessage'
+        })
+    },
   /**
    * 页面的初始数据
    */
