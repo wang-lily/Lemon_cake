@@ -1,17 +1,17 @@
 {
     "pages": [
         "pages/addMessage/addMessage",
+        "pages/shopdetails/shopdetails",
         "pages/home/home",
         "pages/getUserInfo/getUserInfo",
         "pages/cart/cart",
         "pages/shopConfirm/shopConfirm",
-        "pages/shopdetails/shopdetails",
         "pages/shoplist/shoplist",
         "pages/product/product",
         "pages/proflie/profile",
         "pages/message/message",
         "pages/messageDetails/messagedDetails",
-        "components/drawImg/drawImg"
+        "components/UploadImg/UploadImg"
     ],
     "window": {
         "backgroundTextStyle": "light",

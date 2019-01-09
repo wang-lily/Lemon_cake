@@ -1,8 +1,50 @@
-<!--pages/addMessage/addMessage.wxml-->
-<!-- <text>pages/addMessage/addMessage.wxml</text> -->
+
 <view class='add-message'>
     <view class='add-message-view'>
-        <button bindtap='selectImg'>上传图片</button>
-        <drawImg bindtap='selectImg' imgUrl="{{imgUrl}}"></drawImg>
+        <view>
+            <view class="title">商品标题:</view>
+            <input class="my-input" type="text"/>
+        </view>
+        <view >
+            <view class="title">图片列表:</view>
+            <view class="add-img-list">
+                <view class=" add-img-list-item" wx:for="{{imgList}}" wx:key="index" >
+                    <image class="added-img"src="{{item}}" mode="widthFix"/>
+                </view>
+                <view class=" add-img-list-item">
+                    <UploadImg id="upload-img" bindtap="handleTap"></UploadImg>
+                </view>
+            </view>
+        </view>
+        <view >
+            <view class="title">商品详情:</view>
+            <input class="my-input" type="text"/>
+        </view>
+        <view >
+            <view class="title">商品数量:</view>
+            <input class="my-input" type="text"/>
+        </view>
+        <view >
+            <view class="title">商品原价:</view>
+            <input class="my-input" type="text"/>
+        </view>
+        <view >
+            <view class="title">商品现价:</view>
+            <input class="my-input" type="view"/>
+        </view>
+        <view >
+            <view class="align-between">
+                <view class="title">可选项目:</view>
+                <button class="btn btn-asc"></button>
+            </view>
+            <input class="my-input" type="text" placeholder="项目1"/>
+        </view>
+        <view >
+            <view class="align-between">
+                <view class="title">温馨提示:</view>
+                <button class="btn btn-asc"></button>
+            </view>
+            <input class="my-input" type="text" placeholder="提示1"/>
+        </view>
     </view>
 </view>

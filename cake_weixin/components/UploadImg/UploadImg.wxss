@@ -1,5 +1,5 @@
 
-.wx_drawImg_container{
+.wx_UploadImg_container{
     position: relative;
     width: 200rpx;
     height: 200rpx;

@@ -1,38 +1,19 @@
 // pages/addMessage/addMessage.js
 Page({
-    selectImg:function() {
-        // 选中一张图片
-        wx.chooseImage({
-            count: 1,
-            sizeType: ["compressed"],
-            sourceType: ["camera", "album"],
-            success: (res) => {
-                var files = res.tempFilePaths;
-                wx.uploadFile({
-                    url: getApp().globalData.baseUrl + '/upload',
-                    filePath: files[0],
-                    name: 'mypic',
-                    header: {
-                        "content-Type": "multipart/form-data"
-                    },
-                    formData: {
-                        pid: 19,
-                        pname: "数字蜡烛"
-                    },
-                    success: (res) => {
-                        var data = JSON.parse(res.data);
-                        this.setData({ imgUrl: data.url })
-                    }
-                })
-            },
-        })
-        // 将图片上传
-    },
+    //调用子组件上传图片方法，并追加图片url列表
+   handleTap: function(){
+    var UploadImg = this.selectComponent("#upload-img");
+        UploadImg.selectImg(()=>{
+            var l = this.data.imgList.length;
+            var item = `imgList[${l}]`;
+            this.setData({[item]:UploadImg.data.imgUrl});
+        });     
+   },
   /**
    * 页面的初始数据
    */
   data: {
-      imgUrl: ""
+      imgList: []
   },
 
   /**
@@ -46,7 +27,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.drawImg = this.selectComponent("drawImg")
+    
   },
 
   /**

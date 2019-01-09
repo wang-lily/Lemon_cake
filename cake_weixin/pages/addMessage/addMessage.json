@@ -1,5 +1,8 @@
 {
     "usingComponents":{
-        "drawImg":"/components/drawImg/drawImg"
-    }
+        "UploadImg":"/components/UploadImg/UploadImg"
+    },
+    "enablePullDwonRefresh": true,
+    "navigationBarTitleText": "Lemon-添加商品",
+    "backgroundColor": "#f0145a"
 }

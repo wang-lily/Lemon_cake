@@ -37,6 +37,7 @@ console.log("cake_weixin服务器创建成功，端口号3002");
 app.use(express.static(__dirname+"/public"))
 
 var baseUrl = "http://127.0.0.1:3002";
+// var baseUrl = "http://23z20z4973.iask.in:40613";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录

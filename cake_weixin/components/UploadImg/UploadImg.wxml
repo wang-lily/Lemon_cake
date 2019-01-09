@@ -1,0 +1,6 @@
+<view class="wx_UploadImg_container">
+    <!-- <image class="draw-img" src="{{imgUrl}}"  lazy-load  mode="widthFix"></image> -->
+    <view class="draw-mask">
+         <button  class="btn btn-asc"></button>
+    </view>
+</view>
