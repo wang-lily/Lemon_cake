@@ -49,15 +49,17 @@
             <view class="point">
                 <input class="my-input" type="text" placeholder="项目1"/>
             </view>
+            <view class="sm-muted item-remarks">（备注：最多6条，每条少于5个字)</view>
         </view>
         <view >
              <view class="align-between">
-                <view class="title">温馨提示:</view>
+                <view class="title">温馨提示可选项目:</view>
                 <button class="btn btn-asc"></button>
             </view>
             <view class="point">
                 <input class="my-input" type="text" placeholder="项目1"/>
             </view>
+            <view class="sm-muted item-remarks">（备注：最多15条，每条少于50个字)</view>
         </view>
     </view>
     <button class='btn-bottom' >添加商品</button>

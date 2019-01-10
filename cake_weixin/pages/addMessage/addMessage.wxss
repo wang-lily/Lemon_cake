@@ -79,3 +79,9 @@ page{
     border-radius: 50%;
     background: #000;
 }
+.item-remarks{
+  box-sizing: border-box;
+  padding: 10rpx;
+  width: 100%;
+  text-align: right;
+}

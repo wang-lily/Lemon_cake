@@ -97,6 +97,8 @@
     font-weight: bold;
 }
 .sm-muted{
+  font-weight: normal;
+  font-size: 24rpx;
     color:#666;
 }
 
@@ -143,6 +145,7 @@
     align-items: center;
   }
   .btn-bottom{
+    z-index: 101;
     color: #fff;
     background: #f9867e;
     border-radius:0;
