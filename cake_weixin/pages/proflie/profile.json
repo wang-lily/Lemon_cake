@@ -1,1 +1,9 @@
-{}
+{
+    "usingComponents": {
+        "ProfileManager": "/components/ProfileManager/ProfileManager",
+        "ProfileUser": "/components/ProfileUser/ProfileUser"
+    },
+    "enablePullDwonRefresh": true,
+    "navigationBarTitleText": "Lemon-个人中心",
+    "backgroundColor": "#f0145a"
+}

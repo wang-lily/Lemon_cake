@@ -62,8 +62,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      headerImgUrl:getApp().globalData.baseUrl+"/img/child.png",
-      isPlayingMusic:false
+    //   headerImgUrl:getApp().globalData.baseUrl+"/img/child.png",
+      isManager:true
   },
 
   /**

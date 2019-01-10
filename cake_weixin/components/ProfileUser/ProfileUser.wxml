@@ -1,0 +1,19 @@
+<view>
+    <view class='divider'></view>
+    <view class="cell">
+        <view class='cell-item h1'>个人资料</view>
+        <view class="cell-item arrow">我的订单</view>
+    </view>
+     <view class='divider'></view>
+     <view class="cell">
+        <view class="cell-item arrow">我的优惠券</view>
+        <view class="cell-item arrow">我的红包</view>
+        <view class="cell-item arrow">使用条款</view>
+         <view class="cell-item arrow">常见问题</view> 
+    </view>
+    <view class='divider'></view>
+     <view class="cell">
+        <view class="cell-item arrow">设置</view>
+    </view>
+    <view class='divider'></view>
+</view>

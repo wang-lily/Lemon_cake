@@ -1,0 +1,4 @@
+<view class='buiding-page'>
+    <image class='loveme'  src="{{loveme_url}}" lazy-load='{{true}}' mode="aspectFit"></image>
+    <image class='buiding'  src="{{building_url}}" lazy-load='{{true}}' mode="aspectFit"></image>
+</view>

@@ -1,8 +1,14 @@
 // pages/home/home.js
 Page({
     handleJump:function(e){
+        if (e.target.dataset.id==9){
+            wx.navigateTo({
+                url: '/pages/building/buiding',
+            })
+            return;
+        }
         wx.navigateTo({
-            url: '/pages/shoplist/shoplist?cakeClass=' + e.target.dataset.id,
+            url: '/pages/shoplist/shoplist?cakeClass=' + e.target.dataset.id+'&title=' + e.target.dataset.title,
         })
     },
 

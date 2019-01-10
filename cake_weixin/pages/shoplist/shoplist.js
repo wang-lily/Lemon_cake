@@ -1,5 +1,13 @@
 // pages/shoplist/shoplist.js
 Page({
+    setTitle:function(){
+        wx.setNavigationBarTitle({
+            title: this.data.title,
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
   loadMore:function(){
     // 加载下一页数据
     // 获取二个数值pno pageSize
@@ -43,7 +51,8 @@ Page({
     list:[],
     pageIndex:0,
     pageSize:7,
-    cakeClass:0
+    cakeClass:0,
+    title:"Lemon"
   },
 
   /**
@@ -51,6 +60,8 @@ Page({
    */
   onLoad: function (options) {
     this.cakeClass = options.cakeClass;
+    this.setData({title:"Lemon-"+options.title});
+    this.setTitle();
     if (this.cakeClass==9){
 
     }

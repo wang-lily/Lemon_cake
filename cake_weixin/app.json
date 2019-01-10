@@ -1,6 +1,9 @@
 {
     "pages": [
         "pages/home/home",
+        "pages/proflie/profile",
+        "pages/building/buiding",
+        "pages/diy/diy",
         "pages/cart/cart",
         "pages/shoplist/shoplist",
         "pages/addMessage/addMessage",
@@ -8,7 +11,6 @@
         "pages/getUserInfo/getUserInfo",
         "pages/shopConfirm/shopConfirm",
         "pages/product/product",
-        "pages/proflie/profile",
         "pages/message/message",
         "pages/messageDetails/messagedDetails",
         "components/UploadImg/UploadImg"

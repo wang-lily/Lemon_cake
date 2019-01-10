@@ -1,0 +1,20 @@
+<view  bindtap="handleTap">
+    <view class='divider'></view>
+    <view class="cell">
+        <view class='cell-item h1'>商家信息</view>
+        <view class="cell-item arrow" data-url="{{list[0].url}}">{{list[0].name}}</view>
+    </view>
+     <view class='divider'></view>
+     <view class="cell">
+        <view class="cell-item arrow" data-url="{{list[1].url}}">{{list[1].name}}</view>
+        <view class="cell-item arrow" data-url="{{list[2].url}}">{{list[2].name}}</view>
+        <view class="cell-item arrow" data-url="{{list[3].url}}">{{list[3].name}}</view>
+         <view class="cell-item arrow" data-url="{{list[4].url}}">{{list[4].name}}</view> 
+         <view class="cell-item arrow" data-url="{{list[5].url}}">{{list[5].name}}</view> 
+    </view>
+    <view class='divider'></view>
+     <view class="cell">
+        <view class="cell-item arrow" data-url="{{list[6].url}}">{{list[6].name}}</view>
+    </view>
+    <view class='divider'></view>
+</view>

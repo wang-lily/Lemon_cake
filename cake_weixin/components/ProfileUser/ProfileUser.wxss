@@ -1,0 +1,30 @@
+.divider{
+  background: #eee;
+  height:15rpx;
+}
+.cell{
+    background:#fff;
+    font-size:16px;
+}
+.cell-item{
+    padding:20rpx 30rpx;
+    border-bottom:1px solid #ddd;
+}
+.arrow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.arrow::after{
+    content: "";
+    width: 15rpx;
+    height:15rpx;
+    border-top:3rpx solid #ccc;
+    border-right:3rpx solid #ccc;
+    transform:rotate(45deg);
+}
+.h1{
+    height: 50rpx;
+    font-size: 40rpx;
+    font-weight: bold;
+}

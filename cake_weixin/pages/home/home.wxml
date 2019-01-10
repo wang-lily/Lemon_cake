@@ -11,7 +11,7 @@
 
   <view class='index-nav'>
     <view class="nav-item" wx:for="{{navlist}}" wx:key="index">
-      <image src="{{item.img_url}}" lazy-load mode="aspectFill" bindtap="handleJump" data-id="{{item.id}}"></image>
+      <image src="{{item.img_url}}" lazy-load mode="aspectFill" bindtap="handleJump" data-id="{{item.id}}" data-title="{{item.title}}"></image>
       <text>{{item.title}}</text>
     </view>
   </view>

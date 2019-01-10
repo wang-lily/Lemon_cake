@@ -5,24 +5,9 @@
          <view class="avatar-box">
         <open-data type="userAvatarUrl" class="avatar"></open-data>
         </view>
-        <open-data type="userNickName" class="uname"></open-data>
+        <!-- <text class='uname'></text> -->
+        <open-data type="userNickName" class="uname">{{isManager?" 管理员":""}}</open-data>
     </view>
-    <view class='divider'></view>
-    <view class="cell">
-        <view class='cell-item'>个人资料</view>
-        <view class="cell-item arrow">我的订单</view>
-    </view>
-     <view class='divider'></view>
-     <view class="cell">
-        <view class="cell-item arrow">我的优惠券</view>
-        <view class="cell-item arrow">我的红包</view>
-        <view class="cell-item arrow">使用条款</view>
-        <view class="cell-item arrow" bindtap="handleTap">添加商品</view>
-        <!-- <view class="cell-item arrow">常见问题</view> -->
-    </view>
-    <view class='divider'></view>
-     <view class="cell">
-        <view class="cell-item arrow">设置</view>
-    </view>
-    <view class='divider'></view>
+    <ProfileManager wx:if="{{isManager}}"></ProfileManager>
+    <ProfileUser wx:else></ProfileUser>
 </view>
