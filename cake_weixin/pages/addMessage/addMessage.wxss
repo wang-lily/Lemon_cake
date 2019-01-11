@@ -63,11 +63,13 @@ page{
     margin-bottom: 8rpx;
 }
 .point{
+    position: relative;
     padding:20rpx 0rpx;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:15rpx 0rpx;
 }
 .point .my-input{
     width: 90%;
@@ -84,4 +86,12 @@ page{
   padding: 10rpx;
   width: 100%;
   text-align: right;
+}
+.absolue-right{
+    position: absolute;
+    top:50%;
+    right:0;
+    transform: translateY(-50%) scale(0.7);
+    margin-right: 20rpx;
+    background: #ddd;
 }

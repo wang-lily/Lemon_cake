@@ -9,12 +9,17 @@ Page({
             this.setData({[item]:UploadImg.data.imgUrl});
         });     
    },
+   getValues:function(e){
+        this.data.specs = e.detail.values;
+   },
   /**
    * 页面的初始数据
    */
   data: {
       imgList: [],
-      spec: [
+        remarks:[],
+        specs:[],
+      productClass: [
         { value: 1, name: "贺寿" }, 
         { value: 2, name: "情侣" },
         { value: 3, name: "结婚"},

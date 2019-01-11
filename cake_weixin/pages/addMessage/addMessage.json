@@ -1,6 +1,7 @@
 {
     "usingComponents":{
-        "UploadImg":"/components/UploadImg/UploadImg"
+        "UploadImg":"/components/UploadImg/UploadImg",
+        "InputGroup":"/components/InputGroup/InputGroup"
     },
     "enablePullDwonRefresh": true,
     "navigationBarTitleText": "Lemon-添加商品",

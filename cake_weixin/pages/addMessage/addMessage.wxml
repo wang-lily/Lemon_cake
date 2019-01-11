@@ -1,66 +1,60 @@
 
 <view class='add-message'>
-    <view class='add-message-view'>
-        <view>
-            <view class="title">商品标题:</view>
-            <input class="my-input" type="text"/>
-        </view>
-        <view >
-            <view class="title">图片列表:</view>
-            <view class="add-img-list">
-                <view class=" add-img-list-item" wx:for="{{imgList}}" wx:key="index" >
-                    <image class="added-img" src="{{item}}" mode="widthFix"/>
+    <form bindsubmit="formSubmit">
+        <view class='add-message-view'>
+            <view>
+                <view class="title">商品标题:</view>
+                <input class="my-input" type="text" name="product-title" placeholder="最多10个字..." maxlength="10"/>
+            </view>
+            <view >
+                <view class="title">图片列表:</view>
+                <view class="add-img-list">
+                    <view class=" add-img-list-item" wx:for="{{imgList}}" wx:key="index" >
+                        <image class="added-img" src="{{item}}" mode="widthFix"/>
+                    </view>
+                     <!-- UploadImg组件 -->
+                    <view class=" add-img-list-item">
+                        <UploadImg id="upload-img" bindtap="handleTap"></UploadImg>
+                    </view>
                 </view>
-                <view class=" add-img-list-item">
-                    <UploadImg id="upload-img" bindtap="handleTap"></UploadImg>
-                </view>
             </view>
-        </view>
-        <view >
-            <view class="title">商品类别:</view>
-            <radio-group class='radio-group' bindchange="radioChange">
-              <label class='radio'  wx:for="{{spec}}"wx:key="index">
-                <radio  value="{{item.value}}" checked="{{item.checked}}" />
-                {{item.name}}
-              </label>
-            </radio-group>
-        </view>
-        <view >
-            <view class="title">商品详情:</view>
-            <input class="my-input" type="text"/>
-        </view>
-        <view >
-            <view class="title">商品数量:</view>
-            <input class="my-input" type="text"/>
-        </view>
-        <view >
-            <view class="title">商品原价:</view>
-            <input class="my-input" type="text"/>
-        </view>
-        <view >
-            <view class="title">商品现价:</view>
-            <input class="my-input" type="view"/>
-        </view>
-        <view >
-            <view class="align-between">
-                <view class="title">可选项目:</view>
-                <button class="btn btn-asc"></button>
+            <view >
+                <view class="title">商品类别:</view>
+                <radio-group class='radio-group' bindchange="radioChange" name="product-class">
+                <label class='radio'  wx:for="{{productClass}}"wx:key="index">
+                    <radio  value="{{item.value}}" checked="{{item.checked}}" />
+                    {{item.name}}
+                </label>
+                </radio-group>
             </view>
-            <view class="point">
-                <input class="my-input" type="text" placeholder="项目1"/>
+            <view >
+                <view class="title">商品详情:</view>
+                <input class="my-input" type="text" name="product-desc" placeholder="最多10个字..." maxlength="10"/>
             </view>
-            <view class="sm-muted item-remarks">（备注：最多6条，每条少于5个字)</view>
+            <view >
+                <view class="title">商品数量:</view>
+                <input class="my-input" name="product-total" type="number" placeholder="最多5位数..." maxlength="5"/>
+            </view>
+            <view >
+                <view class="title">商品原价:</view>
+                <input class="my-input" name="product-old-price" type="digit"/>
+            </view>
+            <view >
+                <view class="title">商品现价:</view>
+                <input class="my-input" name="product-now-price" type="digit"/>
+            </view>
+            <!-- InputGroup组件 -->
+            <InputGroup 
+            title="可选项目" 
+            itemMaxLength="5"   
+            itemTotal="6"
+            bind:getInputGroupValues="getInputGroupValues"
+            ></InputGroup>
+            <InputGroup title="温馨提示" itemMaxLength="50"   itemTotal="12"></InputGroup>
         </view>
-        <view >
-             <view class="align-between">
-                <view class="title">温馨提示可选项目:</view>
-                <button class="btn btn-asc"></button>
-            </view>
-            <view class="point">
-                <input class="my-input" type="text" placeholder="项目1"/>
-            </view>
-            <view class="sm-muted item-remarks">（备注：最多15条，每条少于50个字)</view>
-        </view>
-    </view>
-    <button class='btn-bottom' >添加商品</button>
+
+
+        <button class='btn-bottom' form-type="submit">添加商品</button>
+    </form>
+    
 </view>

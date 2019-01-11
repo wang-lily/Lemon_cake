@@ -1,0 +1,97 @@
+/* components/InputGroup/InputGroup.wxss */
+/* @import "../../app.wxss"; */
+.point{
+    position: relative;
+    padding:5rpx 0rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.point .my-input{
+    width: 90%;
+}
+.point::before{
+    content: "";
+    width:10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    background: #000;
+}
+.item-remarks{
+  box-sizing: border-box;
+  padding: 5rpx;
+  width: 100%;
+  text-align: right;
+}
+.absolue-right{
+    position: absolute !important;
+    top:50%;
+    right:0;
+    transform: translateY(-50%) scale(0.7);
+    margin-right: 20rpx !important;
+    background: #ddd !important;
+}
+.my-input{
+    width: auto;
+    border:1rpx solid #ddd;
+    border-radius: 10rpx;
+    padding:5rpx 10rpx;
+    margin-left: 15rpx;
+    font-size:24rpx;
+
+}
+
+
+
+
+ .btn{
+    position: relative;
+    width:50rpx;
+    height:50rpx;
+    margin:0rpx;
+    padding:0rpx;
+    border-radius:50%;
+    /* border:1px solid rgba(255, 166, 0, 1); */
+    background: rgba(255, 166, 0, 1);
+  }
+  .btn::after{
+    border: none;
+  }
+  .btn-asc::after{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "";
+    width: 5rpx;
+    height: 20rpx;
+    background:#666;
+  }
+  .btn-desc::before,.btn-asc::before{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "";
+    width: 20rpx;
+    height: 5rpx;
+    background:#666;
+  }
+  .title{
+    line-height: 70rpx;
+    height: 50rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    padding:20rpx 0rpx;
+}
+.align-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sm-muted{
+  font-weight: normal;
+  font-size: 24rpx;
+    color:#666;
+}
