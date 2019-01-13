@@ -26,6 +26,7 @@
 }
 .absolue-right{
     position: absolute !important;
+    z-index: 100;
     top:50%;
     right:0;
     transform: translateY(-50%) scale(0.7);

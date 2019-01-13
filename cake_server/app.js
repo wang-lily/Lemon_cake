@@ -35,9 +35,14 @@ console.log("cake_weixin服务器创建成功，端口号3002");
 // __dirname 当前程序所属目录绝对路径 
 //app.js vue_app_server
 app.use(express.static(__dirname+"/public"))
+//引入第三方模块:bodyParser 处理post请求
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({
+  extended:false
+}));
 
-var baseUrl = "http://127.0.0.1:3002";
-// var baseUrl = "http://23z20z4973.iask.in:40613";
+// var baseUrl = "http://127.0.0.1:3002";
+var baseUrl = "http://23z20z4973.iask.in:40613";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录
@@ -214,11 +219,7 @@ app.get("/getcomment",(req,res)=>{
 });
 
 //功能五:发表评论
-//引入第三方模块:bodyParser 处理post请求
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({
-  extended:false
-}));
+
 app.post("/addComment",(req,res)=>{
   //1:获取3个参数
   //需要第三方模块支持 bodyParser
@@ -434,18 +435,10 @@ app.get("/find_cake_lists",(req,res)=>{
 
 
 // 第十五个功能:添加商品
-app.get("/addProduct",(req,res)=>{
-  if(req.query.pno && req.query.pname){
-    res.send({
-      code:1,
-      msg:"商品添加成功！"
-    })
-  }else{
-    res.send({
-      code:-1,
-      msg:"商品添加失败！"
-    })
-  }
+app.post("/addProduct",(req,res)=>{
+  var data = req.body.data;
+  console.log(data);
+
 })
 
 //第十六个功能:优惠分页显示

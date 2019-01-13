@@ -1,6 +1,15 @@
-<view class="wx_UploadImg_container">
-    <!-- <image class="draw-img" src="{{imgUrl}}"  lazy-load  mode="widthFix"></image> -->
-    <view class="draw-mask">
-         <button  class="btn btn-asc"></button>
+
+
+<view class="add-img-list">
+    <view class=" add-img-list-item" wx:for="{{imgList}}" wx:key="index" >
+        <image class="added-img" src="{{item.url}}" mode="widthFix"/>
     </view>
-</view>
+    <view class=" add-img-list-item">
+        <view class="wx_UploadImg_container">
+            <view class="draw-mask" bindtap="selectImg">
+                <button  class="btn btn-asc"></button>
+            </view>
+        </view>
+    </view>   
+</view>   
+

@@ -25,7 +25,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-      specs: {
+      inputGroup: {
           noDel: true,
           noAdd: false,
           list: [{ value: "" }]
@@ -36,64 +36,47 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // 监听方法
-      observe(obj, key, watchFun) {
-          var val = obj[key]; // 给该属性设默认值
-          Object.defineProperty(obj, key, {
-              configurable: true,
-              enumerable: true,
-              set: function (value) {
-                  val = value;
-                  watchFun(value, val); // 赋值(set)时，调用对应函数
-              },
-              get: function () {
-                  return val;
-              }
-          })
-
-
       //添加项目
       addItem: function (e) {
           var num = e.target.dataset.num;
-          var desc = e.target.dataset.desc;
-          var tmpList = this.data[desc].list;
+          var tmpList = this.data.inputGroup.list;
           tmpList.push({ value: "" });
           this.setData({
-              [`${desc}.list`]: tmpList,
-              [`${desc}.noDel`]: false
+              [`inputGroup.list`]: tmpList,
+              [`inputGroup.noDel`]: false
           });
-          if (this.data[desc].list.length == num) {
+          if (this.data.inputGroup.list.length == num) {
               this.setData({
-                  [`${desc}.noAdd`]: true
+                  [`inputGroup.noAdd`]: true
               });
           }
       },
       //删除项目
-      deleteItem: function (e) {
+      deleteItem: function (e) {          
           var index = e.target.dataset.index;
-          var desc = e.target.dataset.desc;
-          var tmpList = this.data[desc].list;
+          var tmpList = this.data.inputGroup.list;
           tmpList.splice(index, 1);
           this.setData({
-              [`${desc}.list`]: tmpList,
-              [`${desc}.noAdd`]: false
+              [`inputGroup.list`]: tmpList,
+              [`inputGroup.noAdd`]: false
           })
-          if (this.data[desc].list.length == 1) {
+          if (this.data.inputGroup.list.length == 1) {
               this.setData({
-                  [`${desc}.noDel`]: true
+                  [`inputGroup.noDel`]: true
               })
           }
       },
       //动态修改input的value
       handleInput: function (e) {
           var index = e.target.dataset.index;
-          var desc = e.target.dataset.desc;
-          var tmpList = this.data[desc].list;
+          var tmpList = this.data.inputGroup.list;
           tmpList[index].value = e.detail.value;
-          console.log(e.target.dataset.index);
           this.setData({
-              [`${desc}.list`]: tmpList,
+              [`inputGroup.list`]: tmpList,
           })
+      },
+      postInputGroupValues(){
+        return this.data.inputGroup.list;
       }
   }
 })
