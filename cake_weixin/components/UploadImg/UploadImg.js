@@ -30,6 +30,7 @@ Component({
         imgBoxHeight:200,
         style:"",
 
+        nowCount:0,
         isUpLoad:true,
         imgList:[]
     },
@@ -78,7 +79,6 @@ Component({
                 current:  this.data.imgList[index],
                 urls:[ this.data.imgList[index].url]
             })
-
         },
         // 长按删除图片
         deleteImg:function(e){
@@ -94,6 +94,11 @@ Component({
                             imgList:imgList,
                             isUpLoad:true
                         });
+                        if(this.data.nowCount<this.properties.count){
+                            this.data.nowCount++;
+
+                        }
+                        
                         // 发送请求通知后台删除图片
                     }
                 }
@@ -142,7 +147,7 @@ Component({
       selectImg:function() {
           // 选中图片
           wx.chooseImage({
-              count: this.properties.count,
+              count: this.data.nowCount,
               sizeType: ["compressed"],
               sourceType: ["camera", "album"],
               success: (res) => {
@@ -163,10 +168,10 @@ Component({
                           })
                       }
                       var tempImgCount = this.data.imgList.length;
-                      if(this.properties.imgTotal-tempImgCount<this.properties.count){
-                          this.properties.count = this.properties.imgTotal-tempImgCount
+                      if(this.properties.imgTotal-tempImgCount<this.data.nowCount){
+                          this.data.nowCount = this.properties.imgTotal-tempImgCount
                       }
-                      if(this.properties.count==0){
+                      if(this.data.nowCount==0){
                         this.setData({isUpLoad:false});
                       }
                   })
@@ -177,6 +182,9 @@ Component({
       postImgList:function(){
           return this.data.imgList;
       }
-    }
+    },
+    ready:function() {
+        this.data.nowCount = this.properties.count;
+    },
   })
   

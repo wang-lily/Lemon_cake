@@ -1,6 +1,13 @@
 // pages/cart/cart.js
 Page({
-  // 列表单个checkbox Change事件
+  //列表单个checkbox点击 事件
+  handleSelectOne:function(e){
+    var index = e.target.dataset.index;
+    this.setData({
+      [`list[${index}].checked`]:!this.data.list[index].checked
+    })
+  },
+  // 列表的checkbox Change事件
   checkboxChange:function(e){
     var values = e.detail.value;
     if(values.length==this.data.list.length){
@@ -32,10 +39,14 @@ Page({
     if(item.num==1){
       descDisabled = true;
     }
-    var total = Number(this.data.selectAll.totalPrice-item.price).toFixed(2);
+    if(item.checked){
+      var total = Number(this.data.selectAll.totalPrice-item.price).toFixed(2);
+      this.setData({
+        'selectAll.totalPrice':total
+      })
+    }  
     this.setData({
       [`list[${index}].num`]:item.num-1,
-      'selectAll.totalPrice':total,
       [`list[${index}].descDisabled`]:descDisabled
     })
     
@@ -48,10 +59,15 @@ Page({
     // if(item.num==1){
     //   ascDisabled = true;
     // }
-    var total = (Number(this.data.selectAll.totalPrice)+Number(item.price)).toFixed(2);
+    if(item.checked){
+      var total = (Number(this.data.selectAll.totalPrice)+Number(item.price)).toFixed(2);
+      this.setData({
+        'selectAll.totalPrice':total
+      })
+    }
+    
     this.setData({
-      [`list[${index}].num`]:item.num+1,
-      'selectAll.totalPrice':total,
+      [`list[${index}].num`]:item.num+1,     
       [`list[${index}].descDisabled`]:false
       // [`list[${index}].descDisabled`]:ascDisabled
     })

@@ -1,5 +1,5 @@
 <view style="padding:0">
-    <checkbox-group bindchange="checkboxChange">
+    <checkbox-group catchchange="checkboxChange">
         <view calss="cart-list">
             <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{list}}" wx:key="index">
                 <view 
@@ -9,7 +9,8 @@
                     class="circle-checkbox"  
                     value="{{item.num * item.price}}" 
                     checked="{{item.checked}}"
-                    data-checked="{{item.checked}}"/>
+                    data-index="{{index}}"
+                    />
                 </view>   
                 <image class="cart-item-img" src="{{item.img_url}}" mode="widthFix" lazy-load="true"/>
                 <view class="cart-item-desc">

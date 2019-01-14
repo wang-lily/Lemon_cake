@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/cart/cart",
         "pages/home/home",
+        "pages/cart/cart",
         "pages/addMessage/addMessage",
         "pages/proflie/profile",
         "pages/building/buiding",
