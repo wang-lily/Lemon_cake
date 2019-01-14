@@ -11,7 +11,7 @@ Component({
           },
           imgTotal:{
             type: Number,
-            value: 9//范围1-9
+            value: 9//
           }
       },
   
@@ -19,13 +19,86 @@ Component({
      * 组件的初始数据
      */
     data: {
-      imgList:[]
+        activeIndex:"",
+        top:0,
+        left:0,
+        initialTop:0,
+        initialLeft:0,
+        deltaX:0,
+        deltaY:0,
+        imgBoxWith:200,
+        imgBoxHeight:200,
+        style:"",
+
+        isUpLoad:true,
+        imgList:[]
     },
   
     /**
      * 组件的方法列表
      */
     methods: {
+        // 拖拽图片
+        dragImg:function(e){
+            var deltaX = this.data.deltaX;
+            var deltaY = this.data.deltaY;
+            var left = e.touches[0].clientX-deltaX;
+            var top = e.touches[0].clientY-deltaY;
+            this.setData({
+                style:`top:${top}rpx;left:${left}rpx`
+            })
+        },
+        // 长按使图片处于可拖动状态
+        activeDrag:function(e){
+            var initialLeft = e.target.offsetLeft;
+            var initialTop = e.target.offsetTop;
+            var clientX = e.touches[0].clientX;
+            var clientY = e.touches[0].clientY;
+            var deltaX = clientX-initialLeft;
+            var deltaY = clientY-initialTop;
+            var index = e.target.dataset.index;
+            this.setData({
+                deltaX:deltaX,
+                deltaY:deltaY,
+                top:initialTop,
+                left:initialLeft,
+                initialTop:initialTop,
+                initialLeft:initialLeft,
+                activeIndex:index,
+                style:`top:${initialTop}rpx;left:${initialLeft}rpx`
+            })
+        },
+        //点击预览图片
+        previewImg:function(e){
+            var index = e.target.dataset.index;
+            this.setData({
+                activeIndex:index
+            })
+            wx.previewImage({
+                current:  this.data.imgList[index],
+                urls:[ this.data.imgList[index].url]
+            })
+
+        },
+        // 长按删除图片
+        deleteImg:function(e){
+            wx.showModal({
+                title: '提示',
+                content: '确定要删除此图片吗？',
+                success:(res)=>{
+                    if (res.confirm) {
+                        var index = e.target.dataset.index;
+                        var imgList = this.data.imgList;
+                        imgList.splice(index, 1);
+                        this.setData({
+                            imgList:imgList,
+                            isUpLoad:true
+                        });
+                        // 发送请求通知后台删除图片
+                    }
+                }
+            })
+        },
         // 上传文件
       uploadFile:function(files,callback){
           wx.showToast({
@@ -89,8 +162,12 @@ Component({
                               duration:1200
                           })
                       }
-                      if(this.properties.imgTotal-successNum<this.properties.count){
-                          this.properties.count = this.properties.imgTotal-successNum
+                      var tempImgCount = this.data.imgList.length;
+                      if(this.properties.imgTotal-tempImgCount<this.properties.count){
+                          this.properties.count = this.properties.imgTotal-tempImgCount
+                      }
+                      if(this.properties.count==0){
+                        this.setData({isUpLoad:false});
                       }
                   })
               },

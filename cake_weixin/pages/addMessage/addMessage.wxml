@@ -9,7 +9,7 @@
             <view >
                 <view class="title">图片列表:</view>
                 <!-- UploadImg组件 -->
-                <UploadImg id="upload-img"></UploadImg>
+                <UploadImg id="upload-img" count="9" imgTotal="9"></UploadImg>
             </view>
             <view >
                 <view class="title">商品类别:</view>

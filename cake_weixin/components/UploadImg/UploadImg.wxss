@@ -10,7 +10,7 @@
     left: 0;
     opacity: 0.5;
     background: rgb(218, 215, 215);
-    border:1rpx solid rgb(196, 194, 194);
+    /* border:1rpx solid rgb(196, 194, 194); */
     border-radius: 20rpx;
     width:200rpx;
     height: 200rpx;
@@ -25,7 +25,7 @@
   flex-wrap: wrap;
 }
 .added-img{
-  border:1rpx solid rgb(196, 194, 194);
+  /* border:1rpx solid rgb(196, 194, 194); */
   border-radius: 20rpx;
   width:200rpx;
   height: 200rpx;
@@ -78,4 +78,13 @@
       left: 50%;
       transform: translate(-50%,-50%);
       border-radius: 20rpx;
+  }
+  .move{
+    position: absolute;
+    z-index: 200;
+    transform: scale(1.03);
+    box-shadow: 1rpx 1rpx 6rpx 1rpx #646363;
+  }
+  .position-relative{
+    position: relative;
   }

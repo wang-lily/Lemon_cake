@@ -1,43 +1,64 @@
 <view style="padding:0">
-    <view calss="cart-list">
-        <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{list}}" wx:key="index">
-            <view class="cart-item-checkbox">
-                <checkbox class="circle-checkbox"  value="{{item.caid}}" checked="{{item.checked}}"/>
-            </view>   
-            <image class="cart-item-img" src="{{item.img_url}}" mode="widthFix" lazy-load="true"/>
-            <view class="cart-item-desc">
-                <text class="cart-item-title" selectable="false" space="false" decode="false">
-                    {{item.title}}
-                </text>
-                <view class="cart-item-spec sm-muted arrow">
-                    {{item.spec}}
-                </view>
-                <view class="cart-item-pn">
-                    <view class="price">
-                        ￥{{item.price}}
+    <checkbox-group bindchange="checkboxChange">
+        <view calss="cart-list">
+            <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{list}}" wx:key="index">
+                <view 
+                class="cart-item-checkbox">
+                    <checkbox 
+                    catchtap="handleSelectOne"
+                    class="circle-checkbox"  
+                    value="{{item.num * item.price}}" 
+                    checked="{{item.checked}}"
+                    data-checked="{{item.checked}}"/>
+                </view>   
+                <image class="cart-item-img" src="{{item.img_url}}" mode="widthFix" lazy-load="true"/>
+                <view class="cart-item-desc">
+                    <text class="cart-item-title" selectable="false" space="false" decode="false">
+                        {{item.title}}
+                    </text>
+                    <view class="cart-item-spec sm-muted arrow">
+                        {{item.spec}}
                     </view>
-                    <view class="btn-group">
-                        <button class="btn btn-desc"></button>
-                         <text class="num">
-                            {{item.num}}
-                         </text>  
-                        <button class="btn btn-asc"></button>
+                    <view class="cart-item-pn">
+                        <view class="price">
+                            ￥{{item.price}}
+                        </view>
+                        <view class="btn-group">
+                            <button 
+                            class="btn btn-desc" 
+                            data-item="{{item}}"
+                            data-index="{{index}}"
+                            disabled="{{item.descDisabled}}"
+                            catchtap="descNum"></button>
+                            <text class="num">
+                                {{item.num}}
+                            </text>  
+                            <button 
+                            class="btn btn-asc" 
+                            data-item="{{item}}"
+                            data-index="{{index}}"
+                            disabled="{{item.ascDisabled}}"
+                            catchtap="ascNum"></button>
+                        </view>     
                     </view>     
-                </view>     
-            </view>           
-        </view>      
-    </view>
+                </view>           
+            </view>      
+        </view>
+    </checkbox-group>
    <view class="discount-msg">
     <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
    </view> 
     <view class="cart-bottom">
         <label class="cart-bottom-checkbox sm-muted">
-            <checkbox class="circle-checkbox"  value="{{item.caid}}" checked="{{item.checked}}"/>全选
+            <checkbox 
+            class="circle-checkbox"  
+            value="{{selectAll.totalPrice}}" 
+            checked="{{selectAll.checked}}" catchtap="selectAllChange"/>全选
         </label>
         <view  class="cart-total sm-muted">
             合计: 
             <text class="price">
-                ￥100.00
+                ￥{{selectAll.totalPrice}}
             </text>      
         </view>
         <view  class="cart-account">
