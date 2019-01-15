@@ -17,8 +17,10 @@
                     <text class="cart-item-title" selectable="false" space="false" decode="false">
                         {{item.title}}
                     </text>
-                    <view class="cart-item-spec sm-muted arrow">
-                        {{item.spec}}
+                    <view 
+                    class="cart-item-spec sm-muted arrow" catchtap="changeSpec"
+                    data-index="{{index}}">
+                        {{item.seletedSpec}}
                     </view>
                     <view class="cart-item-pn">
                         <view class="price">
@@ -50,11 +52,13 @@
     <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
    </view> 
     <view class="cart-bottom">
-        <label class="cart-bottom-checkbox sm-muted">
+        <label 
+        class="cart-bottom-checkbox sm-muted" 
+        catchtap="selectAllChange">
             <checkbox 
             class="circle-checkbox"  
             value="{{selectAll.totalPrice}}" 
-            checked="{{selectAll.checked}}" catchtap="selectAllChange"/>全选
+            checked="{{selectAll.checked}}" />全选
         </label>
         <view  class="cart-total sm-muted">
             合计: 

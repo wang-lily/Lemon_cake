@@ -1,0 +1,46 @@
+<view >
+    <view class="align-between">
+        <view class="tableData.title">{{tableData.title}}:</view>
+        <button 
+        class="btn btn-asc" 
+        disabled="{{inputGroup.noAdd}}"
+        catchtap="addItem" 
+        data-num="{{tableData.itemTotal}}"></button>
+    </view>
+    <view class="table">
+        <view class="head">
+            <view 
+            style="width:{{100/tableData.colDesc.length}}%;border-radius:0rpx {{index==tableData.colDesc.length-1?15:0}}rpx 0rpx 0rpx"
+            class="col" 
+            wx:for="{{tableData.colDesc}}" 
+            wx:key="index">{{item}}</view>
+        </view>
+        <view 
+        class="row" 
+        catchlongpress="deleteItem"
+        wx:for="{{inputGroup.list}}"
+        wx:for-item="row"
+        wx:for-index="i"
+        wx:key="{{index}}"
+        data-i="{{i}}"
+        >   
+            <view class="col"
+            style="width:{{100/tableData.colDesc.length}}%"
+            wx:for="{{row}}" 
+            wx:for-item="item"
+            wx:for-index="j"  
+            wx:key="{{index}}"
+            >
+                <input 
+                type="{{item.type}}"
+                maxlength="{{item.maxLength}}" 
+                name="{{item.name}}{{index+1}}" 
+                value="{{item.value}}"
+                bindinput="handleInput"  
+                data-i="{{i}}"
+                data-j="{{j}}"/>
+            </view>
+        </view>  
+    </view>
+    <view class="sm-muted item-remarks">(备注：最多{{tableData.itemTotal}}条)</view>
+</view>

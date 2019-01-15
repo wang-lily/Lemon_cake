@@ -7,7 +7,12 @@
                 <input class="my-input" type="text" name="title" placeholder="最多10个字..." maxlength="10"/>
             </view>
             <view >
-                <view class="title">图片列表:</view>
+                <view class="title">商品列表头图:</view>
+                <!-- UploadImg组件 -->
+                <UploadImg id="upload-img" count="1" imgTotal="1"></UploadImg>
+            </view>
+            <view >
+                <view class="title">商品详情图片:</view>
                 <!-- UploadImg组件 -->
                 <UploadImg id="upload-img" count="9" imgTotal="9"></UploadImg>
             </view>

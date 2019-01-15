@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "TableBox": "/components/TableBox/TableBox"
+    },
+    "enablePullDwonRefresh": true,
+    "navigationBarTitleText": "Lemon-test",
+    "backgroundColor": "#f0145a"
+}

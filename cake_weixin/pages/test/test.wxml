@@ -1,0 +1,44 @@
+<!--pages/test/test.wxml-->
+
+<view >
+    <view class="align-between">
+        <view class="title">{{title}}:</view>
+        <button 
+        class="btn btn-asc" 
+        disabled="{{inputGroup.noAdd}}"
+        bindtap="addItem" 
+        data-num="{{itemTotal}}"></button>
+    </view>
+        <view class="table">
+            <view class="head">
+                <view 
+                style="width:{{100/colDesc.length}}%;border-radius:0rpx {{index==colDesc.length-1?15:0}}rpx 0rpx 0rpx"
+                class="col" 
+                wx:for="{{colDesc}}" 
+                wx:key="index">{{item}}</view>
+            </view>
+            <view 
+            class="row" 
+            catchlongpress="deleteItem">
+                <view class="col"
+                style="width:{{100/colDesc.length}}%"
+                wx:for="{{colDetail}}" wx:key="{{index}}">
+                    <input 
+                    type="{{item.type}}"
+                    maxlength="{{item.MaxLength || 140}}" 
+                    name="{{item.name}}" 
+                    value="{{item.value}}"
+                    bindinput="handleInput"  
+                    data-index="{{index}}"/>
+                </view>
+            </view>  
+        </view>
+    <view class="sm-muted item-remarks">(备注：最多{{itemTotal}}条，每条少于{{itemMaxLength}}个字)</view>
+
+
+    <TableBox id="tb1" tableData="{{tableData}}"></TableBox>
+    <button catchtap="post">post</button>
+</view>
+
+
+  
