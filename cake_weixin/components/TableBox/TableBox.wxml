@@ -1,11 +1,11 @@
 <view >
     <view class="align-between">
-        <view class="tableData.title">{{tableData.title}}:</view>
+        <view class="title">{{title}}:</view>
         <button 
         class="btn btn-asc" 
         disabled="{{inputGroup.noAdd}}"
         catchtap="addItem" 
-        data-num="{{tableData.itemTotal}}"></button>
+        data-num="{{maxRow}}"></button>
     </view>
     <view class="table">
         <view class="head">
@@ -18,7 +18,7 @@
         <view 
         class="row" 
         catchlongpress="deleteItem"
-        wx:for="{{inputGroup.list}}"
+        wx:for="{{inputGroup.body}}"
         wx:for-item="row"
         wx:for-index="i"
         wx:key="{{index}}"
@@ -42,5 +42,5 @@
             </view>
         </view>  
     </view>
-    <view class="sm-muted item-remarks">(备注：最多{{tableData.itemTotal}}条)</view>
+    <view class="sm-muted item-remarks">(备注：最多{{maxRow}}条)</view>
 </view>

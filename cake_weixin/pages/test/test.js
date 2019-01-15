@@ -8,24 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"商品信息",
-    colDesc: ["商品规格","商品原价","商品现价"],
-    colDetail:[
-      {name:"spec",type:"text",value:"",MaxLength:9},
-      {name:"oldPrice",type:"digit",value:""},
-      {name:"nowPrice",type:"digit",value:""}
-    ],
     
-    tableData:{
-      title:"商品信息",
-      colDesc: ["商品规格","商品原价","商品现价"],
-      colDetail:[
-        {name:"spec",type:"text",value:"",maxLength:9},
-        {name:"oldPrice",type:"digit",value:"",maxLength:9},
-        {name:"nowPrice",type:"digit",value:"",maxLength:9}
-      ],
-      itemTotal:6
-    }
   },
  
 

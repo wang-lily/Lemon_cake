@@ -60,7 +60,7 @@ Page({
             this.myToast('请至少填写一项商品规格');
             return false;
         }
-        if(!this.arryVerifty(data.remarks)){
+        if(!this.arryVerifty(data.alert)){
             this.myToast('请至少填写一项商品提示，如没有请填写"无"');
             return false;
         }   
@@ -69,12 +69,12 @@ Page({
    //提交数据
    formSubmit(e){
     //    获取组件的值
-        var imgList = this.selectComponent("#upload-img");
+        var imgList = this.selectComponent("#detail-imgs");
        var specs = this.selectComponent("#specs");
-       var remarks = this.selectComponent("#remarks");
+       var alert = this.selectComponent("#alert");
        this.data.data.imgList = imgList.postImgList();
        this.data.data.specs = specs.postInputGroupValues();
-       this.data.data.remarks = remarks.postInputGroupValues();
+       this.data.data.alert = alert.postInputGroupValues();
     //    获取其他表单元素的值
         this.data.data.title = e.detail.value.title;
         this.data.data.classType = e.detail.value.classType;
@@ -106,14 +106,21 @@ Page({
         baseUrl:getApp().globalData.baseUrl,
         data:{
             title:"",
+            headerImg:"",
             imgList: [],
             classType:0,
             desc:"",
-            total:"",
-            oldPrice:0.00,
-            nowPrice:0.00,
-            specs:[],
-            remarks:[],
+            msg:[],
+            alert:[],
+        },
+        tableData:{
+            colDesc: ["规格","原价","现价","数量"],
+            colDetail:[
+                {name:"spec",type:"text",value:"",maxLength:9},
+                {name:"oldPrice",type:"digit",value:"",maxLength:9},
+                {name:"nowPrice",type:"digit",value:"",maxLength:9},
+                {name:"total",type:"number",value:"",maxLength:9}
+            ]
         },
       productClass: [
         { value: 1, name: "贺寿" }, 

@@ -9,12 +9,12 @@
             <view >
                 <view class="title">商品列表头图:</view>
                 <!-- UploadImg组件 -->
-                <UploadImg id="upload-img" count="1" imgTotal="1"></UploadImg>
+                <UploadImg id="header-img" count="1" imgTotal="1"></UploadImg>
             </view>
             <view >
                 <view class="title">商品详情图片:</view>
                 <!-- UploadImg组件 -->
-                <UploadImg id="upload-img" count="9" imgTotal="9"></UploadImg>
+                <UploadImg id="detail-imgs" count="9" imgTotal="9"></UploadImg>
             </view>
             <view >
                 <view class="title">商品类别:</view>
@@ -29,27 +29,17 @@
                 <view class="title">商品描述:</view>
                 <input class="my-input" type="text" name="desc" placeholder="最多10个字..." maxlength="10"/>
             </view>
-            <view >
-                <view class="title">商品数量:</view>
-                <input class="my-input" name="total" type="number" placeholder="最多5位数..." maxlength="5"/>
-            </view>
-            <view >
-                <view class="title">商品原价(选填):</view>
-                <input class="my-input" name="oldPrice" type="digit"/>
-            </view>
-            <view >
-                <view class="title">商品现价:</view>
-                <input class="my-input" name="nowPrice" type="digit"/>
-            </view>
-            <!-- InputGroup组件 -->
-            <InputGroup
+            
+            <!-- TableBox组件 -->
+            <TableBox
             id="specs" 
-            title="商品规格" 
-            itemMaxLength="5"   
-            itemTotal="6"
-            ></InputGroup>
+            title="商品信息" 
+            maxRow="6"
+            tableData="{{tableData}}"
+            ></TableBox>
+            <!-- InputGroup组件 -->
             <InputGroup 
-            id="remarks" 
+            id="alert" 
             title="提示信息" 
             itemMaxLength="50"   
             itemTotal="12"></InputGroup>

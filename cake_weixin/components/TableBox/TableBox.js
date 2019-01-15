@@ -7,15 +7,22 @@ Component({
     tableData:{
         type:Object,
         value:{
-            title:"title",
+            //两个属性长度必须保存一致
             colDesc: ["head1","head2","head3"],
             colDetail:[
-                {name:"spec",type:"text",maxLength:9,value:""},
-                {name:"oldPrice",type:"digit",maxLength:9,value:""},
-                {name:"nowPrice",type:"digit",maxLength:9,value:""}
+                {name:"item1",type:"text",maxLength:9,value:""},
+                {name:"item2",type:"digit",maxLength:9,value:""},
+                {name:"item3",type:"number",maxLength:9,value:""}
             ],
-            itemTotal:6
         }
+    },
+    title:{
+        type:String,
+        value:"title"
+    },
+    maxRow:{
+        type:Number,
+        value:6
     }
   },
 
@@ -26,7 +33,7 @@ Component({
       inputGroup: {
           noDel: true,
           noAdd: false,
-        list:[]
+        body:[]
       }
   },
 
@@ -34,27 +41,28 @@ Component({
    * 组件的方法列表
    */
   methods: {
-      initList:function(){
-        var tmpList = this.data.inputGroup.list;
+      //初始化table的body
+      initBody:function(){
+        var tmpList = this.data.inputGroup.body;
         var str = JSON.stringify(this.properties.tableData.colDetail);
         var tmpArr = JSON.parse(str);
         tmpList.push(tmpArr);
         this.setData({
-            [`inputGroup.list`]: tmpList,
+            [`inputGroup.body`]: tmpList,
         })  
       },
     //添加项目
     addItem: function (e) {
         var num = e.target.dataset.num;
-        var tmpList = this.data.inputGroup.list;
+        var tmpList = this.data.inputGroup.body;
         var str = JSON.stringify(this.properties.tableData.colDetail);
         var tmpArr = JSON.parse(str);
         tmpList.push(tmpArr);
         this.setData({
-            [`inputGroup.list`]: tmpList,
+            [`inputGroup.body`]: tmpList,
             [`inputGroup.noDel`]: false
         });
-        if (this.data.inputGroup.list.length == num) {
+        if (this.data.inputGroup.body.length == num) {
             this.setData({
                 [`inputGroup.noAdd`]: true
             });
@@ -71,14 +79,13 @@ Component({
             success:(res)=>{
                 if(res.confirm){
                     var index = e.target.dataset.i;
-                    var tmpList = this.data.inputGroup.list;
+                    var tmpList = this.data.inputGroup.body;
                     tmpList.splice(index, 1);
-                    console.log(tmpList)
                     this.setData({
-                        [`inputGroup.list`]: tmpList,
+                        [`inputGroup.body`]: tmpList,
                         [`inputGroup.noAdd`]: false
                     })
-                    if (this.data.inputGroup.list.length == 1) {
+                    if (this.data.inputGroup.body.length == 1) {
                         this.setData({
                             [`inputGroup.noDel`]: true
                         })
@@ -89,30 +96,36 @@ Component({
     },
     //动态修改input的value
     handleInput: function (e) {
-        console.log(123)
         var i = e.target.dataset.i;
         var j = e.target.dataset.j;
-        var tmpList = this.data.inputGroup.list;
+        var tmpList = this.data.inputGroup.body;
         tmpList[i][j].value = e.detail.value;
         this.setData({
-            [`inputGroup.list`]: tmpList,
+            [`inputGroup.body`]: tmpList,
         })
-        console.log(tmpList)
     },
-    postInputGroupValues(){
-        var dataList = [];
-        var tmpList = this.data.inputGroup.list;
+    //发送value值给调用此组建的对象
+    postInputMsg(){
+        // var dataList = [];
+        var data = {
+            dataList:[],
+            msg:""
+        }
+        var tmpList = this.data.inputGroup.body;
         for(var arr of tmpList){
             var tmpObj = {};
             for(var obj of arr){
+                if(!obj.value){
+                    data.msg = `${this.properties.title}没填写完善,请完善后再提交！`
+                }
                 tmpObj[obj.name] = obj.value;
             }
-            dataList.push(tmpObj);
+            data.dataList.push(tmpObj);
         }
-      return dataList;
+      return data;
     }
   },
   ready:function() {
-      this.initList();
+      this.initBody();
   },
 })

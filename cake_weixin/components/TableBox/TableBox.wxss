@@ -2,7 +2,6 @@
 
 .table{
     font-size: 24rpx;
-    margin: 20rpx;
     border-top:1rpx solid rgb(121, 119, 119);
     border-left:1rpx solid rgb(121, 119, 119);
     border-radius: 15rpx 15rpx 0rpx 0rpx ;
