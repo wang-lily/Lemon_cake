@@ -377,7 +377,6 @@ app.get("/delUser",(req,res)=>{
 
 //第十四功能:分页显示不同类别蛋糕列表
 //1:创建表
-// xz_shop [id;img_url;name;addr;tel;mtime,star]
 app.get("/find_cake_lists",(req,res)=>{
   //参数: pno 当前页码1 2 pageSize 每个大小
   //sql: 
@@ -387,7 +386,7 @@ app.get("/find_cake_lists",(req,res)=>{
  //1:获取参数
  var pno = req.query.pno;          //页码
  var pageSize = req.query.pageSize;//页大小
- var cakeClass = req.query.cakeClass;//蛋糕种类
+ var cakeClass = req.query.cakeClass;//商品种类
 
  //2:设置默认值 1 7
  if(!pno){pno = 1}
@@ -407,7 +406,7 @@ app.get("/find_cake_lists",(req,res)=>{
  var obj = {code:1};
  obj.uname = req.session.uname;
  //5:创建sql1 查询总记录数   严格区分大小写
- var sql = "SELECT count(caid) AS c FROM cake_all where cake_class=?";
+ var sql = "SELECT count(caid) AS c FROM cake_all where classType=?";
  pool.query(sql,cakeClass,(err,result)=>{
    if(err)throw err;
    var pageCount = Math.ceil(result[0].c/pageSize);
@@ -418,8 +417,8 @@ app.get("/find_cake_lists",(req,res)=>{
    }
  });
  //6:创建sql2 查询当前页内容 严格区分大小写
- var sql =" SELECT *";
-     sql+=" FROM cake_all where cake_class=?";
+ var sql =" SELECT caid,headerImg,title,specs,saleTotal,comments,star";
+     sql+=" FROM cake_all where classType=?";
      sql+=" LIMIT ?,?";
  var offset = parseInt((pno-1)*pageSize);
      pageSize = parseInt(pageSize);
@@ -436,9 +435,29 @@ app.get("/find_cake_lists",(req,res)=>{
 
 // 第十五个功能:添加商品
 app.post("/addProduct",(req,res)=>{
-  var data = req.body.data;
-  console.log(data);
-
+  var data = JSON.parse(req.body.data);
+  var title = data.title;
+  var headerImg = data.headerImg.url;
+  var imgList = JSON.stringify(data.imgList);
+  var classType = data.classType;
+  var descr = data.desc;
+  var specs = JSON.stringify(data.specs);
+  var alert = JSON.stringify(data.alert);
+  var sql = `INSERT INTO cake_all SET headerImg=?,imgList=?,descr=?,title=?,specs=?,alert=?, saleTotal=100,star=75,classType=?,comments=0;` 
+  pool.query(sql,[headerImg,imgList,descr,title,specs,alert,classType],(err,result)=>{
+    if (err) throw err;
+    if(result.affectedRows>0){
+      res.send({
+        code:1,
+        msg:"商品添加成功！"
+      })
+    }else{
+      res.send({
+        code:-1,
+        msg:"商品添加失败！"
+      })
+    }
+  })
 })
 
 //第十六个功能:优惠分页显示
@@ -522,3 +541,19 @@ app.post("/upload_message",upload.single("mypic"),(req,res)=>{
   })
 })
 
+//功能十八:查找商品详细信息
+app.get("/productDetail",(req,res)=>{
+  //1:参数 id 
+  var caid = req.query.caid;
+  var sql = " SELECT * FROM cake_all WHERE caid = ?";
+  //3:json {code:1,data:[{}]}
+  pool.query(sql,[caid],(err,result)=>{
+      if(err)throw err;
+      if(result.length>0){
+        res.send({code:1,data:result});
+      }
+      else{
+        res.send({code:-1,msg:`没查询到caid为${caid}的详细信息`});
+      }
+  });
+});
