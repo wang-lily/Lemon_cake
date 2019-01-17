@@ -1,19 +1,29 @@
 <!-- pages/shoplist/shoplist.wxml -->
 <!-- 美食列表 -->
 <view wx:for="{{list}}" wx:key="{{index}}">
-  <view  class="shop" catchtap="jumpToDetails" data-caid="{{item.caid}}">
+  <view  
+  class="shop" 
+  catchtap="jumpToDetails" 
+  data-caid="{{item.caid}}" 
+  data-discount="{{item.discount}}"
+  data-oldPrice="{{item.oldPrice}}"
+  data-nowPrice="{{item.nowPrice}}"
+  data-spec="{{item.spec}}"
+  >
     <view>
-      <image src="{{item.img_url}}" class="shop-left" lazy-load='true'></image>
+      <image src="{{item.headerImg}}" class="shop-left" lazy-load='true'></image>
     </view>
     <view class='shop-center'>
-      <view class="shop-name ell">{{item.name}}</view>
+      <view class="shop-name ell">{{item.title}}</view>
       <view >
-        <view class="shop-discount ell">{{item.discount}} 折</view>
+        <view style='margin:10rpx;'>
+            <text class="shop-remark ell">{{item.discount}} 折</text><text class="shop-remark ell">{{ item.spec}}</text>
+        </view>
         <view class="shop-comment">评论: {{item.comments}} 条</view>
       </view>
       <view class="shop-price ell" decode='true'>
-        售 价：<text class='icon'>￥</text>
-        <text class='price'>{{item.price}}</text>
+        售 价<text class="old-price">￥{{item.oldPrice}}</text><text class='icon'> ￥</text>
+        <text class='price'>{{item.nowPrice}}</text>
       </view>
     </view>
     <view class="shop-right">

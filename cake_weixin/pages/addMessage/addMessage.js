@@ -1,8 +1,6 @@
 // pages/addMessage/addMessage.js
 Page({
-   getValues:function(e){
-        this.data.data.specs = e.detail.values;
-   },
+//提示框
    myToast(str){
     wx.showToast({
         title: str,
@@ -20,14 +18,18 @@ Page({
         return false;
     },
     //表单验证
-    formVerify(){
+    formVerify(tmpData){
         var data = this.data.data;
         if(!data.title.trim()){
            this.myToast('请填写商品标题');
             return false;
         }
+        if(!data.headerImg){
+            this.myToast('请上传商品头图');
+            return false;
+        }
         if(data.imgList.length==0){
-            this.myToast('请至少上传1张图片');
+            this.myToast('请至少上传1张细节图');
             return false;
         }
         if(!data.classType){
@@ -38,26 +40,8 @@ Page({
             this.myToast('请填写商品描述');
             return false;
         }
-        if(!data.total.trim()){
-            this.myToast('请填写商品数量');
-            return false;
-        }else if(!(data.total>0) || String(data.total).indexOf(".")!=-1){
-            this.myToast("请填写商品数量为大于0的整数");
-            return false;
-        }
-        if(data.oldPrice && !(data.oldPrice>0)){
-            this.myToast('商品原价值必须大于0.00,如没有,可不必填写');
-            return false;
-        }
-        if(!data.nowPrice.trim()){
-            this.myToast('请填写商品现价');
-            return false;
-        }else if(!(data.nowPrice>=0)){
-            this.myToast('请填写商品现价,价格值不能必须大于或等于0.00');
-            return false;
-        }
-        if(!this.arryVerifty(data.specs)){
-            this.myToast('请至少填写一项商品规格');
+        if(tmpData.msg){
+            this.myToast(tmpData.msg);
             return false;
         }
         if(!this.arryVerifty(data.alert)){
@@ -69,20 +53,20 @@ Page({
    //提交数据
    formSubmit(e){
     //    获取组件的值
+        var headerImg = this.selectComponent("#header-img");
         var imgList = this.selectComponent("#detail-imgs");
        var specs = this.selectComponent("#specs");
        var alert = this.selectComponent("#alert");
+       var tmpData = specs.postInputMsg();
+       this.data.data.headerImg = headerImg.postImgList()[0];
        this.data.data.imgList = imgList.postImgList();
-       this.data.data.specs = specs.postInputGroupValues();
+       this.data.data.specs = tmpData.dataList;
        this.data.data.alert = alert.postInputGroupValues();
     //    获取其他表单元素的值
         this.data.data.title = e.detail.value.title;
         this.data.data.classType = e.detail.value.classType;
         this.data.data.desc = e.detail.value.desc;
-        this.data.data.total = e.detail.value.total;
-        this.data.data.oldPrice = e.detail.value.oldPrice;
-        this.data.data.nowPrice = e.detail.value.nowPrice;
-        if(this.formVerify()){
+        if(this.formVerify(tmpData)){
             //上传数据到服务器
             var data = JSON.stringify(this.data.data);
             console.log(data);
@@ -110,15 +94,15 @@ Page({
             imgList: [],
             classType:0,
             desc:"",
-            msg:[],
+            specs:[],
             alert:[],
         },
         tableData:{
-            colDesc: ["规格","原价","现价","数量"],
+            colDesc: ["规格","原价","折扣","数量"],
             colDetail:[
                 {name:"spec",type:"text",value:"",maxLength:9},
                 {name:"oldPrice",type:"digit",value:"",maxLength:9},
-                {name:"nowPrice",type:"digit",value:"",maxLength:9},
+                {name:"discount",type:"digit",value:"10",maxLength:9},
                 {name:"total",type:"number",value:"",maxLength:9}
             ]
         },

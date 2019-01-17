@@ -17,7 +17,9 @@
   margin-bottom: 8rpx;
 }
 .price{
-  font-size: 30rpx;
+  text-align: right;
+  width: 200rpx;
+  font-size: 28rpx;
 }
 .confirm-list{
   font-size:28rpx;
@@ -32,5 +34,9 @@
     border:1px solid #ddd;
     margin: 0 20rpx 20rpx;
     padding:20rpx;
+}
+.num{
+  width: 50rpx;
+  text-align: center;
 }
 

@@ -70,6 +70,7 @@ Component({
     },
     //删除项目
     deleteItem: function (e) {  
+        console.log(32)
         if(this.data.inputGroup.noDel){
             return;
         }
@@ -115,7 +116,7 @@ Component({
         for(var arr of tmpList){
             var tmpObj = {};
             for(var obj of arr){
-                if(!obj.value){
+                if(!obj.value.trim()){
                     data.msg = `${this.properties.title}没填写完善,请完善后再提交！`
                 }
                 tmpObj[obj.name] = obj.value;

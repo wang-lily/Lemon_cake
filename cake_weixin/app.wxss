@@ -220,3 +220,7 @@
     top:-50rpx;
     left: -50rpx;
 }
+.old-price{
+    text-decoration: line-through;
+    padding-bottom:10rpx;
+}

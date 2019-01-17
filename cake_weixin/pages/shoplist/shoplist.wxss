@@ -11,7 +11,7 @@ page{
     color:#666;
     font-size: 12px;
 }
-.shop-discount{
+.shop-remark{
     color:#f00;
     border:1px solid #f9867e;
     text-align: center;
@@ -20,13 +20,14 @@ page{
     border-radius:5rpx;
     width:60rpx;
     padding:5rpx;
+    margin-right: 10rpx;
 }
  .shop-price .icon{
     color:#f00;
 } 
 .shop-price .price{
     color:#f00;
-    font-size:18px;
+    font-size:30rpx;
 } 
 
 .start-after{

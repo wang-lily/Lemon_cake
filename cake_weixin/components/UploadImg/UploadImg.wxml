@@ -3,8 +3,7 @@
 <view class="add-img-list">
     <view class=" add-img-list-item position-relative" wx:for="{{imgList}}" wx:key="index">
         <image 
-        class="added-img {{activeIndex===index?'move':''}}" 
-        style="{{activeIndex===index?style:''}}" 
+        class="added-img" 
         src="{{item.url}}" 
         mode="aspectFit" 
         data-index="{{index}}" 

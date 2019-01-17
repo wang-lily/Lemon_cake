@@ -1,15 +1,45 @@
 // pages/shopdetails/shopdetails.js
 Page({
-    jumpToComfirm:function(){
+    //跳到商品确认页面
+    jumpToComfirm:function(e){
+      var headerImg = e.target.dataset.headerimg;
+      var specs = e.target.dataset.specs;
+      var title = e.target.dataset.title;
+      var caid = e.target.dataset.caid;
         wx.navigateTo({
-            url: '/pages/shopConfirm/shopConfirm'
+            url: `/pages/shopConfirm/shopConfirm?headerImg=${headerImg}&specs=${specs}&title=${title}&caid=${caid}`
         })
+    },
+    //加载商品详情
+    loadDetail:function(){
+      wx.request({
+        url: getApp().globalData.baseUrl+'/productDetail',
+        data: {caid:this.data.caid},
+        success: (res)=>{
+          var result = res.data
+          if(result.code==1){
+            var data = result.data[0];
+            data.imgList = JSON.parse(data.imgList);
+            data.alert = JSON.parse(data.alert);
+            this.setData({
+              detail:data
+            });
+          }else{
+            console.log(result.msg);
+          }
+        }
+      })
     },
   /**
    * 页面的初始数据
    */
   data: {
     caid:0,
+    discount:0,
+    oldPrice:0,
+    nowPrice:0,
+    spec:"",
+    detail:{},
     imgList: [
       {img_url:getApp().globalData.baseUrl + "/img/child15.png"},
       {img_url:getApp().globalData.baseUrl + "/img/child19.png"},
@@ -23,8 +53,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.caid = options.caid;
-    console.log(this.caid);
+    this.setData({
+      caid:options.caid,
+      discount:options.discount,
+      oldPrice:options.oldPrice,
+      nowPrice:options.nowPrice,
+      spec:options.spec,
+    })
+    this.loadDetail();
   },
 
   /**

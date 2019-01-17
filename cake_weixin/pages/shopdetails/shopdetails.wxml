@@ -1,12 +1,12 @@
 <view>
     <view class="shop-details base-font">
         <view class="between">
-            <text class="h1">儿童蛋糕001</text>
-            <text class="sm-muted">本月销量 1234</text>
+            <text class="h1">{{detail.title}}</text>
+            <text class="sm-muted">本月销量 {{detail.saleTotal}}</text>
         </view>
         <view class="splide">
             <view class="imglist">
-                <image class="item" src="{{item.img_url}}" lazy-load mode="widthFix" wx:for="{{imgList}}" wx:key="index"/>
+                <image class="item" src="{{item.url}}" lazy-load mode="aspectFit" wx:for="{{detail.imgList}}" wx:key="index"/>
             </view> 
             <view class="circle arrow-left">
             </view>
@@ -16,37 +16,40 @@
         <text class="h2">商品详情</text>
         <view>
             <view class="list-item">
-                <text class="point"></text> 6英寸蛋糕 
+                <text class="point"></text> {{detail.descr}}
                 <text class="sm-muted">( 1 份 )</text>
             </view>
         </view> 
         <text class="h2">温馨提示</text>
-        <view  class="list-item"><text class="point"></text>6英寸乳汁奶油水果蛋糕001</view>
-        <view  class="list-item"><text class="point"></text>规格: 约6英寸 圆形</view>
-        <view  class="list-item"><text class="point"></text>生产日期: 当天裱花制作</view>
-        <view  class="list-item"><text class="point"></text>保存须知: 冷藏保存</view>
-        <view  class="list-item">
+        
+        <view  class="list-item"
+        wx:for="{{detail.alert}}">
             <text class="point"></text>
-            免费提供蜡烛 1 包+刀1 把+蛋糕叉 1 把+小盘 1 包，如需更多,请另行购买
+            {{item.value}}
         </view>
-        <view  class="list-item"><text class="point"></text>可免费在蛋糕上写6个字；如需卡片,请另行购买</view>
-        <view  class="list-item"><text class="point"></text>免费提供包装</view>
-        <view  class="list-item"><text class="point"></text>下单后第二天制作,请提前一天下单</view>
+        
         <view class="detail-comments">
             <view class="between">
                 <text class="h3">商品评价</text>
-                <text class="sm-muted">更多评论(117条)</text>
+                <text class="sm-muted">更多评论({{detail.comments}}条)</text>
             </view>
         </view>
     </view>
     <view class="tab-bottom between">
         <view class="detail-price">
             <view >
-                <text class="h2 discounted-price">￥88.80 </text>
-                <text class="base-font detail-discount">2.4折</text>
+                <text class="h2 discounted-price">￥{{nowPrice}} </text>
+                <text class="base-font detail-discount">{{discount}}折</text>
             </view>
-            <text class="base-font sm-muted old-price">原价: ￥ 168.00</text>
+            <view class="sm-muted" style="padding-bottom:10rpx;">
+                <text class="base-font  old-price">原价: ￥ {{oldPrice}}</text><text>({{spec}})</text>
+            </view>
         </view>
-        <button class="detail-button h2" bindtap='jumpToComfirm'>加入购物车</button>
+        <button 
+        class="detail-button h2" catchtap='jumpToComfirm'
+        data-headerImg="{{detail.headerImg}}"
+        data-specs="{{detail.specs}}"
+        data-title="{{detail.title}}"
+        data-caid="{{caid}}">加入购物车</button>
     </view>
 </view>

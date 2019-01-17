@@ -2,29 +2,41 @@
     <view class="shop confirm-list">
         <image class='shop-left' src='{{imgUrl}}'  lazy-load='true'></image>
         <view class='shop-center'>
-          <text class="title">儿童蛋糕001</text>
-          <view class="spec">规格：  
-            <radio-group class='radio-group' bindchange="radioChange">
-              <label class='radio'  wx:for="{{spec}}"wx:key="index">
-                <radio  value="{{item.value}}" checked="{{item.checked}}" />
-                {{item.name}}
+          <text class="title">{{title}}</text>
+          <view class="specs">规格：  
+            <radio-group 
+            class='radio-group' 
+            bindchange="radioChange">
+              <label class='radio'  wx:for="{{specs}}"wx:key="index">
+                <radio  value="{{index}}" checked="{{checkedSpecIndex==index}}" />
+                {{item.spec}}
               </label>
             </radio-group>
           </view>
         </view>
-        <view class='price'>￥39.00/份</view>
+        <view class='price'>￥{{specs[checkedSpecIndex].nowPrice}}/份</view>
     </view>
      <view class='confirm-list sm-muted'>
         <text>剩余</text>
-        <text>30 份</text>
+        <text>{{specs[checkedSpecIndex].total}}份</text>
     </view>
     <view class="divider"></view>
     <view class='confirm-list border-bottom'>
         <view>数量</view>
         <view class='btn-group'>
-            <button class='btn btn-desc' disabled='true'></button>
-            <text class="num"> 1 </text>
-            <button class='btn btn-asc'></button>
+            <button 
+            class='btn btn-desc' 
+            disabled="{{count==1}}" 
+            catchtap="handleButtonTap"
+            data-num="-1" 
+            ></button>
+            <text class="num"> {{count}} </text>
+            <button 
+            class='btn btn-asc'
+            disabled="{{count==specs[checkedSpecIndex].total}}"
+            catchtap="handleButtonTap"
+            data-num="1"
+            ></button>
         </view>
     </view>
     <view >

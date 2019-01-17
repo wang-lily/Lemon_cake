@@ -15,6 +15,7 @@
     position: relative;
 }
 .shop-details .imglist{
+    display: flex;
     padding:5rpx 5rpx;
     overflow: scroll;
     height: 360rpx;
@@ -22,8 +23,11 @@
 }
 .shop-details .imglist .item{
     width:49%;
+    height: 360rpx;
     border-radius: 20rpx;
     box-shadow: 0rpx 5rpx 10rpx 0rpx #666;
+    flex-shrink: 0;
+    margin: auto;
 }
 .shop-details .imglist .item:not(:last-child){
     margin-right: 10rpx;
@@ -90,10 +94,6 @@
 }
 .discounted-price{
     color:#f00;
-}
-.old-price{
-    text-decoration: line-through;
-    padding-bottom:10rpx;
 }
 .detail-discount{
     color:#f9867e;

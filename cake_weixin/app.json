@@ -1,14 +1,14 @@
 {
     "pages": [
         "pages/home/home",
+        "pages/shoplist/shoplist",
+        "pages/shopdetails/shopdetails",
         "pages/addMessage/addMessage",
         "pages/test/test",
         "pages/cart/cart",
         "pages/proflie/profile",
         "pages/building/buiding",
         "pages/diy/diy",
-        "pages/shoplist/shoplist",
-        "pages/shopdetails/shopdetails",
         "pages/getUserInfo/getUserInfo",
         "pages/shopConfirm/shopConfirm",
         "pages/product/product",

@@ -19,8 +19,15 @@ Page({
         url: getApp().globalData.baseUrl+'/find_cake_lists',
         data: { pno: pno, pageSize: ps, cakeClass: cakeClass},
       success:res=>{
-        console.log(res.data.data);
-        var rows = this.data.list.concat(res.data.data);
+        var tmpList = res.data.data;
+        for(var item of tmpList){
+            var tmpSpec = JSON.parse(item.specs)[0];
+            item.oldPrice = Number(tmpSpec.oldPrice).toFixed(2);
+            item.discount = Number(tmpSpec.discount).toFixed(2);
+            item.nowPrice = Number(tmpSpec.oldPrice * tmpSpec.discount/10).toFixed(2);
+            item.spec = tmpSpec.spec;
+        }
+        var rows = this.data.list.concat(tmpList);
         this.setData({
             list:rows,
             pageIndex:pno
@@ -31,7 +38,6 @@ Page({
             setTimeout(function(){
                 wx.hideLoading();
             },2000);
-            // console.log(res.data.data);
       }
     })
     // 保存返回数据
@@ -40,8 +46,14 @@ Page({
     // 上拉触顶加载下一页
   },
   jumpToDetails:function(e){
+    var caid = e.currentTarget.dataset.caid;
+    var discount = e.currentTarget.dataset.discount;
+    var oldPrice = e.currentTarget.dataset.oldprice;
+    var nowPrice = e.currentTarget.dataset.nowprice;
+    var spec = e.currentTarget.dataset.spec;
+    var url = `/pages/shopdetails/shopdetails?oldPrice=${oldPrice}&nowPrice=${nowPrice}&caid=${caid}&discount=${discount}&spec=${spec}`;
     wx.navigateTo({
-      url: '/pages/shopdetails/shopdetails?caid='+e.currentTarget.dataset.caid
+      url: url
     })
   },
   /**
