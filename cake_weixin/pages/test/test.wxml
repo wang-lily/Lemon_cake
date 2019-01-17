@@ -4,11 +4,17 @@
     catchtap="handleRemark">备注</view>
     <view 
     class="mask"
+    animation="{{animationData2}}"
     wx:if="{{remarkBoxShow}}">
         <view 
-        class="remark-box {{activedStyle}}"
-        animation="{{animationData}}">
-            <view>备 注：</view>
+        class="remark-box"
+        animation="{{animationData1}}">
+            <view class="align-between">
+                <view>备 注：</view>
+                <button 
+                class="btn btn-asc"
+                catchtap="handleCancel"></button>
+            </view>
             <textarea 
             class='remark-input' 
             placeholder='特殊需求请备注(少于200字)...'

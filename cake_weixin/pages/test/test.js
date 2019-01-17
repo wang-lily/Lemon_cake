@@ -1,22 +1,39 @@
 // pages/test/test.js
 Page({
-  handleRemark:function(){
-    this.animation.translateY(-270).step();
+  in:function(){
     this.setData({
-      remarkBoxShow:true,
-      animationData:this.animation.export({duration:1000})
+      remarkBoxShow:true
     })
+    setTimeout(()=>{
+      this.animation1.translateY(-270).step();
+      this.animation2.opacity(1).step();
+      this.setData({ 
+        animationData1:this.animation1.export(),
+        animationData2:this.animation2.export()
+      })
+    },1)
+  },
+  out:function(){
+    this.animation1.translateY(0).step();
+    this.animation2.opacity(0).step();
+    this.setData({ 
+      animationData1:this.animation1.export(),
+      animationData2:this.animation2.export()
+    })
+    setTimeout(()=>{
+      this.setData({
+        remarkBoxShow:false
+      })
+    },1000)  
+  },
+  handleRemark:function(){
+    this.in();
   },
   handleConfirm:function(){
-    // this.setData({
-    //   remarkBoxShow:false,
-    //   activedStyle:"out"
-    // })
-    this.animation.translateY(270).step();
-    this.setData({
-      remarkBoxShow:false,
-      animationData:this.animation.export({duration:1000})
-    })
+    this.out();
+  },
+  handleCancel:function(){
+    this.out();
   },
   
   /**
@@ -24,8 +41,8 @@ Page({
    */
   data: {
     remarkBoxShow:false,
-    activedStyle:"out",
-    animationData:{}
+    animationData1:{},
+    animationData2:{}
   },
  
 
@@ -47,11 +64,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const animation = wx.createAnimation({
+    const animation1 = wx.createAnimation({
       duration: 1000,
-      timingFunction: 'linear',
+      timingFunction: 'ease',
     })
-    this.animation = animation;
+    this.animation1 = animation1;
+    const animation2 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+    })
+    this.animation2 = animation2;
   },
 
   /**

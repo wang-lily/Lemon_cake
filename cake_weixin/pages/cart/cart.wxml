@@ -1,7 +1,7 @@
-<view style="padding:0">
+<view>
     <checkbox-group catchchange="checkboxChange">
         <view calss="cart-list">
-            <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{cartList}}" wx:key="index">
+            <view class="cart-item border-bottom" wx:for="{{cartList}}" wx:key="index">
                 <view 
                 class="cart-item-checkbox">
                     <checkbox 
@@ -14,11 +14,14 @@
                 </view>   
                 <image class="cart-item-img" src="{{item.imgUrl}}" mode="widthFix" lazy-load="true"/>
                 <view class="cart-item-desc">
-                    <text class="cart-item-title" selectable="false" space="false" decode="false">
-                        {{item.title}}
-                    </text>
+                    <view class="cart-item-title">
+                        <view class="title">{{item.title}}</view>
+                         <view class="cart-item-spec sm-muted arrow remark {{remarkBtnIndex===index?'selected':''}}" 
+                         catchtap="showRemark"
+                         data-index="{{index}}">备注</view>
+                    </view>
                     <view 
-                    class="cart-item-spec sm-muted arrow" catchtap="changeSpec"
+                    class="cart-item-spec sm-muted arrow {{specsBtnIndex===index?'selected':''}}" catchtap="changeSpec"
                     data-index="{{index}}">
                         {{item.specs[item.checkedSpecIndex].spec}}
                     </view>
@@ -53,34 +56,38 @@
    <view class="discount-msg">
     <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
    </view> 
-    <view class="cart-bottom">
-        <label 
-        class="cart-bottom-checkbox sm-muted" 
-        catchtap="selectAllChange">
-            <checkbox 
-            class="circle-checkbox"  
-            value="{{selectAll.totalPrice}}" 
-            checked="{{selectAll.checked && cartList.length!=0}}" />全选
-        </label>
-        <view  class="cart-total sm-muted">
-            合计: 
-            <text class="price">
-                ￥{{cartList.length==0 ? "0.00" : selectAll.totalPrice}}
-            </text>      
-        </view>
-        <view  class="cart-btn">
-            <button 
-            class="clear" 
-            catchtap="clearCart"
-            disabled="{{cartList.length==0}}"
-            >清 空</button> 
-        </view>
-        <view  class="cart-btn">
-            <button 
-            class="account"
-            catchtap="jumpToPaid"
-            disabled="{{cartList.length==0}}">结 算</button> 
-        </view>
-          
+        <view class="cart-bottom">
+            <label 
+            class="cart-bottom-checkbox sm-muted" 
+            catchtap="selectAllChange">
+                <checkbox 
+                class="circle-checkbox"  
+                value="{{selectAll.totalPrice}}" 
+                checked="{{selectAll.checked && cartList.length!=0}}" />全选
+            </label>
+            <view  class="cart-total sm-muted">
+                合计: 
+                <text class="price">
+                    ￥{{cartList.length==0 ? "0.00" : selectAll.totalPrice}}
+                </text>      
+            </view>
+            <view  class="cart-btn">
+                <button 
+                class="clear" 
+                catchtap="clearCart"
+                disabled="{{cartList.length==0}}"
+                >清 空</button> 
+            </view>
+            <view  class="cart-btn">
+                <button 
+                class="account"
+                catchtap="jumpToPaid"
+                disabled="{{cartList.length==0}}">结 算</button> 
+            </view>
+            
     </view>
+    <InputBox id="remark-box"
+    title="备 注："
+    placeholder="特殊需求请备注(少于200字)..."
+    value="{{cartList[remarkBtnIndex].remark}}"></InputBox>
 </view>

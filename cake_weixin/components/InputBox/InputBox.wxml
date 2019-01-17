@@ -1,0 +1,22 @@
+<view 
+class="mask" 
+animation="{{maskOpacityData}}"
+wx:if="{{remarkBoxShow}}">
+    <view 
+    class="remark-box"
+    animation="{{boxTransitionData}}">
+        <view class="align-between">
+            <view>{{title}}</view>
+            <button 
+            class="btn btn-asc"
+            catchtap="handleCancel"></button>
+        </view>
+        <textarea 
+        class='remark-input' 
+        placeholder="{{placeholder}}"
+        value="{{remark}}" value="{{value}}"></textarea>
+        <button 
+        class="remark-confirm"
+        catchtap="handleConfirm">确 定</button>
+    </view>
+</view>

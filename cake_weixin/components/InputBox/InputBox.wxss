@@ -1,0 +1,82 @@
+.remark-input{
+    border:1rpx solid #ddd;
+    width: auto;
+    padding:20rpx;
+    margin-top:20rpx;
+}
+  .remark-box{
+    position: fixed;
+    left: 0rpx;
+    bottom: -540rpx;
+    z-index: 301;
+    box-sizing: border-box;
+    width: 100%;
+    height: 540rpx;
+    border:1rpx solid #ddd;
+    border-radius:50rpx 50rpx 0rpx 0rpx;
+    font-size:28rpx;
+    padding: 20rpx;
+    margin: 0;
+    background: #fff;
+  }
+  
+  .mask{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 300;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: rgba(34, 34, 34, 0.3);
+    opacity: 0;
+  }
+  .remark-confirm{
+    border-radius: 0;
+    color: #fff;
+    background: #f9867e;
+  }
+  .remark-confirm::after{
+      border-top: none;
+  }
+  .active{
+      background: #f9867e;
+  }
+  .btn{
+    position: relative;
+    width:50rpx;
+    height:50rpx;
+    margin:0rpx;
+    padding:0rpx;
+    border-radius:50%;
+    background: #f9867e;
+    transform: rotate(45deg);
+  }
+  .btn::after{
+    border: none;
+  }
+  .btn-asc::after{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "";
+    width: 5rpx;
+    height: 30rpx;
+    background:#fff;
+  }
+  .btn-asc::before{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    content: "";
+    width: 30rpx;
+    height: 5rpx;
+    background:#fff;
+  }
+  .align-between{
+      display: flex;
+      justify-content: space-between;
+  }

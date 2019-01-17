@@ -116,6 +116,7 @@ Page({
   //规格改变事件
   changeSpec:function(e){
     var index = e.target.dataset.index;
+    this.setData({specsBtnIndex:index});
     var count = this.data.cartList[index].count;
     var tmpList = this.data.cartList[index].specs;
     var itemList = [];
@@ -129,6 +130,7 @@ Page({
         var checkedSpecIndex = res.tapIndex;
         var checkedSpecTotal = tmpList[checkedSpecIndex].total;
         if(checkedSpecTotal<count){
+          console.log(this.data.specsBtnIndex)
           wx.showModal({
             title: '提示',
             content: `您所选的商品(规格:${tmpList[checkedSpecIndex].spec})数量不足${count},如确定请从新选择数量！`,
@@ -141,16 +143,21 @@ Page({
                 })
                 this.computTotalPrice();
               }
+              this.setData({specsBtnIndex:null});
             }
           })
         }else{
           this.setData({
             //修改被选中规格的下标
-            [`cartList[${index}].checkedSpecIndex`]:checkedSpecIndex
+            [`cartList[${index}].checkedSpecIndex`]:checkedSpecIndex,
+            specsBtnIndex:null
           })
           //重新计算总价
           this.computTotalPrice();
         }
+      },
+      fail: ()=>{
+        this.setData({specsBtnIndex:null});
       }
     })
   },
@@ -159,7 +166,6 @@ Page({
     this.setData({
       cartList:[]
     });
-    // getApp().globalData.cart = [];
     wx.removeStorage({
       key: 'cart',
       success:(res)=>{
@@ -181,12 +187,21 @@ Page({
       }
     })
   },
+  //显示备注
+  showRemark:function(e){
+    var index = e.target.dataset.index;
+    this.setData({remarkBtnIndex:index});
+    var remarkBox = this.selectComponent("#remark-box");
+    remarkBox.in();
+  },
   /**
    * 页面的初始数据
    */
   data: {
     discountImg_url:getApp().globalData.baseUrl + '/img/discount.png',
     cartList :[],
+    specsBtnIndex:null,//规格按钮被选择的cartList下标
+    remarkBtnIndex:null,//备注按钮被选择的cartList下标
     selectAll:{
       checked:false,
       totalPrice:(0.00).toFixed(2)
