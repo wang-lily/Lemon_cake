@@ -85,20 +85,29 @@ page{
     align-items:flex-end;
     text-align: center;
 }
-.cart-account {
+.cart-btn {
     text-align: right;
+    padding:5rpx;
 }
-.cart-account button{
+.cart-btn button{
+    font-size:24rpx;
     text-align: center;
     margin: 0;
+    width: 100rpx;
+    height: 60rpx;
+    padding: 0;
+    border-radius: 30rpx;
+    line-height: 60rpx;    
+}
+.cart-btn button.clear{
+    color:#fff;
+    background: #777777;
+}
+.cart-btn button.account{
     color:#fff;
     background: #f9867e;
-    width: 180rpx;
-    height: 80rpx;
-    border-radius: 40rpx;
-    line-height: 80rpx;    
 }
-.cart-account button::after{
+.cart-btn button::after{
     border: none;
 }
 .discountImg{

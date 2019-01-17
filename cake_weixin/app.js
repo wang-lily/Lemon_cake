@@ -36,6 +36,6 @@ App({
   globalData: {
     baseUrl:"http://127.0.0.1:3002",
     // baseUrl:"http://23z20z4973.iask.in:40613",
-    userInfo: {}
+    userInfo: {},
   }
 })

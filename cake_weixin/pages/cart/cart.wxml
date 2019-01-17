@@ -1,18 +1,18 @@
 <view style="padding:0">
     <checkbox-group catchchange="checkboxChange">
         <view calss="cart-list">
-            <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{list}}" wx:key="index">
+            <view class="cart-item border-bottom" hover-class="none" hover-stop-propagation="false" wx:for="{{cartList}}" wx:key="index">
                 <view 
                 class="cart-item-checkbox">
                     <checkbox 
                     catchtap="handleSelectOne"
                     class="circle-checkbox"  
-                    value="{{item.num * item.price}}" 
+                    value="{{item.count * item.specs[item.checkedSpecIndex].nowPrice}}" 
                     checked="{{item.checked}}"
                     data-index="{{index}}"
                     />
                 </view>   
-                <image class="cart-item-img" src="{{item.img_url}}" mode="widthFix" lazy-load="true"/>
+                <image class="cart-item-img" src="{{item.imgUrl}}" mode="widthFix" lazy-load="true"/>
                 <view class="cart-item-desc">
                     <text class="cart-item-title" selectable="false" space="false" decode="false">
                         {{item.title}}
@@ -20,28 +20,30 @@
                     <view 
                     class="cart-item-spec sm-muted arrow" catchtap="changeSpec"
                     data-index="{{index}}">
-                        {{item.seletedSpec}}
+                        {{item.specs[item.checkedSpecIndex].spec}}
                     </view>
                     <view class="cart-item-pn">
                         <view class="price">
-                            ￥{{item.price}}
+                            ￥{{item.specs[item.checkedSpecIndex].nowPrice}}
                         </view>
                         <view class="btn-group">
                             <button 
                             class="btn btn-desc" 
                             data-item="{{item}}"
                             data-index="{{index}}"
-                            disabled="{{item.descDisabled}}"
-                            catchtap="descNum"></button>
+                            data-num="-1"
+                            disabled="{{item.count==0}}"
+                            catchtap="handleButtonTap"></button>
                             <text class="num">
-                                {{item.num}}
+                                {{item.count}}
                             </text>  
                             <button 
                             class="btn btn-asc" 
                             data-item="{{item}}"
                             data-index="{{index}}"
-                            disabled="{{item.ascDisabled}}"
-                            catchtap="ascNum"></button>
+                            data-num="1"
+                            disabled="{{item.count==item.specs[item.checkedSpecIndex].total}}"
+                            catchtap="handleButtonTap"></button>
                         </view>     
                     </view>     
                 </view>           
@@ -58,16 +60,26 @@
             <checkbox 
             class="circle-checkbox"  
             value="{{selectAll.totalPrice}}" 
-            checked="{{selectAll.checked}}" />全选
+            checked="{{selectAll.checked && cartList.length!=0}}" />全选
         </label>
         <view  class="cart-total sm-muted">
             合计: 
             <text class="price">
-                ￥{{selectAll.totalPrice}}
+                ￥{{cartList.length==0 ? "0.00" : selectAll.totalPrice}}
             </text>      
         </view>
-        <view  class="cart-account">
-            <button>结算</button> 
+        <view  class="cart-btn">
+            <button 
+            class="clear" 
+            catchtap="clearCart"
+            disabled="{{cartList.length==0}}"
+            >清 空</button> 
+        </view>
+        <view  class="cart-btn">
+            <button 
+            class="account"
+            catchtap="jumpToPaid"
+            disabled="{{cartList.length==0}}">结 算</button> 
         </view>
           
     </view>

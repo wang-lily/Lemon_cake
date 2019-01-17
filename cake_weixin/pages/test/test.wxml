@@ -1,0 +1,21 @@
+<view >
+    <view  
+    class="remark-alert arrow sm-muted {{remarkBoxShow?'active':''}}"
+    catchtap="handleRemark">备注</view>
+    <view 
+    class="mask"
+    wx:if="{{remarkBoxShow}}">
+        <view 
+        class="remark-box {{activedStyle}}"
+        animation="{{animationData}}">
+            <view>备 注：</view>
+            <textarea 
+            class='remark-input' 
+            placeholder='特殊需求请备注(少于200字)...'
+            value="{{remark}}"></textarea>
+            <button 
+            class="remark-confirm"
+            catchtap="handleConfirm">确 定</button>
+        </view>
+    </view>
+</view>

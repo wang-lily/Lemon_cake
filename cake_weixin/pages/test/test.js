@@ -1,14 +1,31 @@
 // pages/test/test.js
 Page({
-  post:function(){
-    var tb1 = this.selectComponent("#tb1");
-    tb1.postInputGroupValues();
+  handleRemark:function(){
+    this.animation.translateY(-270).step();
+    this.setData({
+      remarkBoxShow:true,
+      animationData:this.animation.export({duration:1000})
+    })
   },
+  handleConfirm:function(){
+    // this.setData({
+    //   remarkBoxShow:false,
+    //   activedStyle:"out"
+    // })
+    this.animation.translateY(270).step();
+    this.setData({
+      remarkBoxShow:false,
+      animationData:this.animation.export({duration:1000})
+    })
+  },
+  
   /**
    * 页面的初始数据
    */
   data: {
-    
+    remarkBoxShow:false,
+    activedStyle:"out",
+    animationData:{}
   },
  
 
@@ -30,7 +47,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    const animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'linear',
+    })
+    this.animation = animation;
   },
 
   /**

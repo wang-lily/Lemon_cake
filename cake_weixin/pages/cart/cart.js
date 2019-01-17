@@ -1,16 +1,30 @@
 // pages/cart/cart.js
 Page({
+  //计算总价
+  computTotalPrice:function(){
+    var cartList = this.data.cartList;
+    var total = 0;
+    for(var item of cartList){
+      if(item.checked){
+        total += Number(item.count * item.specs[item.checkedSpecIndex].nowPrice);
+      }   
+    }
+    total = total.toFixed(2);
+    this.setData({
+      'selectAll.totalPrice':total
+    })
+  },
   //列表单个checkbox点击 事件
   handleSelectOne:function(e){
     var index = e.target.dataset.index;
     this.setData({
-      [`list[${index}].checked`]:!this.data.list[index].checked
+      [`cartList[${index}].checked`]:!this.data.cartList[index].checked
     })
   },
   // 列表的checkbox Change事件
   checkboxChange:function(e){
     var values = e.detail.value;
-    if(values.length==this.data.list.length){
+    if(values.length==this.data.cartList.length){
       this.setData({
         'selectAll.checked':true
       })
@@ -31,40 +45,23 @@ Page({
       'selectAll.totalPrice':total
     })
   },
-  // 点击减少按钮的事件
-  descNum:function(e){
+  // 点击增加或减少按钮的事件
+  handleButtonTap:function(e){
     var item = e.target.dataset.item;
     var index = e.target.dataset.index;
-    var descDisabled = false;
-    if(item.num==1){
-      descDisabled = true;
-    }
+    var num = Number(e.target.dataset.num);
+    var totalPrice = Number(this.data.selectAll.totalPrice);
+    var ItemNowPrice = Number(item.specs[item.checkedSpecIndex].nowPrice)
     if(item.checked){
-      var total = Number(this.data.selectAll.totalPrice-item.price).toFixed(2);
+      var total = (totalPrice+ItemNowPrice*num).toFixed(2);
       this.setData({
         'selectAll.totalPrice':total
       })
     }  
     this.setData({
-      [`list[${index}].num`]:item.num-1,
-      [`list[${index}].descDisabled`]:descDisabled
+      [`cartList[${index}].count`]:item.count+num,
     })
     
-  },
-  // 点击增加按钮的事件
-  ascNum:function(e){
-    var item = e.target.dataset.item;
-    var index = e.target.dataset.index;
-    if(item.checked){
-      var total = (Number(this.data.selectAll.totalPrice)+Number(item.price)).toFixed(2);
-      this.setData({
-        'selectAll.totalPrice':total
-      })
-    } 
-    this.setData({
-      [`list[${index}].num`]:item.num+1,     
-      [`list[${index}].descDisabled`]:false
-    })
   },
   // 全选checkbox Change事件
   selectAllChange:function(e){
@@ -73,50 +70,114 @@ Page({
     })
     var total = 0.00;
     if(this.data.selectAll.checked){
-      var tmpList = this.data.list;
+      var tmpList = this.data.cartList;
       for(var item of tmpList){
-        total = Number(total) + item.price*item.num;
+        total = Number(total) + item.specs[item.checkedSpecIndex].nowPrice*item.count;
         item.checked = true;
       }
     }else{
-      tmpList = this.data.list;
+      tmpList = this.data.cartList;
       for(var item of tmpList){
         item.checked = false;
       } 
     }
     total = Number(total).toFixed(2);
     this.setData({
-      list:tmpList,
+      cartList:tmpList,
       'selectAll.totalPrice':total
     })
   },
+  //初始化数据
   ininitData:function(){
-    var tmpList = this.data.list;
+    var value = wx.getStorageSync('cart');
+    if(!value){
+     return;
+    }
+    var cartList = JSON.parse(value);
+    if(cartList.length==0){
+      return;
+    }
     var total = 0;
-    for(var item of tmpList){
-      item.checked = true;
-      item.descDisabled = false;
-      item.ascDisabled = false;
-      total += item.price*item.num;
+    var selectAllChecked = true;
+    for(var item of cartList){
+      if(item.checked){
+        total += item.specs[item.checkedSpecIndex].nowPrice*item.count;
+      }else{
+        selectAllChecked = false
+      }
     }
     total = Number(total).toFixed(2)
     this.setData({ 
-      list:tmpList,
+      cartList:cartList,
       'selectAll.totalPrice':total,
-      'selectAll.checked':true
+      'selectAll.checked':selectAllChecked
     })
   },
+  //规格改变事件
   changeSpec:function(e){
     var index = e.target.dataset.index;
-    var tmpList = this.data.list[index].allSpecs;
+    var count = this.data.cartList[index].count;
+    var tmpList = this.data.cartList[index].specs;
+    var itemList = [];
+    for(var item of tmpList){
+      itemList.push(item.spec);
+    }
     wx.showActionSheet({
-      itemList: tmpList,
+      itemList: itemList,
       itemColor: '',
       success: (res)=>{
-        console.log(res);
-        this.setData({
-          [`list[${index}].seletedSpec`]:tmpList[res.tapIndex]
+        var checkedSpecIndex = res.tapIndex;
+        var checkedSpecTotal = tmpList[checkedSpecIndex].total;
+        if(checkedSpecTotal<count){
+          wx.showModal({
+            title: '提示',
+            content: `您所选的商品(规格:${tmpList[checkedSpecIndex].spec})数量不足${count},如确定请从新选择数量！`,
+            success:(res)=>{
+              //修改被选中规格的下标重置该规格的数量,重新计算总价
+              if(res.confirm){
+                this.setData({
+                  [`cartList[${index}].count`]:1,
+                  [`cartList[${index}].checkedSpecIndex`]:checkedSpecIndex
+                })
+                this.computTotalPrice();
+              }
+            }
+          })
+        }else{
+          this.setData({
+            //修改被选中规格的下标
+            [`cartList[${index}].checkedSpecIndex`]:checkedSpecIndex
+          })
+          //重新计算总价
+          this.computTotalPrice();
+        }
+      }
+    })
+  },
+  //清空购物车
+  clearCart:function(){
+    this.setData({
+      cartList:[]
+    });
+    // getApp().globalData.cart = [];
+    wx.removeStorage({
+      key: 'cart',
+      success:(res)=>{
+        wx.showToast({
+          title: '清空完毕',
+          icon: 'success'
         })
+      }
+    })
+  },
+  //更新缓存中的购物车
+  updateStorageCart:function(){
+    var cart = this.data.cartList;
+    wx.setStorage({
+      key: 'cart',
+      data: JSON.stringify(cart),
+      fail:function(res){
+        console.log(res);
       }
     })
   },
@@ -125,12 +186,7 @@ Page({
    */
   data: {
     discountImg_url:getApp().globalData.baseUrl + '/img/discount.png',
-    list:[
-       { price:39, num:1,title:"儿童蛋糕001",img_url:getApp().globalData.baseUrl + '/img/child15.png',  seletedSpec:"6英寸",allSpecs:["6英寸","8英寸","12英寸"],caid:12},
-       { price:39, num:2,title: "儿童蛋糕001",img_url: getApp().globalData.baseUrl + '/img/child12.png', seletedSpec: "8英寸" ,allSpecs:["6英寸","8英寸","12英寸"],caid:12},
-       {price:39, num:4, title: "儿童蛋糕001",img_url: getApp().globalData.baseUrl + '/img/child13.png', seletedSpec: "12英寸" ,allSpecs:["6英寸","8英寸","12英寸"],caid:12},
-       { price:39, num:1,title: "儿童蛋糕001", img_url: getApp().globalData.baseUrl + '/img/child16.png', seletedSpec: "6英寸" ,allSpecs:["6英寸","8英寸","12英寸"],caid:12}
-    ],
+    cartList :[],
     selectAll:{
       checked:false,
       totalPrice:(0.00).toFixed(2)
@@ -156,14 +212,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.ininitData();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.updateStorageCart();
   },
 
   /**

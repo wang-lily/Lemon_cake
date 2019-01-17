@@ -1,0 +1,78 @@
+/* cart-item-spec sm-muted arrow */
+.sm-muted{
+    font-weight: normal;
+    font-size: 24rpx;
+      color:#666;
+  }
+  .arrow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.arrow::after{
+    content: "";
+    width: 15rpx;
+    height:15rpx;
+    border-top:3rpx solid #ccc;
+    border-right:3rpx solid #ccc;
+    transform:rotate(45deg);
+}
+.remark-alert{
+    border:1rpx solid #ddd;
+    border-radius: 30rpx;
+    background: #eee;
+    width: 70rpx;
+    padding:5rpx 15rpx;
+    font-size:24rpx;
+}
+.remark-input{
+    border:1rpx solid #ddd;
+    width: auto;
+    padding:20rpx;
+    margin-top:20rpx;
+}
+  .remark-box{
+    position: fixed;
+    z-index: 301;
+    box-sizing: border-box;
+    width: 100%;
+    height: 540rpx;
+    border:1rpx solid #ddd;
+    border-radius:50rpx 50rpx 0rpx 0rpx;
+    font-size:28rpx;
+    padding: 20rpx;
+    margin: 0;
+    background: #fff;
+  }
+  .out{
+    left: 0rpx;
+    bottom: -540rpx;
+    transition: all 5s linear;
+  }
+  .in{
+    left: 0rpx;
+    bottom:0rpx;
+    transition: all 5s linear;
+  }
+  .mask{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 300;
+    box-sizing: border-box;
+    box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      background: rgba(34, 34, 34, 0.3)
+  }
+  .remark-confirm{
+    border-radius: 0;
+    color: #fff;
+    background: #f9867e;
+  }
+  .remark-confirm::after{
+      border-top: none;
+  }
+  .active{
+      background: #f9867e;
+  }

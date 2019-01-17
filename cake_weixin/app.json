@@ -1,11 +1,11 @@
 {
     "pages": [
+        "pages/test/test",
         "pages/home/home",
         "pages/shoplist/shoplist",
+        "pages/cart/cart",
         "pages/shopdetails/shopdetails",
         "pages/addMessage/addMessage",
-        "pages/test/test",
-        "pages/cart/cart",
         "pages/proflie/profile",
         "pages/building/buiding",
         "pages/diy/diy",

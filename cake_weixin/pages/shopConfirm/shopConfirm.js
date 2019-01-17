@@ -34,39 +34,52 @@ Page({
     },
     // 添加到购物车
   handleToCart:function(){
-    //   wx.clearStorage()
-      wx.getStorage({
-          key: 'cart',
-          success:(res)=>{
-              console.log(res)
-          }
-      })
-      var key = 'cart';
-      var data = this.data;
-      //添加到购物车缓存
-      var value = wx.getStorageSync(key);
-    //   console.log(key)
+    var cart = []; 
+      var value = wx.getStorageSync('cart');
       if(value){
-          console.log(value)
-          var newValue = JSON.parse(value);
-      }else{
-          var newValue = []      
+       var cartList = JSON.parse(value);
+       cartList.length!=0 && (cart = cart.concat(cartList));
+      } 
+      this.setData({
+        checked:true
+      })
+      var cartIndex = this.data.cartIndex;
+      if(cartIndex!==null){
+         cart.splice(cartIndex,1);
       }
-      newValue.push(data);
-      newValue = JSON.stringify(newValue);
-      console.log(newValue);
+      cart.unshift(this.data);
+      var key = 'cart';
+      var newValue = JSON.stringify(cart);
       wx.setStorage({
           key: key,
           data: newValue,
           success:(res)=>{
-            console.log(res)
-            // this.isJumpToCart(); 
+             var cart =  wx.getStorageSync('cart')
+            this.isJumpToCart(); 
           }
       })
+  },
+  //查询商品是否已存在于购物车,
+  isInCartList:function(caid){
+    var value = wx.getStorageSync('cart');
+    if(value || value.length!=0){
+        var cartList = JSON.parse(value);
+        for(var i=0; i<cartList.length; i++){
+            if(cartList[i].caid==caid){
+                cartList[i].cartIndex = i;
+                this.setData(cartList[i]);
+                return true;
+            }
+        }
+    }
+    return false;
   },
   //初始化页面数据
   initData:function(options){
     var caid = options.caid;
+    if(this.isInCartList(caid)){
+        return;
+    }
     var headerImg = options.headerImg;
     var title = options.title;
     var specs = options.specs;
@@ -81,7 +94,6 @@ Page({
         imgUrl:headerImg,
         title:title
     })
-    console.log(this.data)
   },
 //   按钮事件
 handleButtonTap:function(e){
@@ -90,16 +102,26 @@ handleButtonTap:function(e){
         count: this.data.count += num
     })
 },
+handleRemarkChange:function(e){
+    var value = e.detail.value;
+    console.log(value)
+    this.setData({
+        remark:value
+    })
+},
   /**
    * 页面的初始数据
    */
   data: {
-      caid:0,
-      count:1,
+    caid:0,
+    count:1,
     checkedSpecIndex:0,
     specs: [],
     imgUrl: getApp().globalData.baseUrl +'/img/child15.png',
-    title:""
+    title:"",
+    remark:"",
+    checked:true,
+    cartIndex:null
   },
 
   /**
