@@ -1,7 +1,22 @@
 <view>
-    <checkbox-group catchchange="checkboxChange">
+    <scroll-view 
+    scroll-y
+    style="height: 700px;"
+    bindscroll="scroll"
+    scroll-into-view="{{toView}}">
+        <view id="top"></view>
+        <checkbox-group catchchange="checkboxChange">
         <view calss="cart-list">
-            <view class="cart-item border-bottom" wx:for="{{cartList}}" wx:key="index">
+            <view 
+            class="cart-item border-bottom" 
+            wx:for="{{cartList}}" 
+            wx:key="index"
+            catchtap="jumpToDetails"
+            data-caid="{{item.caid}}"
+            data-discount="{{item.specs[item.checkedSpecIndex].discount}}"
+            data-oldPrice="{{item.specs[item.checkedSpecIndex].oldPrice}}"
+            data-nowPrice="{{item.specs[item.checkedSpecIndex].nowPrice}}"
+            data-spec="{{item.specs[item.checkedSpecIndex].spec}}">
                 <view 
                 class="cart-item-checkbox">
                     <checkbox 
@@ -18,7 +33,8 @@
                         <view class="title">{{item.title}}</view>
                          <view class="cart-item-spec sm-muted arrow remark {{remarkBtnIndex===index?'selected':''}}" 
                          catchtap="showRemark"
-                         data-index="{{index}}">备注</view>
+                         data-index="{{index}}"
+                         >备注</view>
                     </view>
                     <view 
                     class="cart-item-spec sm-muted arrow {{specsBtnIndex===index?'selected':''}}" catchtap="changeSpec"
@@ -53,9 +69,10 @@
             </view>      
         </view>
     </checkbox-group>
-   <view class="discount-msg">
-    <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
-   </view> 
+    <view class="discount-msg">
+        <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
+    </view> 
+    </scroll-view>
         <view class="cart-bottom">
             <label 
             class="cart-bottom-checkbox sm-muted" 
@@ -83,11 +100,17 @@
                 class="account"
                 catchtap="jumpToPaid"
                 disabled="{{cartList.length==0}}">结 算</button> 
-            </view>
-            
+            </view>     
     </view>
-    <InputBox id="remark-box"
+    <InputBox 
+    id="remark-box"
     title="备 注："
     placeholder="特殊需求请备注(少于200字)..."
-    value="{{cartList[remarkBtnIndex].remark}}"></InputBox>
+    value="{{cartList[remarkBtnIndex].remark}}"
+    bindconfirm="confirmEvent"
+    bindcancel="cancelEvent"></InputBox>
+    <ToTapBtn 
+    id="totap"
+    bindtotop="toToEvent"
+    ></ToTapBtn>
 </view>

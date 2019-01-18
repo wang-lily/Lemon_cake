@@ -1,5 +1,4 @@
-/* cart-item-spec sm-muted arrow */
-
+/* components/ToTapBtn/ToTapBtn.wxss */
 .btn-box{
   position: fixed;
   right: 40rpx;
@@ -45,4 +44,3 @@
     background: rgba(0, 0, 0, 0.5);
 
   }
- 

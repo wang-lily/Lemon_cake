@@ -31,26 +31,27 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //组件加载显示
     in:function(){
       this.setData({
         remarkBoxShow:true
       })
-      console.log(this.data)
       setTimeout(()=>{
         this.boxTransition.translateY(-270).step();
         this.maskOpacityChange.opacity(1).step();
         this.setData({ 
-          animationData1:this.boxTransition.export(),
-          animationData2:this.maskOpacityChange.export()
+          boxTransitionData:this.boxTransition.export(),
+          maskOpacityData:this.maskOpacityChange.export()
         })
       },1)
     },
+    //组件卸载隐藏
     out:function(){
       this.boxTransition.translateY(0).step();
       this.maskOpacityChange.opacity(0).step();
       this.setData({ 
-        animationData1:this.boxTransition.export(),
-        animationData2:this.maskOpacityChange.export()
+        boxTransitionData:this.boxTransition.export(),
+        maskOpacityData:this.maskOpacityChange.export()
       })
       setTimeout(()=>{
         this.setData({
@@ -58,22 +59,30 @@ Component({
         })
       },1000)  
     },
-    handleConfirm:function(){
+    //提交表单信息
+    handleConfirm:function(e){
       this.out();
+      var myEventDetail = {inputValue:e.detail.value.remark};
+      this.triggerEvent('confirm', myEventDetail);
     },
+    //取消按钮事件
     handleCancel:function(){
       this.out();
+      this.triggerEvent('cancel');
     },
+
   },
   
   ready:function(){
+    //表单动画对象
     const boxTransition = wx.createAnimation({
-      duration: 1000,
+      duration: 500,
       timingFunction: 'ease',
     })
     this.boxTransition = boxTransition;
+    //组件动画对象
     const maskOpacityChange = wx.createAnimation({
-      duration: 1000,
+      duration: 500,
       timingFunction: 'ease',
     })
     this.maskOpacityChange = maskOpacityChange;

@@ -1,5 +1,5 @@
 <!-- pages/shoplist/shoplist.wxml -->
-<!-- 美食列表 -->
+<!-- 商品列表 -->
 <view wx:for="{{list}}" wx:key="{{index}}">
   <view  
   class="shop" 
@@ -14,7 +14,7 @@
       <image src="{{item.headerImg}}" class="shop-left" lazy-load='true'></image>
     </view>
     <view class='shop-center'>
-      <view class="shop-name ell">{{item.title}}</view>
+      <view class="shop-name ell">{{item.title}}{{item.caid}}</view>
       <view >
         <view style='margin:10rpx;'>
             <text class="shop-remark ell">{{item.discount}} 折</text><text class="shop-remark ell">{{ item.spec}}</text>

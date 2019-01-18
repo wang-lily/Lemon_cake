@@ -2,20 +2,23 @@
     border:1rpx solid #ddd;
     width: auto;
     padding:20rpx;
-    margin-top:20rpx;
+    /* margin-top:20rpx; */
 }
   .remark-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     position: fixed;
     left: 0rpx;
-    bottom: -540rpx;
+    bottom: -270px;
     z-index: 301;
     box-sizing: border-box;
     width: 100%;
-    height: 540rpx;
+    height: 270px;
     border:1rpx solid #ddd;
     border-radius:50rpx 50rpx 0rpx 0rpx;
     font-size:28rpx;
-    padding: 20rpx;
+    padding: 20rpx 20rpx 0rpx 20rpx;
     margin: 0;
     background: #fff;
   }
@@ -27,9 +30,9 @@
     z-index: 300;
     box-sizing: border-box;
     box-sizing: border-box;
-    width: 100%;
+    width: 100%; 
     height: 100%;
-    background: rgba(34, 34, 34, 0.3);
+    background: rgba(34, 34, 34, 0.7);
     opacity: 0;
   }
   .remark-confirm{
@@ -50,7 +53,7 @@
     margin:0rpx;
     padding:0rpx;
     border-radius:50%;
-    background: #f9867e;
+    background: #777777;
     transform: rotate(45deg);
   }
   .btn::after{
@@ -77,6 +80,10 @@
     background:#fff;
   }
   .align-between{
+    padding:10rpx 0rpx;
       display: flex;
       justify-content: space-between;
+  }
+  .title{
+    line-height: 48rpx;
   }

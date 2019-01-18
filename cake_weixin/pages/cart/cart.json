@@ -3,6 +3,7 @@
     "navigationBarTitleText": "Lemon-购物车",
     "backgroundColor": "#f0145a",
     "usingComponents":{
-        "InputBox":"/components/InputBox/InputBox"
+        "InputBox":"/components/InputBox/InputBox",
+        "ToTapBtn":"/components/ToTapBtn/ToTapBtn"
     }
 }

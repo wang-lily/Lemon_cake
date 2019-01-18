@@ -14,7 +14,7 @@
             </radio-group>
           </view>
         </view>
-        <view class='price'>￥{{specs[checkedSpecIndex].nowPrice}}/份</view>
+        <view class='price'>单价:￥{{specs[checkedSpecIndex].nowPrice}}</view>
     </view>
      <view class='confirm-list sm-muted'>
         <text>剩余</text>

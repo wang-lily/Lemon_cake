@@ -1,0 +1,4 @@
+<!--components/ToTapBtn/ToTapBtn.wxml-->
+<view class="btn-box {{active?'rotate':''}}">
+        <button class="btn" catchtap="hideBtn"></button>
+</view>

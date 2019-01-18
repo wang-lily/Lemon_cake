@@ -1,4 +1,5 @@
 // pages/cart/cart.js
+import {updateStorageCart} from '../../utils/util';
 Page({
   //计算总价
   computTotalPrice:function(){
@@ -94,9 +95,6 @@ Page({
      return;
     }
     var cartList = JSON.parse(value);
-    if(cartList.length==0){
-      return;
-    }
     var total = 0;
     var selectAllChecked = true;
     for(var item of cartList){
@@ -143,21 +141,21 @@ Page({
                 })
                 this.computTotalPrice();
               }
-              this.setData({specsBtnIndex:null});
+              this.setData({specsBtnIndex:-1});
             }
           })
         }else{
           this.setData({
             //修改被选中规格的下标
             [`cartList[${index}].checkedSpecIndex`]:checkedSpecIndex,
-            specsBtnIndex:null
+            specsBtnIndex:-1
           })
           //重新计算总价
           this.computTotalPrice();
         }
       },
       fail: ()=>{
-        this.setData({specsBtnIndex:null});
+        this.setData({specsBtnIndex:-1});
       }
     })
   },
@@ -176,32 +174,94 @@ Page({
       }
     })
   },
-  //更新缓存中的购物车
-  updateStorageCart:function(){
-    var cart = this.data.cartList;
-    wx.setStorage({
-      key: 'cart',
-      data: JSON.stringify(cart),
-      fail:function(res){
-        console.log(res);
-      }
-    })
-  },
   //显示备注
   showRemark:function(e){
     var index = e.target.dataset.index;
     this.setData({remarkBtnIndex:index});
     var remarkBox = this.selectComponent("#remark-box");
+    var remark = this.data.cartList[index].remark;
+    remarkBox.setData({
+      value:remark
+    })
     remarkBox.in();
   },
+  //跳到商品详情页
+  jumpToDetails:function(e){
+    var caid = e.currentTarget.dataset.caid;
+    var discount = e.currentTarget.dataset.discount;
+    var oldPrice = e.currentTarget.dataset.oldprice;
+    var nowPrice = e.currentTarget.dataset.nowprice;
+    var spec = e.currentTarget.dataset.spec;
+    var url = `/pages/shopdetails/shopdetails?oldPrice=${oldPrice}&nowPrice=${nowPrice}&caid=${caid}&discount=${discount}&spec=${spec}`;
+    wx.navigateTo({
+      url: url
+    })
+  },
+  //是否显示toptapbtn
+  showToTapBtn:function(active){
+    var toTap = this.selectComponent("#totap");
+    toTap.setData({active:active}); 
+    return true;
+  },
+  //购物车列表滚动事件
+  scroll:function(e){
+    var top = e.detail.scrollTop;
+    console.log(top)
+    if(top>20 && !this.data.toTapShow){
+      var toTapShow = this.showToTapBtn(true);
+      this.setData({toTapShow:toTapShow});
+    }
+    if(top<=20 && this.data.toTapShow){
+      var toTapShow = this.showToTapBtn(false);
+      this.setData({toTapShow:toTapShow});
+    }
+  },
+
+  //inputbox组件调用的confirmEvent
+  confirmEvent:function(e){
+    var inputValue = e.detail.inputValue;
+    var cartList = this.data.cartList;
+    var index = this.data.remarkBtnIndex;
+    cartList[index].remark = inputValue;
+    //更新页面数据
+    this.setData({
+      remarkBtnIndex:-1,
+      cartList:cartList
+    })
+    //更新购物车缓存
+    updateStorageCart({
+      cart:cartList,
+      success:(res)=>{
+        wx.showToast({
+          title: '添加成功!',
+          icon: 'success',
+          duration: 500
+        })
+      }
+    })
+  },
+   //inputbox组件调用的cancelEvent
+   cancelEvent:function(e){
+    this.setData({remarkBtnIndex:-1})
+  },
+  //totapBtn组件调用的toToEvent
+  toToEvent:function(){
+    this.setData({
+      toView:"top",
+      toTapShow:false,
+    });
+  },
+  
   /**
    * 页面的初始数据
    */
   data: {
+    toView:"",
+    toTapShow:false,
     discountImg_url:getApp().globalData.baseUrl + '/img/discount.png',
     cartList :[],
-    specsBtnIndex:null,//规格按钮被选择的cartList下标
-    remarkBtnIndex:null,//备注按钮被选择的cartList下标
+    specsBtnIndex:-1,//规格按钮被选择的cartList下标
+    remarkBtnIndex:-1,//备注按钮被选择的cartList下标
     selectAll:{
       checked:false,
       totalPrice:(0.00).toFixed(2)
@@ -212,7 +272,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.ininitData();
     
   },
 
@@ -234,7 +293,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.updateStorageCart();
+    updateStorageCart({cart:this.data.cartList});
+    // this.updateStorageCart(this.data.cartList);
   },
 
   /**

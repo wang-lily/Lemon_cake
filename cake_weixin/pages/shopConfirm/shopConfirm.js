@@ -1,4 +1,5 @@
 // pages/shopConfirm/shopConfirm.js
+import {updateStorageCart} from '../../utils/util';
 Page({
     // 单选框改变事件
     radioChange:function(e){
@@ -14,22 +15,21 @@ Page({
             title: '添加成功',
             content: '查看购物车列表？',
             showCancel: true,
-            cancelText: '取消',
+            cancelText: '否',
             cancelColor: '',
-            confirmText: '确定',
+            confirmText: '是',
             confirmColor: '',
             success: (res)=>{
                 if(res.confirm){
                     wx.switchTab({
-                        url: '/pages/cart/cart',
-                        success: function (res) { },
-                        fail: function (res) { },
-                        complete: function (res) { },
+                        url: '/pages/cart/cart'
                     })
-                }      
-            },
-            fail: function(res) {},
-            complete: function(res) {},
+                }else{
+                    wx.navigateBack({
+                        delta:2
+                    })
+                }     
+            }
         })
     },
     // 添加到购物车
@@ -37,8 +37,7 @@ Page({
     var cart = []; 
       var value = wx.getStorageSync('cart');
       if(value){
-       var cartList = JSON.parse(value);
-       cartList.length!=0 && (cart = cart.concat(cartList));
+       cart = cart.concat(JSON.parse(value));
       } 
       this.setData({
         checked:true
@@ -48,21 +47,17 @@ Page({
          cart.splice(cartIndex,1);
       }
       cart.unshift(this.data);
-      var key = 'cart';
-      var newValue = JSON.stringify(cart);
-      wx.setStorage({
-          key: key,
-          data: newValue,
-          success:(res)=>{
-             var cart =  wx.getStorageSync('cart')
+    updateStorageCart({
+        cart:cart,
+        success:(res)=>{
             this.isJumpToCart(); 
-          }
-      })
+        }
+    })
   },
   //查询商品是否已存在于购物车,
   isInCartList:function(caid){
     var value = wx.getStorageSync('cart');
-    if(value || value.length!=0){
+    if(value){
         var cartList = JSON.parse(value);
         for(var i=0; i<cartList.length; i++){
             if(cartList[i].caid==caid){
@@ -102,9 +97,9 @@ handleButtonTap:function(e){
         count: this.data.count += num
     })
 },
+//备注输入改变事件
 handleRemarkChange:function(e){
     var value = e.detail.value;
-    console.log(value)
     this.setData({
         remark:value
     })
