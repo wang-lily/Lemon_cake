@@ -201,12 +201,11 @@ Page({
   showToTapBtn:function(active){
     var toTap = this.selectComponent("#totap");
     toTap.setData({active:active}); 
-    return true;
+    return active;
   },
   //购物车列表滚动事件
   scroll:function(e){
     var top = e.detail.scrollTop;
-    console.log(top)
     if(top>20 && !this.data.toTapShow){
       var toTapShow = this.showToTapBtn(true);
       this.setData({toTapShow:toTapShow});
@@ -245,7 +244,7 @@ Page({
     this.setData({remarkBtnIndex:-1})
   },
   //totapBtn组件调用的toToEvent
-  toToEvent:function(){
+  toTopEvent:function(){
     this.setData({
       toView:"top",
       toTapShow:false,

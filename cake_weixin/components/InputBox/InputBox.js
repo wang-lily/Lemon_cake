@@ -37,7 +37,7 @@ Component({
         remarkBoxShow:true
       })
       setTimeout(()=>{
-        this.boxTransition.translateY(-270).step();
+        this.boxTransition.translateY(90).step();
         this.maskOpacityChange.opacity(1).step();
         this.setData({ 
           boxTransitionData:this.boxTransition.export(),

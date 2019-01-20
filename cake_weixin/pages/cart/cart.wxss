@@ -99,7 +99,7 @@ page{
     text-align: left;
 }
 .cart-total{
-    width: 50%;
+    width: 49%;
     font-size: 30rpx;
     line-height: 0rpx;
     display: flex;

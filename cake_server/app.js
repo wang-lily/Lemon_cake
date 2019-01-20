@@ -41,8 +41,8 @@ app.use(bodyParser.urlencoded({
   extended:false
 }));
 
-var baseUrl = "http://127.0.0.1:3002";
-// var baseUrl = "http://23z20z4973.iask.in:40613";
+// var baseUrl = "http://127.0.0.1:3002";
+var baseUrl = "http://23z20z4973.iask.in:40613";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录

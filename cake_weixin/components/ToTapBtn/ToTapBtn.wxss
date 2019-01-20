@@ -6,19 +6,21 @@
   z-index: 280;
   opacity: 0;
   transform:rotateX(90deg);
-  
+  transform-origin: left bottom 0;
+  transition:all 1s ease;
 }
 .rotate{
   opacity: 1;
   transform:rotateX(0deg);
-  transform-origin: left bottom 0;
-  transition:all 1s ease;
+  
 }
 .btn::before,.btn::after{
   position:absolute;
     top:50%;
     left: 50%;
     content: "";
+    border-left: 0;
+    border-bottom:0;
     border-top:4rpx solid #fff;
     border-right:4rpx solid #fff;
     border-radius: 3rpx 0rpx 3rpx 0rpx;

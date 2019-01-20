@@ -1,7 +1,7 @@
 <view>
     <scroll-view 
     scroll-y
-    style="height: 700px;"
+    style="height:100vh;"
     bindscroll="scroll"
     scroll-into-view="{{toView}}">
         <view id="top"></view>
@@ -111,6 +111,6 @@
     bindcancel="cancelEvent"></InputBox>
     <ToTapBtn 
     id="totap"
-    bindtotop="toToEvent"
+    bindtotop="toTopEvent"
     ></ToTapBtn>
 </view>
