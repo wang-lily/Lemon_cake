@@ -6,13 +6,15 @@
         <open-data type="userAvatarUrl" class="avatar"></open-data>
         </view>
         <!-- <text class='uname'></text> -->
-        <open-data type="userNickName" class="uname">{{isManager?" 管理员":""}}</open-data>
+        <view class="uname">
+            {{isManager?" 管理员":""}} <open-data type="userNickName" ></open-data>
+        </view>
     </view>
     <ProfileManager wx:if="{{isManager}}"></ProfileManager>
     <ProfileUser wx:else></ProfileUser>
 </view>
-<view wx:else>
-    <view class="container">
+<view wx:else style="height:100%">
+    <view class="justify-center">
         <image src="{{src}}" lazyload="{{true}}" mode="aspectFit"/>
         <text class="sm-muted alert">微信授权登录后才可查看个人中心哦!</text>
         <button class="login-btn" bindtap="wxLogin">授权登录</button>

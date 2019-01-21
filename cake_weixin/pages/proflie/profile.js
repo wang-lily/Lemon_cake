@@ -1,42 +1,6 @@
 // pages/proflie/profile.js
 Page({
-    // loadHeaderImg: function(){
-    //     wx.chooseImage({
-    //         count:1,
-    //         sizeType:["compressed"],
-    //         sourceType:["camera","ablum"],
-    //         success: (res)=>{
-    //             console.log(res.tempFilePaths[0]);
-    //             wx.uploadFile({
-    //                 url: getApp().globalData.baseUrl+'/upload',
-    //                 filePath: res.tempFilePaths[0],
-    //                 name: 'mypic',
-    //                 header:{
-    //                     "Content-Type":"multipart/form-data"
-    //                 },
-    //                 success:(res)=>{
-    //                     console.log(JSON.parse(res.data));
-    //                     wx.showToast({
-    //                         title: '正在上传中……',
-    //                         icon:'loading'
-    //                     })
-    //                     setTimeout(function(){
-    //                         wx.hideToast();
-    //                     },500)
-    //                     this.setData({
-    //                         headerImgUrl: getApp().globalData.baseUrl+''+JSON.parse(res.data).url.slice(8),
-    //                     })    
-    //                 },
-    //                 fail:function(){
-    //                     wx.showModal({
-    //                         title: '友情提示',
-    //                         content: '系统升级中，请稍后再试',
-    //                     })
-    //                 }
-    //             })
-    //         },
-    //     })
-    // },
+    
     //跳转到添加商品页面
     handleTap:function(){
         wx.navigateTo({
@@ -87,6 +51,7 @@ Page({
                         isManager:true,
                         isLogin:true
                     })
+                    getApp().globalData.userInfo.isManager = true;
                 }else if(res.data.code==202){
                     this.setData({
                         isManager:false,
@@ -96,6 +61,12 @@ Page({
                     console.log("登录失败！")
                 }
             }
+        })
+    },
+    //跳转到首页
+    toHome:function(){
+        wx.switchTab({
+            url:"/pages/home/home"
         })
     },
   /**

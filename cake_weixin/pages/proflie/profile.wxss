@@ -1,4 +1,7 @@
 /* pages/proflie/profile.wxss */
+page{
+    height: 100vh;
+}
 .profile-avatar{
     background: #000;
     height:400rpx;
@@ -29,5 +32,13 @@
 .login-btn,.home-btn{
     width: 90%;
     margin: 10rpx;
+}
+.justify-center{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
