@@ -4,6 +4,7 @@
     "backgroundColor": "#f0145a",
     "usingComponents":{
         "InputBox":"/components/InputBox/InputBox",
-        "ToTapBtn":"/components/ToTapBtn/ToTapBtn"
+        "ToTapBtn":"/components/ToTapBtn/ToTapBtn",
+        "skeleton":"/components/skeleton/skeleton"
     }
 }

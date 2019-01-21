@@ -1,6 +1,6 @@
 <!--pages/proflie/profile.wxml-->
 <!-- <text>pages/proflie/profile.wxml</text> -->
-<view>
+<view wx:if="{{isLogin}}">
     <view class="profile-avatar">
          <view class="avatar-box">
         <open-data type="userAvatarUrl" class="avatar"></open-data>
@@ -10,4 +10,12 @@
     </view>
     <ProfileManager wx:if="{{isManager}}"></ProfileManager>
     <ProfileUser wx:else></ProfileUser>
+</view>
+<view wx:else>
+    <view class="container">
+        <image src="{{src}}" lazyload="{{true}}" mode="aspectFit"/>
+        <text class="sm-muted alert">微信授权登录后才可查看个人中心哦!</text>
+        <button class="login-btn" bindtap="wxLogin">授权登录</button>
+        <button class="home-btn" catchtap="toHome">返回首页</button>
+    </view>
 </view>

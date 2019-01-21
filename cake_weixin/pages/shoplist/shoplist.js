@@ -33,7 +33,7 @@ Page({
             pageIndex:pno
             });
             wx.showLoading({
-                title: '正在努力加载数据……',
+                title: '加载中...',
             });
             setTimeout(function(){
                 wx.hideLoading();

@@ -224,3 +224,6 @@
     text-decoration: line-through;
     padding-bottom:10rpx;
 }
+button::after{
+    border:none;
+}

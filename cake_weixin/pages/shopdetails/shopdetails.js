@@ -34,25 +34,32 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isInCart:false,
     caid:0,
     discount:0,
     oldPrice:0,
     nowPrice:0,
     spec:"",
     detail:{},
-    imgList: [
-      {img_url:getApp().globalData.baseUrl + "/img/child15.png"},
-      {img_url:getApp().globalData.baseUrl + "/img/child19.png"},
-      {img_url:getApp().globalData.baseUrl + "/img/child10.png"},
-      {img_url:getApp().globalData.baseUrl + "/img/child12.png"},
-
-    ]
+    imgList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var value = wx.getStorageSync('cart');
+    if(value){
+      var tmpList = JSON.parse(value);
+      for(var item of tmpList){
+        if(item.caid===options.caid){
+          this.setData({isInCart:true});
+          break;
+        }else{
+          console.log(tmpList.indexOf(options.caid))
+        }
+      }
+    }
     this.setData({
       caid:options.caid,
       discount:options.discount,

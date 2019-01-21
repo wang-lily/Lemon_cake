@@ -242,8 +242,17 @@ INSERT INTO `cake_discount` (`cdid`, `title`, `ctime`, `img_url`, `desc1`, `disc
 (6, '今日特惠！！', '2018-10-10', 'http://127.0.01:3002/img/carousel06.png', '慕斯双拼', '7.8折'),
 (7, '过年了，发红包了！！', '2019-1-5', 'http://127.0.01:3002/img/carousel09.png', '抢的是红包，更是福气！！', NULL);
 
-
-
+ #lemon_cake"用户表"
+CREATE TABLE cake_user(
+cuid INT PRIMARY KEY AUTO_INCREMENT,
+ wx_openid VARCHAR(255),
+ upwd VARCHAR(255),
+ isManager BOOLEAN,
+ uname VARCHAR(255),
+ avatar  VARCHAR(255)
+);
+INSERT INTO cake_user SET wx_openid="oFGQN5IbdI1sWQSt4ZL-I3UlKXec", upwd="123456",isManager=true,uname="管理员",avatar="";
+-- oFGQN5IbdI1sWQSt4ZL-I3UlKXec
 
 
 

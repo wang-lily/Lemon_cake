@@ -41,8 +41,8 @@ app.use(bodyParser.urlencoded({
   extended:false
 }));
 
-// var baseUrl = "http://127.0.0.1:3002";
-var baseUrl = "http://23z20z4973.iask.in:40613";
+var baseUrl = "http://127.0.0.1:3002";
+// var baseUrl = "http://23z20z4973.iask.in:40613";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录
@@ -251,29 +251,27 @@ app.get("/goodsList",(req,res)=>{
 });
 
 
-//功能七:用户登录
-app.get("/login",(req,res)=>{
-   //1:获取参数 uname,upwd
-   var uname = req.query.uname;
-   var upwd = req.query.upwd;
-   //2:创建正则表达式验证
-   //3:创建sql
-   var sql = "SELECT count(id) as c";
-   sql +=" FROM xz_login";
-   sql +=" WHERE uname = ? AND upwd = md5(?)";
-   pool.query(sql,[uname,upwd],(err,result)=>{
-    if(err)throw err;
-    var obj = result[0].c;
-    if(obj == 1){
-     //7.3:将用户名保存session对象中
-     req.session.uname = uname;
-     res.send({code:1,msg:"登录成功"});
+//功能七:管理员登录
+app.post("/manager_login",(req,res)=>{
+  var openId = req.body.data;
+  var sql1 = 'select cuid,isManager from cake_user where wx_openid=?'
+  pool.query(sql1,openId,(err,result)=>{
+    if(err) throw err;
+    console.log(result)
+    if(result.length===1 && result[0].cuid==1 && result[0].isManager==true){
+      res.send({
+        code:201,
+        msg:"管理员登录状态！"
+      })
     }else{
-     res.send({code:-1,msg:"用户名或密码有误"}) 
-     }  
-   });
-   //4:返回结果
+      res.send({
+        code:202,
+        msg:"用户登录状态！"
+      })
+    }
+  })
 })
+
 
 //功能八:加入购物车
 app.get("/addCart",(req,res)=>{

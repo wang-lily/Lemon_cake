@@ -37,7 +37,8 @@
                          >备注</view>
                     </view>
                     <view 
-                    class="cart-item-spec sm-muted arrow {{specsBtnIndex===index?'selected':''}}" catchtap="changeSpec"
+                    class="cart-item-spec sm-muted {{item.specs.length===1?'':'arrow'}} {{specsBtnIndex===index?'selected':''}}" 
+                    catchtap="{{item.specs.length===1?'':'changeSpec'}}"
                     data-index="{{index}}">
                         {{item.specs[item.checkedSpecIndex].spec}}
                     </view>

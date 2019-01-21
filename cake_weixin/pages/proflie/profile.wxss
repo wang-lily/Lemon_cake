@@ -14,3 +14,20 @@
     margin-top:-10rpx;
     color:#fff;
 }
+.alert{
+    padding: 20rpx;
+    font-size: 32rpx;
+}
+.login-btn{
+    background: rgb(78, 177, 50);
+    color: #fff;
+}
+.home-btn{
+    background: rgb(225, 238, 222);
+    color: #666;
+}
+.login-btn,.home-btn{
+    width: 90%;
+    margin: 10rpx;
+}
+

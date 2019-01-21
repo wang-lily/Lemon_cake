@@ -60,7 +60,7 @@ page{
     border:1rpx solid #ddd;
     border-radius: 10rpx;
     background: #eee;
-    width: 100rpx;
+    width:auto;
     padding:5rpx 15rpx;
     font-size:24rpx;
 }

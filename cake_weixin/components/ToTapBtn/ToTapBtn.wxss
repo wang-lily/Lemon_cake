@@ -7,7 +7,7 @@
   opacity: 0;
   transform:rotateX(90deg);
   transform-origin: left bottom 0;
-  transition:all 1s ease;
+  transition:all 0.5s ease;
 }
 .rotate{
   opacity: 1;

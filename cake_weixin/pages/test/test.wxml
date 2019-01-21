@@ -1,6 +1,3 @@
 <view >
-    <view class="btn-box {{active?'rotate':''}}">
-        <button class="btn" catchtap="toTop"></button>
-    </view>
-    <view wx:for="{{list}}" wx:key="{{index}}">{{item}}</view>
+    <button bindtap="handlePaid">微信支付</button>
 </view>

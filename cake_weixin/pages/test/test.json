@@ -1,6 +1,7 @@
 {
     "usingComponents": {
-        "TableBox": "/components/TableBox/TableBox"
+        "TableBox": "/components/TableBox/TableBox",
+        "skeleton": "/components/skeleton/skeleton"
     },
     "enablePullDwonRefresh": true,
     "navigationBarTitleText": "Lemon-test",
