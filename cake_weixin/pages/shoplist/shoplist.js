@@ -1,13 +1,5 @@
 // pages/shoplist/shoplist.js
 Page({
-    setTitle:function(){
-        wx.setNavigationBarTitle({
-            title: this.data.title,
-            success: function(res) {},
-            fail: function(res) {},
-            complete: function(res) {},
-        })
-    },
   loadMore:function(){
     // 加载下一页数据
     // 获取二个数值pno pageSize
@@ -60,11 +52,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isManager:false,
     list:[],
     pageIndex:0,
     pageSize:7,
     cakeClass:0,
-    title:"Lemon"
+    navTitle:"Lemon"
   },
 
   /**
@@ -72,8 +65,9 @@ Page({
    */
   onLoad: function (options) {
     this.cakeClass = options.cakeClass;
-    this.setData({title:"Lemon-"+options.title});
-    this.setTitle();
+    wx.setNavigationBarTitle({
+      title:"Lemon-"+options.title
+    })
     if (this.cakeClass==9){
 
     }
@@ -86,14 +80,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-     
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      
+    this.setData({
+      isManager:getApp().globalData.userInfo.isManager
+    })
+    console.log(this.data.isManager)
   },
 
   /**

@@ -30,10 +30,16 @@ Page({
         }
       })
     },
+    jumpToSet:function(e){
+      wx.navigateTo({
+        url: '/pages/addMessage/addMessage?caid='+e.target.dataset.caid
+      })
+    },
   /**
    * 页面的初始数据
    */
   data: {
+    isManager:false,
     isInCart:false,
     caid:0,
     discount:0,
@@ -81,7 +87,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({isManager:getApp().globalData.userInfo.isManager})
   },
 
   /**

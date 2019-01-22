@@ -458,6 +458,35 @@ app.post("/addProduct",(req,res)=>{
   })
 })
 
+//修改商品信息
+// updateProduct
+app.post("/updateProduct",(req,res)=>{
+  var data = JSON.parse(req.body.data);
+  var caid=data.caid;
+  var title = data.title;
+  var headerImg = data.headerImg.url;
+  var imgList = JSON.stringify(data.imgList);
+  var classType = data.classType;
+  var descr = data.desc;
+  var specs = JSON.stringify(data.specs);
+  var alert = JSON.stringify(data.alert);
+  var sql = `UPDATE cake_all SET headerImg=?,imgList=?,descr=?,title=?,specs=?,alert=?,classType=? WHERE caid=?;` 
+  pool.query(sql,[headerImg,imgList,descr,title,specs,alert,classType,caid],(err,result)=>{
+    if (err) throw err;
+    if(result.affectedRows>0){
+      res.send({
+        code:1,
+        msg:"商品信息修改成功！"
+      })
+    }else{
+      res.send({
+        code:-1,
+        msg:"商品信息修改失败！"
+      })
+    }
+  })
+})
+
 //第十六个功能:优惠分页显示
 app.get("/getMessage",(req,res)=>{
   var pno = req.query.pno;          //页码

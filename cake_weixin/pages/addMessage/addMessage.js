@@ -50,6 +50,39 @@ Page({
         }   
         return true;
     },
+    //添加商品
+    addProduct:function(dataObj){
+        var data = JSON.stringify(dataObj);
+        var url = this.data.baseUrl+'/addProduct';
+        wx.request({
+            url: url,
+            method:'POST',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data:'data=' + data,
+            success: function(res) {
+                console.log(res);
+            }
+        })
+    },
+     //更改商品信息
+    updateProduct:function(dataObj){
+        var tmpDataObj = Object.assign(dataObj,{caid:this.data.caid});
+        var data = JSON.stringify(tmpDataObj);
+        var url = this.data.baseUrl+'/updateProduct';
+        wx.request({
+            url: url,
+            method:'POST',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data:'data=' + data,
+            success: function(res) {
+                console.log(res);
+            }
+        })
+    },
    //提交数据
    formSubmit(e){
     //    获取组件的值
@@ -68,25 +101,68 @@ Page({
         this.data.data.desc = e.detail.value.desc;
         if(this.formVerify(tmpData)){
             //上传数据到服务器
-            var data = JSON.stringify(this.data.data);
-            console.log(data);
-            wx.request({
-                url: this.data.baseUrl+'/addProduct',
-                method:'POST',
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data:'data=' + data,
-                success: function(res) {
-                    console.log(res);
-                }
-            })
+            if(this.data.caid>0){
+                //更改商品信息
+                this.updateProduct(this.data.data);
+            }else if(this.data.caid===0){
+                //添加商品信息
+                this.addProduct(this.data.data);
+            }
         };
+   },
+//    初始化productClass
+   initProductClass:function(pClass){
+        if(!pClass){
+            return;
+        }
+        var tmpList = this.data.productClass;
+        for(var item of tmpList){
+            if(item.value==pClass){
+                item.checked = true
+                break;
+            }
+        }
+        this.setData({productClass:tmpList});   
+   },
+   //    初始化tableValues
+   initTableValues:function(arr){
+        var tmpList = arr;
+        this.setData({'tableData.values':tmpList});
+   },
+   //加载商品数据
+   loadDetail(caid){
+    wx.request({
+        url: getApp().globalData.baseUrl+'/productDetail',
+        data: {caid:caid},
+        success: (res)=>{
+          var result = res.data
+          if(result.code==1){
+            var data = result.data[0];
+            data.imgList = JSON.parse(data.imgList);
+            data.alert = JSON.parse(data.alert);
+            data.specs = JSON.parse(data.specs);
+            data.headerImg = [{url:data.headerImg}];
+            console.log(data);
+            this.setData({
+                'data.title':data.title,
+                'data.headerImg':data.headerImg,
+                'data.imgList':data.imgList,
+                'data.desc':data.descr,
+                'data.alert':data.alert
+            }) 
+            this.initProductClass(data.classType);   
+            this.initTableValues(data.specs);
+          }else{
+            console.log(result.msg);
+          }
+        }
+      })
    },
   /**
    * 页面的初始数据
    */
   data: {
+        caid:0,
         baseUrl:getApp().globalData.baseUrl,
         data:{
             title:"",
@@ -104,7 +180,8 @@ Page({
                 {name:"oldPrice",type:"digit",value:"",maxLength:9},
                 {name:"discount",type:"digit",value:"10",maxLength:9},
                 {name:"total",type:"number",value:"",maxLength:9}
-            ]
+            ],
+            values:[]
         },
       productClass: [
         { value: 1, name: "贺寿" }, 
@@ -123,7 +200,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var caid = options.caid;
+    if(!caid){
+        wx.setNavigationBarTitle({
+            title:"Lemon-"+"添加商品"
+        });
+        return;
+    }
+    wx.setNavigationBarTitle({
+        title:"Lemon-"+"修改商品信息"
+    });
+    this.setData({caid:caid});
+    this.loadDetail(caid);
   },
 
   /**

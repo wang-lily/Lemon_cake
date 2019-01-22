@@ -12,6 +12,10 @@ Component({
           imgTotal:{
             type: Number,
             value: 9//
+          },
+          imgList:{
+            type: Array,
+            value: []//
           }
       },
   
@@ -31,14 +35,20 @@ Component({
         style:"",
 
         nowCount:0,
-        isUpLoad:true,
-        imgList:[]
+        isUpLoad:true
     },
   
     /**
      * 组件的方法列表
      */
     methods: {
+        // 初始化数据
+        initData:function(){
+            this.data.nowCount = this.properties.count-this.properties.imgList.length;
+            if(this.properties.imgList.length>=this.properties.imgTotal){
+                this.setData({isUpLoad:false})
+            }
+        },
         // 拖拽图片
         dragImg:function(e){
             var deltaX = this.data.deltaX;
@@ -184,7 +194,7 @@ Component({
       }
     },
     ready:function() {
-        this.data.nowCount = this.properties.count;
+        this.initData();
     },
   })
   

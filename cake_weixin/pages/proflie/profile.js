@@ -14,9 +14,9 @@ Page({
                 if(res.code) {
                     var appid ='wx6c291757d0aa8241';
                     var secret ='659155f59d89744c82b30fcba5cc7aff';
-                    var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+                    var url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + res.code + '&grant_type=authorization_code';
                     wx.request({
-                        url: l,
+                        url: url,
                         success: (res)=>{
                            var sessionKey = res.data.session_key;
                            var openId = res.data.openid;
@@ -32,6 +32,7 @@ Page({
             }
         })
     },
+    
     //验证用户信息
     userConfirm:function(openId){
         if(!openId){
@@ -47,11 +48,19 @@ Page({
             },
             success: (res)=>{
                 if(res.data.code==201){
+                    //管理员登录成功
                     this.setData({
                         isManager:true,
                         isLogin:true
                     })
                     getApp().globalData.userInfo.isManager = true;
+                    // wx.setTabBarItem({
+                    //     index: 2,
+                    //     pagePath: "pages/home/home",
+                    //     text: '订单管理',
+                    //     iconPath: 'pages/static/order.png',
+                    //     selectedIconPath: 'pages/static/order-active.png'
+                    //   })
                 }else if(res.data.code==202){
                     this.setData({
                         isManager:false,

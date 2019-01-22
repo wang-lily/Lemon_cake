@@ -6,73 +6,73 @@
     scroll-into-view="{{toView}}">
         <view id="top"></view>
         <checkbox-group catchchange="checkboxChange">
-        <view calss="cart-list">
-            <view 
-            class="cart-item border-bottom" 
-            wx:for="{{cartList}}" 
-            wx:key="index"
-            catchtap="jumpToDetails"
-            data-caid="{{item.caid}}"
-            data-discount="{{item.specs[item.checkedSpecIndex].discount}}"
-            data-oldPrice="{{item.specs[item.checkedSpecIndex].oldPrice}}"
-            data-nowPrice="{{item.specs[item.checkedSpecIndex].nowPrice}}"
-            data-spec="{{item.specs[item.checkedSpecIndex].spec}}">
+            <view calss="cart-list">
                 <view 
-                class="cart-item-checkbox">
-                    <checkbox 
-                    catchtap="handleSelectOne"
-                    class="circle-checkbox"  
-                    value="{{item.count * item.specs[item.checkedSpecIndex].nowPrice}}" 
-                    checked="{{item.checked}}"
-                    data-index="{{index}}"
-                    />
-                </view>   
-                <image class="cart-item-img" src="{{item.imgUrl}}" mode="widthFix" lazy-load="true"/>
-                <view class="cart-item-desc">
-                    <view class="cart-item-title">
-                        <view class="title">{{item.title}}</view>
-                         <view class="cart-item-spec sm-muted arrow remark {{remarkBtnIndex===index?'selected':''}}" 
-                         catchtap="showRemark"
-                         data-index="{{index}}"
-                         >备注</view>
-                    </view>
+                class="cart-item border-bottom" 
+                wx:for="{{cartList}}" 
+                wx:key="index"
+                catchtap="jumpToDetails"
+                data-caid="{{item.caid}}"
+                data-discount="{{item.specs[item.checkedSpecIndex].discount}}"
+                data-oldPrice="{{item.specs[item.checkedSpecIndex].oldPrice}}"
+                data-nowPrice="{{item.specs[item.checkedSpecIndex].nowPrice}}"
+                data-spec="{{item.specs[item.checkedSpecIndex].spec}}">
                     <view 
-                    class="cart-item-spec sm-muted {{item.specs.length===1?'':'arrow'}} {{specsBtnIndex===index?'selected':''}}" 
-                    catchtap="{{item.specs.length===1?'':'changeSpec'}}"
-                    data-index="{{index}}">
-                        {{item.specs[item.checkedSpecIndex].spec}}
-                    </view>
-                    <view class="cart-item-pn">
-                        <view class="price">
-                            ￥{{item.specs[item.checkedSpecIndex].nowPrice}}
+                    class="cart-item-checkbox">
+                        <checkbox 
+                        catchtap="handleSelectOne"
+                        class="circle-checkbox"  
+                        value="{{item.count * item.specs[item.checkedSpecIndex].nowPrice}}" 
+                        checked="{{item.checked}}"
+                        data-index="{{index}}"
+                        />
+                    </view>   
+                    <image class="cart-item-img" src="{{item.imgUrl}}" mode="widthFix" lazy-load="true"/>
+                    <view class="cart-item-desc">
+                        <view class="cart-item-title">
+                            <view class="title">{{item.title}}</view>
+                            <view class="cart-item-spec sm-muted arrow remark {{remarkBtnIndex===index?'selected':''}}" 
+                            catchtap="showRemark"
+                            data-index="{{index}}"
+                            >备注</view>
                         </view>
-                        <view class="btn-group">
-                            <button 
-                            class="btn btn-desc" 
-                            data-item="{{item}}"
-                            data-index="{{index}}"
-                            data-num="-1"
-                            disabled="{{item.count==0}}"
-                            catchtap="handleButtonTap"></button>
-                            <text class="num">
-                                {{item.count}}
-                            </text>  
-                            <button 
-                            class="btn btn-asc" 
-                            data-item="{{item}}"
-                            data-index="{{index}}"
-                            data-num="1"
-                            disabled="{{item.count==item.specs[item.checkedSpecIndex].total}}"
-                            catchtap="handleButtonTap"></button>
+                        <view 
+                        class="cart-item-spec sm-muted {{item.specs.length===1?'':'arrow'}} {{specsBtnIndex===index?'selected':''}}" 
+                        catchtap="{{item.specs.length===1?'':'changeSpec'}}"
+                        data-index="{{index}}">
+                            {{item.specs[item.checkedSpecIndex].spec}}
+                        </view>
+                        <view class="cart-item-pn">
+                            <view class="price">
+                                ￥{{item.specs[item.checkedSpecIndex].nowPrice}}
+                            </view>
+                            <view class="btn-group">
+                                <button 
+                                class="btn btn-desc" 
+                                data-item="{{item}}"
+                                data-index="{{index}}"
+                                data-num="-1"
+                                disabled="{{item.count==0}}"
+                                catchtap="handleButtonTap"></button>
+                                <text class="num">
+                                    {{item.count}}
+                                </text>  
+                                <button 
+                                class="btn btn-asc" 
+                                data-item="{{item}}"
+                                data-index="{{index}}"
+                                data-num="1"
+                                disabled="{{item.count==item.specs[item.checkedSpecIndex].total}}"
+                                catchtap="handleButtonTap"></button>
+                            </view>     
                         </view>     
-                    </view>     
-                </view>           
-            </view>      
-        </view>
-    </checkbox-group>
-    <view class="discount-msg">
-        <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
-    </view> 
+                    </view>           
+                </view>      
+            </view>
+        </checkbox-group>
+        <view class="discount-msg">
+            <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix" />  
+        </view> 
     </scroll-view>
         <view class="cart-bottom">
             <label 
@@ -102,7 +102,7 @@
                 catchtap="jumpToPaid"
                 disabled="{{cartList.length==0}}">结 算</button> 
             </view>     
-    </view>
+        </view>
     <InputBox 
     id="remark-box"
     title="备 注："

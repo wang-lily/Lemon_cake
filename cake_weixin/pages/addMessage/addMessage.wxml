@@ -4,17 +4,25 @@
         <view class='add-message-view'>
             <view>
                 <view class="title">商品标题:</view>
-                <input class="my-input" type="text" name="title" placeholder="最多10个字..." maxlength="10"/>
+                <input class="my-input" type="text" name="title" placeholder="最多10个字..." maxlength="10" value="{{data.title}}"/>
             </view>
             <view >
                 <view class="title">商品列表头图:</view>
                 <!-- UploadImg组件 -->
-                <UploadImg id="header-img" count="1" imgTotal="1"></UploadImg>
+                <UploadImg 
+                id="header-img" 
+                count="1" 
+                imgTotal="1"
+                imgList="{{data.headerImg}}"></UploadImg>
             </view>
             <view >
                 <view class="title">商品详情图片:</view>
                 <!-- UploadImg组件 -->
-                <UploadImg id="detail-imgs" count="9" imgTotal="9"></UploadImg>
+                <UploadImg 
+                id="detail-imgs" 
+                count="9" 
+                imgTotal="9"
+                imgList="{{data.imgList}}"></UploadImg>
             </view>
             <view >
                 <view class="title">商品类别:</view>
@@ -27,7 +35,7 @@
             </view>
             <view >
                 <view class="title">商品描述:</view>
-                <input class="my-input" type="text" name="desc" placeholder="最多10个字..." maxlength="10"/>
+                <input class="my-input" type="text" name="desc" placeholder="最多10个字..." maxlength="10" value="{{data.desc}}"/>
             </view>
             
             <!-- TableBox组件 -->
@@ -42,11 +50,12 @@
             id="alert" 
             title="提示信息" 
             itemMaxLength="50"   
-            itemTotal="12"></InputGroup>
+            itemTotal="12"
+            values="{{data.alert}}"></InputGroup>
         </view>
 
 
-        <button class='btn-bottom' form-type="submit">添加商品</button>
+        <button class='btn-bottom bgGreen' form-type="submit">{{caid===0?"添加商品":"确认修改"}}</button>
     </form>
     
 </view>

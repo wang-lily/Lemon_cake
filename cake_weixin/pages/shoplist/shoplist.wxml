@@ -14,7 +14,7 @@
       <image src="{{item.headerImg}}" class="shop-left" lazy-load='true'></image>
     </view>
     <view class='shop-center'>
-      <view class="shop-name ell">{{item.title}}{{item.caid}}</view>
+      <view class="shop-name ell">{{item.title}}</view>
       <view >
         <view style='margin:10rpx;'>
             <text class="shop-remark ell">{{item.discount}} 折</text><text class="shop-remark ell">{{ item.spec}}</text>
@@ -31,7 +31,8 @@
         <view class="start-before" style="width:{{item.star}}%">★★★★★</view>
       </view>
       <view class="shop-saleTotal">已售出：{{item.saleTotal}}</view>
-      <view class="circle">+</view>
+      <view wx:if="{{isManager===true}}" class='sm-muted'>商品编号:{{item.caid}}</view>
+      <view wx:if="{{isManager===false}}" class="circle">+</view>
     </view>
   </view>
 </view>

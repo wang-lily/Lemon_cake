@@ -86,6 +86,7 @@
     border-radius: 30rpx;
     line-height: 60rpx;
 }
+
 .detail-price{
     display: flex;
     flex-direction: column;

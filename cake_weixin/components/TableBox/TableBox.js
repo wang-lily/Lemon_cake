@@ -14,6 +14,7 @@ Component({
                 {name:"item2",type:"digit",maxLength:9,value:""},
                 {name:"item3",type:"number",maxLength:9,value:""}
             ],
+            values:[]
         }
     },
     title:{
@@ -45,8 +46,19 @@ Component({
       initBody:function(){
         var tmpList = this.data.inputGroup.body;
         var str = JSON.stringify(this.properties.tableData.colDetail);
-        var tmpArr = JSON.parse(str);
-        tmpList.push(tmpArr);
+        var valuesArr = this.properties.tableData.values;
+        if(valuesArr.length>0){
+            for(var item of valuesArr){
+                var tmpArr = JSON.parse(str);
+                for(var tmp of tmpArr){
+                    tmp.value = item[tmp.name]
+                }
+                tmpList.push(tmpArr);
+            }
+        }else{
+            var tmpArr = JSON.parse(str);
+            tmpList.push(tmpArr);
+        }
         this.setData({
             [`inputGroup.body`]: tmpList,
         })  

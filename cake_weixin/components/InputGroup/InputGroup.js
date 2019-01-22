@@ -18,6 +18,10 @@ Component({
     itemTotal:{
         type:Number,
         value:6
+    },
+    values:{
+        type:Array,
+        values:[]
     }
   },
 
@@ -36,6 +40,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
+      //初始化数据
+      initData:function(){
+          var tmpList = this.properties.values;
+          this.setData({
+              'inputGroup.list':tmpList
+          })
+      },
       //添加项目
       addItem: function (e) {
           var num = e.target.dataset.num;
@@ -78,5 +89,8 @@ Component({
       postInputGroupValues(){
         return this.data.inputGroup.list;
       }
+  },
+  ready:function(){
+      this.initData();
   }
 })

@@ -227,3 +227,6 @@
 button::after{
     border:none;
 }
+.bgGreen{
+    background: rgb(78, 177, 50) !important;
+}

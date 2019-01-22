@@ -46,7 +46,15 @@
             </view>
         </view>
         <button 
-        class="detail-button h2" catchtap='jumpToComfirm'
+        wx:if="{{isManager}}"
+        class="detail-button bgGreen h2" 
+        catchtap='jumpToSet'
+        data-caid="{{caid}}"
+        >修改商品信息</button>
+        <button 
+        wx:else
+        class="detail-button h2" 
+        catchtap='jumpToComfirm'
         data-headerImg="{{detail.headerImg}}"
         data-specs="{{detail.specs}}"
         data-title="{{detail.title}}"
