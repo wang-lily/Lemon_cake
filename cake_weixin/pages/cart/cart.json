@@ -1,7 +1,7 @@
 {
     "enablePullDwonRefresh": true,
     "navigationBarTitleText": "Lemon-购物车",
-    "backgroundColor": "#f0145a",
+    "backgroundColor": "#fff",
     "usingComponents":{
         "InputBox":"/components/InputBox/InputBox",
         "ToTapBtn":"/components/ToTapBtn/ToTapBtn",

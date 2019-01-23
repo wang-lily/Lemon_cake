@@ -72,7 +72,9 @@ Page({
   //初始化页面数据
   initData:function(options){
     var caid = options.caid;
+    console.log(this.isInCartList(caid))
     if(this.isInCartList(caid)){
+        // this.setData({cartIndex:this.isInCartList(caid)})
         return;
     }
     var headerImg = options.headerImg;

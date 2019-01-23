@@ -14,7 +14,7 @@ page{
     border-color:#000;
 }
 .uname{
-    margin-top:-10rpx;
+    margin-top:-5rpx;
     color:#fff;
 }
 .alert{

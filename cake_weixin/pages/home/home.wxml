@@ -15,7 +15,9 @@
       <text>{{item.title}}</text>
     </view>
   </view>
-
   <view class='divider'></view>
-
+  <view class="note" animation="{{noteAnimation}}"   catchtap="getCoupon">
+    <image class="discountImg" src="{{discountImg_url}}" lazy-load="{{true}}" mode="widthFix"/>
+  </view>
+ //优惠券组件
 </view>

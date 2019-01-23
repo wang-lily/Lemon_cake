@@ -52,7 +52,7 @@
                                 data-item="{{item}}"
                                 data-index="{{index}}"
                                 data-num="-1"
-                                disabled="{{item.count==0}}"
+                                disabled="{{item.count==1}}"
                                 catchtap="handleButtonTap"></button>
                                 <text class="num">
                                     {{item.count}}

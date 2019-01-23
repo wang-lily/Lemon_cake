@@ -40,3 +40,16 @@
   background: #eee;
   height:15rpx;
 }
+
+.note{
+    margin-top:10rpx;
+    box-sizing: border-box;
+   height: 50rpx;
+   text-align: right;
+    transform:translateX(100%);
+}
+
+.discountImg{
+  width: 200rpx;
+}
+

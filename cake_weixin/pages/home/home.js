@@ -1,5 +1,6 @@
 // pages/home/home.js
 Page({
+    // 跳到列表页
     handleJump:function(e){
         if (e.target.dataset.id==9){
             wx.navigateTo({
@@ -11,11 +12,35 @@ Page({
             url: '/pages/shoplist/shoplist?cakeClass=' + e.target.dataset.id+'&title=' + e.target.dataset.title,
         })
     },
-
+    // 跳到优惠券领取页面
+    getCoupon(){
+       
+    },
+    // 创建动画对象
+    createAnimation:function(){
+        this.noteAnimation = wx.createAnimation({
+            duration: 7000,
+            timingFunction: "linear",
+            delay: 1,
+            transformOrigin: '50% 50% 0',
+        })
+    },
+    // 初始化动画数据并执行动画
+    initAnimationData:function(){
+        var deviceWidth = wx.getSystemInfoSync().windowWidth;
+        this.timer = setInterval(() => {
+            this.noteAnimation.translateX(-deviceWidth).step();
+            this.noteAnimation.translateX(100).step({ duration: 0 });
+            this.setData({
+                noteAnimation: this.noteAnimation.export()
+            })
+        }, 6000)
+    },
   /**
    * 页面的初始数据
    */
   data: {
+      showCoupon:false,
     list:[
       {img_url:getApp().globalData.baseUrl+"/img/carousel09.png"},
       { img_url:getApp().globalData.baseUrl+"/img/carousel08.png"},
@@ -39,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+      this.createAnimation();
   },
 
   /**
@@ -53,14 +78,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      this.initAnimationData();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+      clearInterval(this.timer);
   },
 
   /**

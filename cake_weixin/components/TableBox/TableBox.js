@@ -45,8 +45,8 @@ Component({
       //初始化table的body
       initBody:function(){
         var tmpList = this.data.inputGroup.body;
-        var str = JSON.stringify(this.properties.tableData.colDetail);
-        var valuesArr = this.properties.tableData.values;
+        var str = JSON.stringify(this.data.tableData.colDetail);
+        var valuesArr = this.data.tableData.values;
         if(valuesArr.length>0){
             for(var item of valuesArr){
                 var tmpArr = JSON.parse(str);
@@ -67,7 +67,7 @@ Component({
     addItem: function (e) {
         var num = e.target.dataset.num;
         var tmpList = this.data.inputGroup.body;
-        var str = JSON.stringify(this.properties.tableData.colDetail);
+        var str = JSON.stringify(this.data.tableData.colDetail);
         var tmpArr = JSON.parse(str);
         tmpList.push(tmpArr);
         this.setData({
@@ -129,7 +129,7 @@ Component({
             var tmpObj = {};
             for(var obj of arr){
                 if(!obj.value.trim()){
-                    data.msg = `${this.properties.title}没填写完善,请完善后再提交！`
+                    data.msg = `${this.data.title}没填写完善,请完善后再提交！`
                 }
                 tmpObj[obj.name] = obj.value;
             }

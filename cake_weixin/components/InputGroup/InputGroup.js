@@ -42,7 +42,10 @@ Component({
   methods: {
       //初始化数据
       initData:function(){
-          var tmpList = this.properties.values;
+          if(this.data.values.length==0){
+              return;
+          }
+          var tmpList = this.data.values;
           this.setData({
               'inputGroup.list':tmpList
           })

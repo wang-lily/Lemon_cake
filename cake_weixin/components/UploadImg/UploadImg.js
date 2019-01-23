@@ -34,8 +34,8 @@ Component({
         imgBoxHeight:200,
         style:"",
 
-        nowCount:0,
-        isUpLoad:true
+        nowCount:0,//每次上传图片的数量
+        // isUpLoad:true
     },
   
     /**
@@ -44,10 +44,18 @@ Component({
     methods: {
         // 初始化数据
         initData:function(){
-            this.data.nowCount = this.properties.count-this.properties.imgList.length;
-            if(this.properties.imgList.length>=this.properties.imgTotal){
-                this.setData({isUpLoad:false})
+            var deltaTotal = this.data.imgTotal-this.data.imgList.length;
+            if(deltaTotal<this.data.count){
+                this.setData({
+                    nowCount:deltaTotal
+                })
             }
+            if(this.data.imgList.length>=this.data.imgTotal){
+                this.setData({isUpLoad:false})
+            }else{
+                this.setData({isUpLoad:true})
+            }
+            console.log(this.data)
         },
         // 拖拽图片
         dragImg:function(e){
@@ -104,7 +112,7 @@ Component({
                             imgList:imgList,
                             isUpLoad:true
                         });
-                        if(this.data.nowCount<this.properties.count){
+                        if(this.data.nowCount<this.data.count){
                             this.data.nowCount++;
 
                         }
@@ -178,8 +186,8 @@ Component({
                           })
                       }
                       var tempImgCount = this.data.imgList.length;
-                      if(this.properties.imgTotal-tempImgCount<this.data.nowCount){
-                          this.data.nowCount = this.properties.imgTotal-tempImgCount
+                      if(this.data.imgTotal-tempImgCount<this.data.nowCount){
+                          this.data.nowCount = this.data.imgTotal-tempImgCount
                       }
                       if(this.data.nowCount==0){
                         this.setData({isUpLoad:false});
@@ -193,8 +201,16 @@ Component({
           return this.data.imgList;
       }
     },
-    ready:function() {
-        this.initData();
+    // 在组件实例刚刚被创建时执行
+    created() {
+       
+    },
+    // 在组件实例进入页面节点树时执行
+    attached(){
+    },
+    // 在组件在视图层布局完成后执行
+    ready() {
+        this.initData();   
     },
   })
   

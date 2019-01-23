@@ -59,6 +59,6 @@
         data-specs="{{detail.specs}}"
         data-title="{{detail.title}}"
         data-caid="{{caid}}"
-        disabled="{{isInCart}}">{{isInCart?'已':''}}加入购物车</button>
+        >{{isInCart?'商品信息确认':'加入购物车'}}</button>
     </view>
 </view>
