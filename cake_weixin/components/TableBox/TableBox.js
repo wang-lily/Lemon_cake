@@ -13,8 +13,7 @@ Component({
                 {name:"item1",type:"text",maxLength:9,value:""},
                 {name:"item2",type:"digit",maxLength:9,value:""},
                 {name:"item3",type:"number",maxLength:9,value:""}
-            ],
-            values:[]
+            ]
         }
     },
     title:{
@@ -42,27 +41,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-      //初始化table的body
-      initBody:function(){
-        var tmpList = this.data.inputGroup.body;
-        var str = JSON.stringify(this.data.tableData.colDetail);
-        var valuesArr = this.data.tableData.values;
-        if(valuesArr.length>0){
-            for(var item of valuesArr){
-                var tmpArr = JSON.parse(str);
-                for(var tmp of tmpArr){
-                    tmp.value = item[tmp.name]
-                }
-                tmpList.push(tmpArr);
-            }
-        }else{
-            var tmpArr = JSON.parse(str);
-            tmpList.push(tmpArr);
-        }
-        this.setData({
-            [`inputGroup.body`]: tmpList,
-        })  
-      },
     //添加项目
     addItem: function (e) {
         var num = e.target.dataset.num;
@@ -111,10 +89,10 @@ Component({
     handleInput: function (e) {
         var i = e.target.dataset.i;
         var j = e.target.dataset.j;
-        var tmpList = this.data.inputGroup.body;
+        var tmpList = this.data.tableData.colDetail;
         tmpList[i][j].value = e.detail.value;
         this.setData({
-            [`inputGroup.body`]: tmpList,
+            [`tableData.colDetail`]: tmpList,
         })
     },
     //发送value值给调用此组建的对象
@@ -124,7 +102,7 @@ Component({
             dataList:[],
             msg:""
         }
-        var tmpList = this.data.inputGroup.body;
+        var tmpList = this.data.tableData.colDetail;
         for(var arr of tmpList){
             var tmpObj = {};
             for(var obj of arr){
@@ -138,7 +116,10 @@ Component({
       return data;
     }
   },
+  attached:function(){
+     
+  },
   ready:function() {
-      this.initBody();
+
   },
 })

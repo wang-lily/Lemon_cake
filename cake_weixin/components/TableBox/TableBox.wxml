@@ -18,7 +18,7 @@
         <view 
         class="row" 
         catchlongpress="deleteItem"
-        wx:for="{{inputGroup.body}}"
+        wx:for="{{tableData.colDetail}}"
         wx:for-item="row"
         wx:for-index="i"
         wx:key="{{index}}"

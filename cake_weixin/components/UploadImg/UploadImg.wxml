@@ -11,7 +11,7 @@
         catchlongpress="deleteImg" 
         />
     </view>
-    <view wx:if="{{isUpLoad}}" class=" add-img-list-item">
+    <view wx:if="{{imgList.length!=imgTotal}}" class=" add-img-list-item">
         <view class="wx_UploadImg_container">
             <view class="draw-mask" bindtap="selectImg">
                 <button  class="btn btn-asc"></button>

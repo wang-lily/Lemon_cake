@@ -125,9 +125,26 @@ Page({
         this.setData({productClass:tmpList});   
    },
    //    初始化tableValues
-   initTableValues:function(arr){
-        var tmpList = arr;
-        this.setData({'tableData.values':tmpList});
+   initTableValues:function(arr){   
+        var tmpList = [];
+        var str = JSON.stringify(this.data.tableData.colDetail);
+        var valuesArr = arr;
+        if(valuesArr.length>0){
+            for(var item of valuesArr){
+                var tmpArr = JSON.parse(str);
+                for(var tmp of tmpArr){
+                    tmp.value = item[tmp.name]
+                }
+                tmpList.push(tmpArr);
+            }
+        }else{
+            var tmpArr = JSON.parse(str);
+            tmpList.push(tmpArr);
+        }
+        console.log(tmpList)
+        this.setData({
+            [`tableData.colDetail`]: tmpList,
+        }) 
    },
    //加载商品数据
    loadDetail(caid){

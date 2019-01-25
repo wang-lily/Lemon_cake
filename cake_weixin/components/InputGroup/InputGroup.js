@@ -21,7 +21,7 @@ Component({
     },
     values:{
         type:Array,
-        values:[]
+        value:[{value:""}]
     }
   },
 
@@ -31,8 +31,7 @@ Component({
   data: {
       inputGroup: {
           noDel: true,
-          noAdd: false,
-          list: [{ value: "" }]
+          noAdd: false
       }
   },
 
@@ -40,26 +39,22 @@ Component({
    * 组件的方法列表
    */
   methods: {
-      //初始化数据
+    //   初始化数据
       initData:function(){
           if(this.data.values.length==0){
-              return;
+              this.setData({values:[{value:""}]});
           }
-          var tmpList = this.data.values;
-          this.setData({
-              'inputGroup.list':tmpList
-          })
       },
       //添加项目
       addItem: function (e) {
           var num = e.target.dataset.num;
-          var tmpList = this.data.inputGroup.list;
+          var tmpList = this.data.values;
           tmpList.push({ value: "" });
           this.setData({
-              [`inputGroup.list`]: tmpList,
+            values: tmpList,
               [`inputGroup.noDel`]: false
           });
-          if (this.data.inputGroup.list.length == num) {
+          if (this.data.values.length == num) {
               this.setData({
                   [`inputGroup.noAdd`]: true
               });
@@ -68,13 +63,13 @@ Component({
       //删除项目
       deleteItem: function (e) {          
           var index = e.target.dataset.index;
-          var tmpList = this.data.inputGroup.list;
+          var tmpList = this.data.values;
           tmpList.splice(index, 1);
           this.setData({
-              [`inputGroup.list`]: tmpList,
+              values: tmpList,
               [`inputGroup.noAdd`]: false
           })
-          if (this.data.inputGroup.list.length == 1) {
+          if (this.data.values.length == 1) {
               this.setData({
                   [`inputGroup.noDel`]: true
               })
@@ -83,17 +78,20 @@ Component({
       //动态修改input的value
       handleInput: function (e) {
           var index = e.target.dataset.index;
-          var tmpList = this.data.inputGroup.list;
+          var tmpList = this.data.values;
           tmpList[index].value = e.detail.value;
           this.setData({
-              [`inputGroup.list`]: tmpList,
+              values: tmpList,
           })
       },
       postInputGroupValues(){
-        return this.data.inputGroup.list;
+        return this.data.values;
       }
   },
+  attached:function(){
+    this.initData()
+  },
   ready:function(){
-      this.initData();
+   
   }
 })

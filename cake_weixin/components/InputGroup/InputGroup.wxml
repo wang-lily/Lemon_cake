@@ -7,7 +7,7 @@
                     bindtap="addItem" 
                     data-num="{{itemTotal}}"></button>
                 </view>
-                <view class="point" wx:for="{{inputGroup.list}}" wx:key="index">
+                <view class="point" wx:for="{{values}}" wx:key="index">
                     <input 
                     class="my-input" 
                     type="text" 

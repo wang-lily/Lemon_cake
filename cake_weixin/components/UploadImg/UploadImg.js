@@ -34,8 +34,7 @@ Component({
         imgBoxHeight:200,
         style:"",
 
-        nowCount:0,//每次上传图片的数量
-        // isUpLoad:true
+        nowCount:0//每次上传图片的数量
     },
   
     /**
@@ -50,12 +49,6 @@ Component({
                     nowCount:deltaTotal
                 })
             }
-            if(this.data.imgList.length>=this.data.imgTotal){
-                this.setData({isUpLoad:false})
-            }else{
-                this.setData({isUpLoad:true})
-            }
-            console.log(this.data)
         },
         // 拖拽图片
         dragImg:function(e){
@@ -109,8 +102,7 @@ Component({
                         var imgList = this.data.imgList;
                         imgList.splice(index, 1);
                         this.setData({
-                            imgList:imgList,
-                            isUpLoad:true
+                            imgList:imgList
                         });
                         if(this.data.nowCount<this.data.count){
                             this.data.nowCount++;
@@ -189,9 +181,6 @@ Component({
                       if(this.data.imgTotal-tempImgCount<this.data.nowCount){
                           this.data.nowCount = this.data.imgTotal-tempImgCount
                       }
-                      if(this.data.nowCount==0){
-                        this.setData({isUpLoad:false});
-                      }
                   })
               },
           })
@@ -207,10 +196,11 @@ Component({
     },
     // 在组件实例进入页面节点树时执行
     attached(){
+        this.initData(); 
     },
     // 在组件在视图层布局完成后执行
     ready() {
-        this.initData();   
+        console.log(this.data);  
     },
   })
   
