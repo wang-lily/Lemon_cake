@@ -11,7 +11,8 @@ const cors = require("cors");
 //2.2:配置允许脚手架访问程序
 app.use(cors({
     origin:["http://127.0.0.1:3001",
-    "http://localhost:3001"],
+    "http://localhost:3001"
+  ],
     credentials:true
 }));
 //7.1:node.js app.js
@@ -41,8 +42,8 @@ app.use(bodyParser.urlencoded({
   extended:false
 }));
 
-var baseUrl = "http://127.0.0.1:3002";
-// var baseUrl = "http://23z20z4973.iask.in:40613";
+// var baseUrl = "http://127.0.0.1:3002";
+var baseUrl = "http://172.81.238.103:3002";
 
 //3:创建multer对象指定上传文件目录
 //指定上传文件目录

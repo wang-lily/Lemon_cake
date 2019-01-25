@@ -40,6 +40,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      discountImg_url: getApp().globalData.baseUrl + "/img/discount.png",
       showCoupon:false,
     list:[
       {img_url:getApp().globalData.baseUrl+"/img/carousel09.png"},
